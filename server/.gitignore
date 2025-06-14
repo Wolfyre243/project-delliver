@@ -1,2 +1,5 @@
 node_modules
 .env
+/prisma/src/configs/prisma
+
+/prisma/src/configs/prisma
