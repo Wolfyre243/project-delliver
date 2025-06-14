@@ -7,15 +7,13 @@
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "prisma": {
-    "schema": "./src/configs/prisma"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "description": "",
   "dependencies": {
+    "@prisma/client": "^6.9.0",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.5.0",
