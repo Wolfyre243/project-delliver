@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS userprofile; 
+DROP TABLE IF EXISTS sessions; 
+DROP TABLE IF EXISTS users; 
+
 CREATE TABLE users (
 	user_id SERIAL PRIMARY KEY,
 	username VARCHAR(50) UNIQUE NOT NULL,
@@ -22,3 +26,30 @@ CREATE TABLE userprofile (
 	REFERENCES users(user_id)
 		ON DELETE CASCADE
 );
+
+CREATE TABLE sessions (
+	session_id SERIAL PRIMARY KEY,
+	user_id INT NOT NULL,
+	access_token VARCHAR(255),
+	is_active BOOLEAN DEFAULT true,
+	login_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+	logout_at TIMESTAMPTZ,
+
+	FOREIGN KEY (user_id)
+		REFERENCES users(user_id)
+		ON DELETE CASCADE
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+

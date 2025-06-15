@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 // Import routers
 import mainRouter from './routes/mainRoutes.js';
 
-// const { cookieOptions } = require('./configs/authConfig');
+import cookieOptions from './configs/authConfig.js';
 
 //----------------------------SET UP APP--------------------------------
 // Create server
@@ -14,7 +14,7 @@ const app = express();
 
 // Set up middleware
 // Read cookies
-// app.use(cookieParser(cookieOptions));
+app.use(cookieParser(cookieOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

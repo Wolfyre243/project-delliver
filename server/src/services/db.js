@@ -26,4 +26,4 @@ pool.query = function (...args) {
 };
 
 // Export the pool for usage elsewhere
-export default pool;
+export default pool.query;
