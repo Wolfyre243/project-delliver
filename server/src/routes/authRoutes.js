@@ -4,7 +4,6 @@ import express from 'express';
 
 // Import controllers
 import authController from '../controllers/authController.js';
-import userController from '../controllers/userController.js';
 import sessionController from '../controllers/sessionController.js';
 import jwtMiddleware from '../middleware/jwtMiddleware.js';
 // -----------------------------------SET UP ROUTES-----------------------------------

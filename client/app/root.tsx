@@ -5,10 +5,16 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useNavigate
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { AuthProvider } from "./context/authProvider";
+
+import { useLayoutEffect } from "react";
+import useAuth from "./hooks/useAuth";
+import useRefreshToken from "./hooks/useRefreshToken";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -19,7 +25,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap",
   },
 ];
 
@@ -33,15 +39,36 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
+        <AuthProvider>
+          {children}
+          <ScrollRestoration />
+          <Scripts />
+        </AuthProvider>
       </body>
     </html>
   );
 }
 
 export default function App() {
+  const { accessToken, setLoading } = useAuth();
+  const refreshToken = useRefreshToken();
+
+  useLayoutEffect(() => {
+    (async () => {
+      try {
+        if (!accessToken)
+          // If access token is gone from memory, generate a new one
+          await refreshToken();
+        
+      } catch (error: any) {
+        console.log("[REFRESH ERROR]", error.response.data.message);
+      } finally {
+        setLoading(false);
+      }
+      
+    })()
+  }, [accessToken]);
+
   return <Outlet />;
 }
 
