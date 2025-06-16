@@ -27,6 +27,9 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap",
   },
+  {
+    rel: "icon", href: "/favicon.ico"
+  }
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
