@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+const ENV = import.meta.env.VITE_ENV;
+const url = ENV === 'production' ? import.meta.env.VITE_PROD_PROXY_URL : import.meta.env.VITE_PROXY_URL;
+
 function axiosInstance() {
   return axios.create({
-    baseURL: import.meta.env.VITE_PROXY_URL,
+    baseURL: url,
     timeout: 10000,
     headers: {
       'Content-Type': 'application/json',
@@ -12,7 +15,7 @@ function axiosInstance() {
 
 function axiosPrivateInstance() {
   return axios.create({
-    baseURL: import.meta.env.VITE_PROXY_URL,
+    baseURL: url,
     timeout: 10000,
     withCredentials: true,
     headers: {

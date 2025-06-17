@@ -16,15 +16,16 @@ const app = express();
 // Set up middleware
 // Read cookies
 app.use(cookieParser(cookieOptions));
-app.use(cors({ 
-  origin: `http://localhost:5173`,
+app.use(cors({
+  origin: [
+    `http://localhost:5173`,
+    process.env.PROD_URL,
+  ],
   credentials: true 
 }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-
 
 // Bring in main routes
 app.use('/api', mainRouter);
