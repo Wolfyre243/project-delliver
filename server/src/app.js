@@ -17,14 +17,13 @@ const app = express();
 // Read cookies
 app.use(cookieParser(cookieOptions));
 app.use(cors({ 
+  // TODO: Add production URL (from env?)
   origin: `http://localhost:5173`,
   credentials: true 
 }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-
 
 // Bring in main routes
 app.use('/api', mainRouter);

@@ -15,6 +15,9 @@ export default defineConfig({
     netlifyPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
+      devOptions: {
+        enabled: true
+      },
       includeAssets: ['favicon.ico', 'vite.png', 'assets/*'],
       manifest: {
         name: 'HealthNest',

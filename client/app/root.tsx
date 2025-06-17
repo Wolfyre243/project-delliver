@@ -15,6 +15,7 @@ import { AuthProvider } from "./context/authProvider";
 import { useLayoutEffect } from "react";
 import useAuth from "./hooks/useAuth";
 import useRefreshToken from "./hooks/useRefreshToken";
+import { isAxiosError } from "axios";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -29,6 +30,9 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "icon", href: "/favicon.ico"
+  },
+  {
+    rel: "manifest", href: "/manifest.webmanifest"
   }
 ];
 
@@ -64,7 +68,9 @@ export default function App() {
           await refreshToken();
         
       } catch (error: any) {
-        console.log("[REFRESH ERROR]", error.response.data.message);
+        if (isAxiosError(error)) {
+          console.log("[REFRESH ERROR] " + error.response?.data.message || "[SERVER ERROR] Something went wrong. Please try again later.");
+        }
       } finally {
         setLoading(false);
       }
