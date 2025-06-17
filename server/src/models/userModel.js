@@ -9,7 +9,7 @@ model.insertSingle = async (username, email, password, fname, lname, is_highrisk
     const sql = `
         CALL register_user($1, $2, $3, $4, $5, $6, o_user_id := NULL);
     `
-    return query(sql, [username, email, password, fname, lname, is_highrisk])
+    return query(sql, [username, email, password, fname, lname, true])
         .then((result) => {
             const { rows } = result;
 
