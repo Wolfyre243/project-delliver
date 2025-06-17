@@ -29,15 +29,15 @@ const register = () => {
 
 function renderStep(step: any, setStep: any) {
   if (step === 1) {
-    return <Step1 setStep={setStep}/>;
+    return <Step1 setStep={setStep} />;
   } else if (step === 2) {
-    return <Step2 setStep={setStep}/>;
+    return <Step2 setStep={setStep} />;
   } else {
-    return <Step3 setStep={setStep}/>;
+    return <Step3 setStep={setStep} />;
   }
 }
 
-const Step1 = (props: {setStep: Function}) => {
+const Step1 = (props: { setStep: Function }) => {
   return (
     <>
       <h1 className="mt-6 text-5xl font-bold leading-16">
@@ -47,10 +47,12 @@ const Step1 = (props: {setStep: Function}) => {
         A little about you so we can tailor your health journey.
       </p>
       <hr className="bg-white mt-10"></hr>
-      <form onSubmit={(e)=>{
-        e.preventDefault();
-        props.setStep(2);
-      }}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          props.setStep(2);
+        }}
+      >
         <div className="flex gap-3 mt-9 text-xl">
           <Checkbox id="FamilyHistory" className="self-center" />
           <label htmlFor="FamilyHistory">
@@ -92,14 +94,94 @@ const Step1 = (props: {setStep: Function}) => {
   );
 };
 
-const Step2 = (props: {setStep: Function}) => {
-  return <></>;
-};
-
-const Step3 = (props: {setStep: Function}) => {
+const Step2 = (props: { setStep: Function }) => {
   return (
     <>
-      <p></p>
+      <h1 className="mt-6 text-5xl font-bold leading-16">
+        ❓How'd we call you?
+      </h1>
+      <p className="text-2xl mt-4">We’d love to address you properly.</p>
+      <hr className="bg-white mt-10"></hr>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          props.setStep(3);
+        }}
+      >
+        <div className="mt-7">
+          <label htmlFor="fname">First name:</label>
+          <Input
+            id="fname"
+            type="text"
+            placeholder="Enter first name"
+            className="bg-[#222630] px-4 py-3 outline-none text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040] self-center w-full mt-2"
+            required
+          />
+        </div>
+        <div className="mt-4">
+          <label htmlFor="lname">Last name:</label>
+          <Input
+            id="lname"
+            type="text"
+            placeholder="Enter last name"
+            className="bg-[#222630] px-4 py-3 outline-none text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040] self-center w-full mt-2"
+            required
+          />
+        </div>
+        <div className="mt-4">
+          <label htmlFor="username">Username:</label>
+          <Input
+            id="username"
+            type="text"
+            placeholder="Enter username"
+            className="bg-[#222630] px-4 py-3 outline-none text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040] self-center w-full mt-2"
+            required
+          />
+        </div>
+        <Button className="mt-7">Next</Button>
+      </form>
+    </>
+  );
+};
+
+const Step3 = (props: { setStep: Function }) => {
+  return (
+    <>
+      <h1 className="mt-6 text-5xl font-bold leading-16">
+        You're almost there! 🌟
+      </h1>
+      <p className="text-2xl mt-4">
+        Pick a password you’ll remember — and no one else will!
+      </p>
+      <hr className="bg-white mt-10"></hr>
+            <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          
+        }}
+      >
+        <div className="mt-7">
+          <label htmlFor="fname">Password:</label>
+          <Input
+            id="fname"
+            type="password"
+            placeholder="Enter password"
+            className="bg-[#222630] px-4 py-3 outline-none text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040] self-center w-full mt-2"
+            required
+          />
+        </div>
+        <div className="mt-4">
+          <label htmlFor="lname">Confirm password:</label>
+          <Input
+            id="lname"
+            type="password"
+            placeholder="Enter password again"
+            className="bg-[#222630] px-4 py-3 outline-none text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040] self-center w-full mt-2"
+            required
+          />
+        </div>
+        <Button className="mt-7">Sign up</Button>
+      </form>
     </>
   );
 };
