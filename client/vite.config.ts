@@ -21,7 +21,7 @@ export default defineConfig({
       includeAssets: ['favicon.ico', 'vite.png', 'assets/*'],
       manifest: {
         scope: '/',
-        display: 'standalone',
+        display: 'minimal-ui',
         name: 'HealthNest',
         short_name: 'HealthNest',
         start_url: '/',
