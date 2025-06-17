@@ -16,9 +16,11 @@ const app = express();
 // Set up middleware
 // Read cookies
 app.use(cookieParser(cookieOptions));
-app.use(cors({ 
-  // TODO: Add production URL (from env?)
-  origin: `http://localhost:5173`,
+app.use(cors({
+  origin: [
+    `http://localhost:5173`,
+    process.env.PROD_URL,
+  ],
   credentials: true 
 }));
 
