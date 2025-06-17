@@ -3,6 +3,8 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+import netlifyPlugin from "@netlify/vite-plugin-react-router";
+
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
@@ -10,12 +12,14 @@ export default defineConfig({
     tailwindcss(), 
     reactRouter(), 
     tsconfigPaths(),
+    netlifyPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'vite.png'],
+      includeAssets: ['favicon.ico', 'vite.png', 'assets/*'],
       manifest: {
         name: 'HealthNest',
         short_name: 'HealthNest',
+        start_url: '/',
         description: 'A simple yet intuitive health tracker that aims to promote healthier living',
         theme_color: '#ffffff',
         icons: [
@@ -43,6 +47,10 @@ export default defineConfig({
           }
         ],
       },
+      workbox: {
+        // defining cached files formats
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,webmanifest}"],
+      }
     })
   ],
 });
