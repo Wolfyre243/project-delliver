@@ -6,6 +6,9 @@ import { Input } from '~/components/ui/input'
 
 import LiquidChrome from '~/components/backgrounds/LiquidChrome'
 import SplitText from '~/components/text-animations/SplitText'
+import LoadingSpinner from '~/components/LoadingSpinner'
+
+import useAuth from '~/hooks/useAuth'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -15,23 +18,34 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  let [loggedInclasses, setLoggedInclasses] = useState("hidden");
-  let [notLoggedInClasses, setNotLoggedInClasses] = useState("");
+  let [loggedInclasses, setLoggedInclasses] = useState('hidden')
+  let [notLoggedInClasses, setNotLoggedInClasses] = useState('')
+
+  const { accessToken, loading } = useAuth()
+
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setLoggedInclasses("");
-      setNotLoggedInClasses("hidden");
+    if (accessToken) {
+      setLoggedInclasses('')
+      setNotLoggedInClasses('hidden')
     } else {
-      setLoggedInclasses("hidden");
-      setNotLoggedInClasses("");
+      setLoggedInclasses('hidden')
+      setNotLoggedInClasses('')
     }
-  }, []);
+  }, [accessToken, loading])
   return (
     <>
-      <LoggedIn classname={loggedInclasses}></LoggedIn>
-      <NotLoggedIn classname={notLoggedInClasses}></NotLoggedIn>
+      {loading ? (
+        <div className="flex h-full w-full justify-center items-center">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <>
+          <LoggedIn classname={loggedInclasses}></LoggedIn>
+          <NotLoggedIn classname={notLoggedInClasses}></NotLoggedIn>
+        </>
+      )}
     </>
-  );
+  )
 }
 
 const LoggedIn = (props: { classname: any }) => {
@@ -39,8 +53,8 @@ const LoggedIn = (props: { classname: any }) => {
     <div className={props.classname}>
       <h1>Hi! you are logged in </h1>
     </div>
-  );
-};
+  )
+}
 
 const NotLoggedIn = (props: { classname: any }) => {
   let fName: any = useRef(null)
@@ -90,7 +104,7 @@ const NotLoggedIn = (props: { classname: any }) => {
         <form
           onSubmit={(e) => {
             e.preventDefault()
-            localStorage.setItem("email",  fName.current.value);
+            localStorage.setItem('email', fName.current.value)
             window.location.href = '/auth/register'
           }}
           className="w-full md:w-1/2"
@@ -112,4 +126,4 @@ const NotLoggedIn = (props: { classname: any }) => {
       </div>
     </div>
   )
-};
+}
