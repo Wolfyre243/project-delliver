@@ -47,7 +47,7 @@ const NotLoggedIn = (props: { classname: any }) => {
 
   return (
     <div className={props.classname}>
-      <div className="flex w-full h-full absolute -z-1 opacity-30">
+      <div className="flex w-full h-full absolute -z-1 opacity-30 ">
         <LiquidChrome
           baseColor={[0.22, 0.25, 0.25]}
           speed={0.2}
@@ -55,7 +55,7 @@ const NotLoggedIn = (props: { classname: any }) => {
           interactive={false}
         />
       </div>
-      <div className="flex justify-center w-full h-150 items-center flex-col p-4">
+      <div className="flex justify-center w-full h-150 items-center flex-col p-4 ">
         <h1 className="text-4xl md:text-6xl text-center mt-3 font-bold">
           <SplitText
             text="Fight Back with Every Step,"
