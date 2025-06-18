@@ -5,7 +5,7 @@ import useAuth from '~/hooks/useAuth'
 
 export default function AppBar() {
   let [classesForLogin, setClassesForLogin] = useState("flex flex-row gap-2 justify-center items-center");
-    const { accessToken, loading } = useAuth()
+    const { accessToken } = useAuth()
   
     useEffect(() => {
       if (accessToken) {
@@ -13,8 +13,9 @@ export default function AppBar() {
       } else {
         setClassesForLogin("flex flex-row gap-2 justify-center items-center")
       }
-    }, []);
+    }, [accessToken]);
   return (
+    
     // TODO: Turn into proper responsive app bar
     <div className="bg-neutral-900 flex flex-row w-full p-3 justify-between shadow-md">
       <div className="">

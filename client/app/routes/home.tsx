@@ -21,7 +21,7 @@ export default function Home() {
   let [loggedInclasses, setLoggedInclasses] = useState('hidden')
   let [notLoggedInClasses, setNotLoggedInClasses] = useState('')
 
-  const { accessToken, loading } = useAuth()
+  const { accessToken } = useAuth()
 
   useEffect(() => {
     if (accessToken) {
@@ -31,19 +31,13 @@ export default function Home() {
       setLoggedInclasses('hidden')
       setNotLoggedInClasses('')
     }
-  }, [accessToken, loading])
+  }, [accessToken])
   return (
     <>
-      {loading ? (
-        <div className="flex h-full w-full justify-center items-center">
-          <LoadingSpinner />
-        </div>
-      ) : (
-        <>
-          <LoggedIn classname={loggedInclasses}></LoggedIn>
-          <NotLoggedIn classname={notLoggedInClasses}></NotLoggedIn>
-        </>
-      )}
+      <>
+        <LoggedIn classname={loggedInclasses}></LoggedIn>
+        <NotLoggedIn classname={notLoggedInClasses}></NotLoggedIn>
+      </>
     </>
   )
 }
@@ -98,8 +92,7 @@ const NotLoggedIn = (props: { classname: any }) => {
           />
         </h1>
         <p className="mt-3 text-xl text-center">
-          Take on personalized health missions to help you live a healthier
-          life{' '}
+          Take on personalized health missions to help you live a healthier life{' '}
         </p>
         <form
           onSubmit={(e) => {
