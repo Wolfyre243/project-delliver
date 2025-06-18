@@ -20,8 +20,8 @@ const register = () => {
   let [step, setStep] = useState(1)
   return (
     <>
-      <div className="flex justify-center h-150 flex-col items-center">
-        <div className="w-150">
+      <div className="flex justify-center flex-col items-center">
+        <div className="w-[87%] md:w-150 text-clip mt-5">
           <h3>Step {step} of 3</h3>
           {renderStep(step, setStep)}
         </div>
@@ -47,6 +47,7 @@ const Step1 = (props: { setStep: Function }) => {
   let [exerciseDuration, setExerciseDuration] = useState('')
   function handleCheckboxChange(history: any, setHistory: Function) {
     setHistory(history)
+    setHistory(history)
   }
   return (
     <>
@@ -65,6 +66,12 @@ const Step1 = (props: { setStep: Function }) => {
           localStorage.setItem('familyHistory', String(familyHistory))
           localStorage.setItem('smokeHistory', String(smokeHistory))
           props.setStep(2)
+          e.preventDefault()
+          localStorage.setItem('exerciseDuration', exerciseDuration)
+          localStorage.setItem('screeningHistory', String(screeningHistory))
+          localStorage.setItem('familyHistory', String(familyHistory))
+          localStorage.setItem('smokeHistory', String(smokeHistory))
+          props.setStep(2)
         }}
       >
         <div className="flex gap-3 mt-9 text-xl">
@@ -73,6 +80,7 @@ const Step1 = (props: { setStep: Function }) => {
             className="self-center"
             checked={familyHistory}
             onCheckedChange={(checked) => {
+              handleCheckboxChange(checked, setFamilyHistory)
               handleCheckboxChange(checked, setFamilyHistory)
             }}
           />
@@ -87,6 +95,7 @@ const Step1 = (props: { setStep: Function }) => {
             checked={smokeHistory}
             onCheckedChange={(checked) => {
               handleCheckboxChange(checked, setSmokeHistory)
+              handleCheckboxChange(checked, setSmokeHistory)
             }}
           />
           <label htmlFor="smokeHistory">
@@ -100,6 +109,7 @@ const Step1 = (props: { setStep: Function }) => {
             checked={screeningHistory}
             onCheckedChange={(checked) => {
               handleCheckboxChange(checked, setScreeningHistory)
+              handleCheckboxChange(checked, setScreeningHistory)
             }}
           />
           <label htmlFor="screeningHistory">
@@ -110,6 +120,7 @@ const Step1 = (props: { setStep: Function }) => {
           <p className="text-xl mb-3">How often do you exercise per week?</p>
           <Select
             onValueChange={(value) => {
+              setExerciseDuration(value)
               setExerciseDuration(value)
             }}
             required
@@ -147,6 +158,11 @@ const Step2 = (props: { setStep: Function }) => {
       <hr className="bg-white mt-10"></hr>
       <form
         onSubmit={(e) => {
+          e.preventDefault()
+          localStorage.setItem('firstName', fname.current.value)
+          localStorage.setItem('lastName', lname.current.value)
+          localStorage.setItem('username', username.current.value)
+          props.setStep(3)
           e.preventDefault()
           localStorage.setItem('firstName', fname.current.value)
           localStorage.setItem('lastName', lname.current.value)

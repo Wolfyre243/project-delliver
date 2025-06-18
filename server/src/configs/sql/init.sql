@@ -21,7 +21,8 @@ CREATE TABLE userprofile (
 	last_name VARCHAR(100) NOT NULL,
 	created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
 	updated_at TIMESTAMPTZ NULL,
-
+	exercise_duration VARCHAR(255) NOT NULL,
+	history TEXT[] NOT NULL,
 	FOREIGN KEY (user_id)
 	REFERENCES users(user_id)
 		ON DELETE CASCADE
