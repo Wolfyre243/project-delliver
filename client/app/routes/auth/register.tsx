@@ -4,6 +4,8 @@ import { Button } from '~/components/ui/button'
 import { Checkbox } from '~/components/ui/checkbox'
 import { Input } from '~/components/ui/input'
 
+import AnimatedContent from '~/components/animations/AnimatedContent'
+
 import {
   Select,
   SelectTrigger,
@@ -32,11 +34,59 @@ const register = () => {
 
 function renderStep(step: any, setStep: any) {
   if (step === 1) {
-    return <Step1 setStep={setStep} />
+    return (
+      <>
+        <AnimatedContent
+          distance={1000}
+          direction="horizontal"
+          reverse={true}
+          duration={1.2}
+          ease="power3.out"
+          initialOpacity={0.2}
+          animateOpacity
+          scale={1}
+          threshold={0.2}
+        >
+          <Step1 setStep={setStep} />
+        </AnimatedContent>
+      </>
+    )
   } else if (step === 2) {
-    return <Step2 setStep={setStep} />
+    return (
+      <>
+        <AnimatedContent
+          distance={1000}
+          direction="horizontal"
+          reverse={true}
+          duration={1.2}
+          ease="power3.out"
+          initialOpacity={0.2}
+          animateOpacity
+          scale={1}
+          threshold={0.2}
+        >
+          <Step2 setStep={setStep} />
+        </AnimatedContent>
+      </>
+    )
   } else {
-    return <Step3 setStep={setStep} />
+    return (
+      <>
+        <AnimatedContent
+          distance={1000}
+          direction="horizontal"
+          reverse={true}
+          duration={1.2}
+          ease="power3.out"
+          initialOpacity={0.2}
+          animateOpacity
+          scale={1}
+          threshold={0.2}
+        >
+          <Step3 setStep={setStep} />
+        </AnimatedContent>
+      </>
+    )
   }
 }
 
@@ -291,7 +341,7 @@ const Step3 = (props: { setStep: Function }) => {
                 localStorage.removeItem('username')
               }
 
-              navigate('/') // TODO: Change to navigate to homescreen
+              navigate('/dashboard')
             }
           } catch (error) {
             let message

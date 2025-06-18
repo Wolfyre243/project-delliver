@@ -4,16 +4,20 @@ import { Button } from '~/components/ui/button'
 import useAuth from '~/hooks/useAuth'
 
 export default function AppBar() {
-  let [classesForLogin, setClassesForLogin] = useState("flex flex-row gap-2 justify-center items-center");
-    const { accessToken, loading } = useAuth()
-  
-    useEffect(() => {
-      if (accessToken) {
-        setClassesForLogin("flex flex-row gap-2 justify-center items-center hidden")
-      } else {
-        setClassesForLogin("flex flex-row gap-2 justify-center items-center")
-      }
-    }, []);
+  let [classesForLogin, setClassesForLogin] = useState(
+    'flex flex-row gap-2 justify-center items-center'
+  )
+  const { accessToken, loading } = useAuth()
+
+  useEffect(() => {
+    if (accessToken) {
+      setClassesForLogin(
+        'flex flex-row gap-2 justify-center items-center hidden'
+      )
+    } else {
+      setClassesForLogin('flex flex-row gap-2 justify-center items-center')
+    }
+  }, [])
   return (
     // TODO: Turn into proper responsive app bar
     <div className="bg-neutral-900 flex flex-row w-full p-3 justify-between shadow-md">
@@ -28,7 +32,6 @@ export default function AppBar() {
           <Link to={'/auth/login'}>Login</Link>
         </Button>
       </div>
-
     </div>
   )
 }
