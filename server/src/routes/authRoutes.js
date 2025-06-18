@@ -1,20 +1,71 @@
 // --------------------------------------IMPORT---------------------------------------
 // Import dependencies
-import express from 'express';
+import express from "express";
 
 // Import controllers
-import authController from '../controllers/authController.js';
-import sessionController from '../controllers/sessionController.js';
-import jwtMiddleware from '../middleware/jwtMiddleware.js';
+import authController from "../controllers/authController.js";
+import sessionController from "../controllers/sessionController.js";
+import jwtMiddleware from "../middleware/jwtMiddleware.js";
 // -----------------------------------SET UP ROUTES-----------------------------------
 // Create the router
 const authRouter = express.Router();
 
 /**
- * POST
- * Registers a new user
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Authentication endpoints
  */
-authRouter.post('/register',
+
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - email
+ *               - password
+ *               - confirmPassword
+ *               - fname
+ *               - lname
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: johndoe
+ *               email:
+ *                 type: string
+ *                 example: johndoe@example.com
+ *               password:
+ *                 type: string
+ *                 example: secret123
+ *               confirmPassword:
+ *                 type: string
+ *                 example: secret123
+ *               fname:
+ *                 type: string
+ *                 example: John
+ *               lname:
+ *                 type: string
+ *                 example: Doe
+ *               is_highrisk:
+ *                 type: boolean
+ *                 example: false
+ *     responses:
+ *       200:
+ *         description: User successfully registered
+ *       409:
+ *         description: Password mismatch or username/email taken
+ */
+authRouter.post(
+    "/register",
     authController.register,
     // mailMiddleware.sendMail,
     sessionController.createSession,
@@ -24,10 +75,35 @@ authRouter.post('/register',
 );
 
 /**
- * POST
- * Logs the user in
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Login as a user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - username
+ *               - password
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 example: johndoe
+ *               password:
+ *                 type: string
+ *                 example: secret123
+ *     responses:
+ *       200:
+ *         description: User successfully logged in
+ *       401:
+ *         description: Invalid credentials
  */
-authRouter.post('/login',
+authRouter.post(
+    "/login",
     authController.login,
     sessionController.createSession,
     jwtMiddleware.generateRefreshToken,
@@ -36,20 +112,39 @@ authRouter.post('/login',
 );
 
 /**
- * POST
- * Logs the current user out
+ * @swagger
+ * /auth/logout:
+ *   post:
+ *     summary: Logout from session
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: User successfully logged out
+ *       403:
+ *         description: Missing required refresh token, or refresh token/session is invalid
  */
-authRouter.post('/logout',
+authRouter.post(
+    "/logout",
     jwtMiddleware.verifyRefreshToken,
     authController.logout
 );
 
 /**
- * POST
- * Refreshes access token
- * (POST because access token is created)
+ * @swagger
+ * /auth/refresh:
+ *   post:
+ *     summary: Refreshes access token
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: Access token successfully refreshed
+ *       403:
+ *         description: Missing required refresh token, or refresh token/session is invalid
+ *       404:
+ *         description: Session not found
  */
-authRouter.post('/refresh',
+authRouter.post(
+    "/refresh",
     jwtMiddleware.verifyRefreshToken,
     jwtMiddleware.checkAccessToken,
     jwtMiddleware.generateAccessToken,
@@ -57,38 +152,5 @@ authRouter.post('/refresh',
         return res.status(200).json({ accessToken: res.locals.access_token });
     }
 );
-
-/**
- * PUT
- * Reads token from URL param and updates user's verification status if valid.
- * 
- * Query: token
- */
-// authRouter.put('/verify-email',
-//     authController.verifyEmail
-// );
-
-/**
- * POST
- * Takes in user's username to reset their password via email
- * 
- * Body: username
- */
-// authRouter.post('/forgot-password',
-//     [ usernameValidation() ], validate,
-//     authController.forgotPassword,
-//     mailMiddleware.sendMail
-// );
-
-/**
- * POST
- * Resets the user's password
- * 
- * Body: password, confirmPassword
- */
-// authRouter.post('/reset-password',
-//     [ passwordValidation() ], validate,
-//     authController.resetPassword
-// );
 
 export default authRouter;

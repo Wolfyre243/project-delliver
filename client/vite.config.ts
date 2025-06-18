@@ -18,7 +18,7 @@ export default defineConfig({
       devOptions: {
         enabled: true
       },
-      includeAssets: ['favicon.ico', 'vite.png', 'assets/*'],
+      includeAssets: ['favicon.ico', 'logo.png', 'assets/*'],
       manifest: {
         scope: '/',
         display: 'minimal-ui',
