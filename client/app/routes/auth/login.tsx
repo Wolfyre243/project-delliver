@@ -2,14 +2,43 @@ import { useRef } from "react";
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import useAuth from '~/hooks/useAuth'
+import api from "~/services/api";
+import { useJWTDecode } from '~/hooks/useJWTDecode'
+import { useNavigate } from 'react-router'
+import { isAxiosError } from "axios";
 
 const login = () => {
-      const { setAccessToken } = useAuth();
-      let usernameRef = useRef(null);
-      let passwordRef = useRef(null);
-    
-    function handleSubmit() {
-        
+    const { setAccessToken } = useAuth();
+    let usernameRef: any = useRef(null);
+    let passwordRef: any = useRef(null);
+    const JWTDecode = useJWTDecode()
+    const navigate = useNavigate()
+
+    async function handleSubmit() {
+        try {
+            let passwordInput = passwordRef.current.value;
+            let usernameInput = usernameRef.current.value;
+            let body = {
+                username: usernameInput,
+                password: passwordInput
+            }
+            const {data: responseData} = await api.post(
+                "/auth/login",
+                body,
+                { withCredentials: true }
+            )
+            setAccessToken(responseData.accessToken)
+            await JWTDecode(responseData.accessToken);
+            navigate('/');
+        } catch (error) {
+            let message
+            if (isAxiosError(error)) {
+                message =
+                error.response?.data.message ||
+                'Something went wrong. Please try again later.'
+            }
+            console.log(message) // TODO: Display error on frontend
+        }
     }
   return (
     <div className="flex justify-center flex-col items-center h-[90vh]">
