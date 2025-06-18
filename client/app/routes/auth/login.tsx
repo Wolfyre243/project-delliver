@@ -42,7 +42,7 @@ const login = () => {
     }
   return (
     <div className="flex justify-center flex-col items-center h-[90vh]">
-        <div className="bg-gray-900 w-150 p-8">
+        <div className="w-150 p-8 shadow-grey shadow-md">
             <h1 className="text-4xl font-bold leading-16 text-center">Welcome back</h1>
             <p className="text-center">Don't have an account?{" "}
                 <a href="/" className="underline underline-offset-4">
