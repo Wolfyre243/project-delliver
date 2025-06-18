@@ -45,13 +45,11 @@ export default function Home() {
 }
 
 const LoggedIn = (props: { classname: any }) => {
-  useEffect(()=>{
-    window.location.href = "/dashboard";
-  },[])
-  return (
-    <div className={props.classname}>
-    </div>
-  )
+  const { accessToken, loading } = useAuth()
+  useEffect(() => {
+    if (accessToken) window.location.href = '/dashboard'
+  }, [accessToken, loading])
+  return <div className={props.classname}></div>
 }
 
 const NotLoggedIn = (props: { classname: any }) => {
@@ -96,7 +94,8 @@ const NotLoggedIn = (props: { classname: any }) => {
           />
         </h1>
         <p className="mt-3 text-xl text-center">
-          Take on personalized health missions to help you live a healthier life{' '}
+          Take on personalized health missions to help you live a healthier
+          life{' '}
         </p>
         <form
           onSubmit={(e) => {
