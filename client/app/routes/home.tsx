@@ -3,12 +3,14 @@ import type { Route } from './+types/home'
 import { useEffect, useRef, useState } from 'react'
 import stuff from './stuff.svg'
 import { Input } from '~/components/ui/input'
-
 import LiquidChrome from '~/components/backgrounds/LiquidChrome'
 import SplitText from '~/components/text-animations/SplitText'
 import LoadingSpinner from '~/components/LoadingSpinner'
 
 import useAuth from '~/hooks/useAuth'
+import type { SidebarInset, SidebarProvider } from '~/components/ui/sidebar'
+import type { AppSidebar } from '~/components/app-sidebar'
+import Page from './dashboard/home'
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -43,9 +45,11 @@ export default function Home() {
 }
 
 const LoggedIn = (props: { classname: any }) => {
+  useEffect(()=>{
+    window.location.href = "/dashboard";
+  },[])
   return (
     <div className={props.classname}>
-      <h1>Hi! you are logged in </h1>
     </div>
   )
 }

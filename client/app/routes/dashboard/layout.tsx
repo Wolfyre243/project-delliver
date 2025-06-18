@@ -7,7 +7,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <main className="flex flex-col h-full">
         {/* TODO: replace with sidebar */}
-        <AppBar />
         <Outlet />
       </main>
     </>
