@@ -4,12 +4,12 @@ import { UNIQUE_VIOLATION_ERROR, EMPTY_RESULT_ERROR, RAISE_EXCEPTION, SQL_ERROR_
 
 const model = {};
 
-model.insertSingle = async (username, email, password, fname, lname, is_highrisk) => {
+model.insertSingle = async (username, email, password, fname, lname, is_highrisk, exerciseDuration, history) => {
     // TODO: Create stored procedure
     const sql = `
-        CALL register_user($1, $2, $3, $4, $5, $6, o_user_id := NULL);
+        CALL register_user($1, $2, $3, $4, $5, $6, $7, $8, $9);
     `
-    return query(sql, [username, email, password, fname, lname, true])
+    return query(sql, [username, email, password, fname, lname, true, exerciseDuration, history,null])
         .then((result) => {
             const { rows } = result;
 

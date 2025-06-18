@@ -50,7 +50,8 @@ controller.login = async (req, res, next) => {
 }
 
 controller.register = async (req, res, next) => {
-    const { username, email, password, confirmPassword, fname, lname, is_highrisk } = req.body;
+    debugger
+    const { username, email, password, confirmPassword, fname, lname, is_highrisk, exerciseDuration, history} = req.body;
 
     const jwtConfig = {
         algorithm: tokenAlgorithm,
@@ -64,9 +65,10 @@ controller.register = async (req, res, next) => {
 
         const passwordHash = bcrypt.hashSync(password, parseInt(process.env.BCRYPT_SALTROUNDS));
 
-        userModel.insertSingle(username, email, passwordHash, fname, lname, is_highrisk)
+        userModel.insertSingle(username, email, passwordHash, fname, lname, is_highrisk,exerciseDuration, history)
             .then(async (result) => {
                 // Email Verification
+                debugger
                 const payload = {
                     user_id: result.o_user_id,
                     email: email,

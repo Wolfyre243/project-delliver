@@ -1,6 +1,6 @@
 import { Button } from "~/components/ui/button";
 import type { Route } from "./+types/home";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import stuff from "./stuff.svg";
 import { Input } from "~/components/ui/input";
 
@@ -12,9 +12,38 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  let fName: any = useRef(null);
+  let [loggedInclasses, setLoggedInclasses] = useState("hidden");
+  let [notLoggedInClasses, setNotLoggedInClasses] = useState("");
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setLoggedInclasses("");
+      setNotLoggedInClasses("hidden");
+    } else {
+      setLoggedInclasses("hidden");
+      setNotLoggedInClasses("");
+    }
+  }, []);
   return (
     <>
+      <LoggedIn classname={loggedInclasses}></LoggedIn>
+      <NotLoggedIn classname={notLoggedInClasses}></NotLoggedIn>
+    </>
+  );
+}
+
+const LoggedIn = (props: { classname: any }) => {
+  return (
+    <div className={props.classname}>
+      <h1>Hi! you are logged in </h1>
+    </div>
+  );
+};
+
+const NotLoggedIn = (props: { classname: any }) => {
+  let fName: any = useRef(null);
+
+  return (
+    <div className={props.classname}>
       <div className="flex justify-center h-150 items-center flex-col">
         <h1 className="text-6xl text-center mt-3 leading-18 font-bold">
           Fight Back with Every Step,<br></br>Your Health starts here
@@ -25,7 +54,7 @@ export default function Home() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            localStorage.setItem('email',fName.current.value)
+            localStorage.setItem("email", fName.current.value);
             window.location.href = "/auth/register";
           }}
         >
@@ -44,6 +73,6 @@ export default function Home() {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
-}
+};
