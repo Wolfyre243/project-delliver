@@ -72,7 +72,7 @@ const NotLoggedIn = (props: { classname: any }) => {
             ease="power3.out"
             splitType="chars"
             from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
+            to={{ opacity: 1, y: -5 }}
             threshold={0.1}
             rootMargin="-100px"
             textAlign="center"
