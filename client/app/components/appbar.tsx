@@ -29,7 +29,6 @@ export default function AppBar() {
           <Link to={'/auth/login'}>Login</Link>
         </Button>
       </div>
-
     </div>
   )
 }
