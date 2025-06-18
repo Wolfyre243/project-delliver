@@ -1,18 +1,23 @@
-import { useRef, useState } from "react";
-import { Button } from "~/components/ui/button";
-import { Checkbox } from "~/components/ui/checkbox";
-import { Input } from "~/components/ui/input";
-import { Axios } from "axios";
+import { isAxiosError } from 'axios'
+import { useRef, useState } from 'react'
+import { Button } from '~/components/ui/button'
+import { Checkbox } from '~/components/ui/checkbox'
+import { Input } from '~/components/ui/input'
+
 import {
   Select,
   SelectTrigger,
   SelectContent,
   SelectValue,
   SelectItem,
-} from "~/components/ui/select";
+} from '~/components/ui/select'
+import useAuth from '~/hooks/useAuth'
+import { useJWTDecode } from '~/hooks/useJWTDecode'
+import { useNavigate } from 'react-router'
+import api from '~/services/api'
 
 const register = () => {
-  let [step, setStep] = useState(1);
+  let [step, setStep] = useState(1)
   return (
     <>
       <div className="flex justify-center h-150 flex-col items-center">
@@ -22,26 +27,26 @@ const register = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 function renderStep(step: any, setStep: any) {
   if (step === 1) {
-    return <Step1 setStep={setStep} />;
+    return <Step1 setStep={setStep} />
   } else if (step === 2) {
-    return <Step2 setStep={setStep} />;
+    return <Step2 setStep={setStep} />
   } else {
-    return <Step3 setStep={setStep} />;
+    return <Step3 setStep={setStep} />
   }
 }
 
 const Step1 = (props: { setStep: Function }) => {
-  let [familyHistory, setFamilyHistory] = useState(false);
-  let [smokeHistory, setSmokeHistory] = useState(false);
-  let [screeningHistory, setScreeningHistory] = useState(false);
-  let [exerciseDuration, setExerciseDuration] = useState("");
+  let [familyHistory, setFamilyHistory] = useState(false)
+  let [smokeHistory, setSmokeHistory] = useState(false)
+  let [screeningHistory, setScreeningHistory] = useState(false)
+  let [exerciseDuration, setExerciseDuration] = useState('')
   function handleCheckboxChange(history: any, setHistory: Function) {
-    setHistory(history);
+    setHistory(history)
   }
   return (
     <>
@@ -54,12 +59,12 @@ const Step1 = (props: { setStep: Function }) => {
       <hr className="bg-white mt-10"></hr>
       <form
         onSubmit={(e) => {
-          e.preventDefault();
-          localStorage.setItem("exerciseDuration", exerciseDuration);
-          localStorage.setItem("screeningHistory", String(screeningHistory));
-          localStorage.setItem("familyHistory", String(familyHistory));
-          localStorage.setItem("smokeHistory", String(smokeHistory));
-          props.setStep(2);
+          e.preventDefault()
+          localStorage.setItem('exerciseDuration', exerciseDuration)
+          localStorage.setItem('screeningHistory', String(screeningHistory))
+          localStorage.setItem('familyHistory', String(familyHistory))
+          localStorage.setItem('smokeHistory', String(smokeHistory))
+          props.setStep(2)
         }}
       >
         <div className="flex gap-3 mt-9 text-xl">
@@ -68,7 +73,7 @@ const Step1 = (props: { setStep: Function }) => {
             className="self-center"
             checked={familyHistory}
             onCheckedChange={(checked) => {
-              handleCheckboxChange(checked, setFamilyHistory);
+              handleCheckboxChange(checked, setFamilyHistory)
             }}
           />
           <label htmlFor="FamilyHistory">
@@ -81,7 +86,7 @@ const Step1 = (props: { setStep: Function }) => {
             className="self-center"
             checked={smokeHistory}
             onCheckedChange={(checked) => {
-              handleCheckboxChange(checked, setSmokeHistory);
+              handleCheckboxChange(checked, setSmokeHistory)
             }}
           />
           <label htmlFor="smokeHistory">
@@ -94,7 +99,7 @@ const Step1 = (props: { setStep: Function }) => {
             className="self-center"
             checked={screeningHistory}
             onCheckedChange={(checked) => {
-              handleCheckboxChange(checked, setScreeningHistory);
+              handleCheckboxChange(checked, setScreeningHistory)
             }}
           />
           <label htmlFor="screeningHistory">
@@ -105,7 +110,7 @@ const Step1 = (props: { setStep: Function }) => {
           <p className="text-xl mb-3">How often do you exercise per week?</p>
           <Select
             onValueChange={(value) => {
-              setExerciseDuration(value);
+              setExerciseDuration(value)
             }}
             required
           >
@@ -126,13 +131,13 @@ const Step1 = (props: { setStep: Function }) => {
         <Button className="mt-7">Next </Button>
       </form>
     </>
-  );
-};
+  )
+}
 
 const Step2 = (props: { setStep: Function }) => {
-  let fname: any = useRef(null);
-  let lname: any = useRef(null);
-  let username: any = useRef(null);
+  let fname: any = useRef(null)
+  let lname: any = useRef(null)
+  let username: any = useRef(null)
   return (
     <>
       <h1 className="mt-6 text-5xl font-bold leading-16">
@@ -142,11 +147,11 @@ const Step2 = (props: { setStep: Function }) => {
       <hr className="bg-white mt-10"></hr>
       <form
         onSubmit={(e) => {
-          e.preventDefault();
-          localStorage.setItem("firstName", fname.current.value);
-          localStorage.setItem("lastName", lname.current.value);
-          localStorage.setItem("username", username.current.value);
-          props.setStep(3);
+          e.preventDefault()
+          localStorage.setItem('firstName', fname.current.value)
+          localStorage.setItem('lastName', lname.current.value)
+          localStorage.setItem('username', username.current.value)
+          props.setStep(3)
         }}
       >
         <div className="mt-7">
@@ -185,12 +190,18 @@ const Step2 = (props: { setStep: Function }) => {
         <Button className="mt-7">Next</Button>
       </form>
     </>
-  );
-};
+  )
+}
 
 const Step3 = (props: { setStep: Function }) => {
-  let passwordRef: any = useRef(null);
-  let confirmPasswordRef: any = useRef(null);
+  let passwordRef: any = useRef(null)
+  let confirmPasswordRef: any = useRef(null)
+
+  const { setAccessToken } = useAuth()
+  const JWTDecode = useJWTDecode()
+
+  const navigate = useNavigate()
+
   return (
     <>
       <h1 className="mt-6 text-5xl font-bold leading-16">
@@ -201,77 +212,79 @@ const Step3 = (props: { setStep: Function }) => {
       </p>
       <hr className="bg-white mt-10"></hr>
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          debugger;
-          if (passwordRef.current.value === confirmPasswordRef.current.value) {
-            let emailInput = localStorage.getItem("email");
-            let usernameInput = localStorage.getItem("username");
-            let fnameInput = localStorage.getItem("firstName");
-            let lnameInput = localStorage.getItem("lastName");
-            let exerciseDurationInput =
-              localStorage.getItem("exerciseDuration");
-            let history = [
-              {
-                bool: localStorage.getItem("familyHistory"),
-                name: "familyHistory",
-              },
-              {
-                bool: localStorage.getItem("screeningHistory"),
-                name: "screeningHistory",
-              },
-              {
-                bool: localStorage.getItem("smokeHistory"),
-                name: "smokeHistory",
-              },
-            ];
-            let historyToPassToBackend = [];
-            for (let i = 0; i < history.length; i++) {
-              debugger
-              if (history[i].bool == "true") {
-                historyToPassToBackend.push(history[i].name);
-              }
-            }
-            let body = {
-              username: usernameInput,
-              email: emailInput,
-              password: passwordRef.current.value,
-              confirmPassword: confirmPasswordRef.current.value,
-              fname: fnameInput,
-              lname: lnameInput,
-              exerciseDuration: exerciseDurationInput,
-              history: historyToPassToBackend,
-            };
-            const headers = new Headers();
-            headers.append("Content-Type", "application/json");
-            debugger;
-            fetch("http://localhost:3000/api/auth/register", {
-              method: "POST",
-              body: JSON.stringify(body),
-              headers: headers,
-            })
-              .then((response) => {
-                debugger;
-                return response.json();
-              })
-              .then((value) => {
-                let token: any = value.accessToken;
-                if (value.accessToken != undefined) {
-                  localStorage.removeItem("email");
-                  localStorage.removeItem("exerciseDuration");
-                  localStorage.removeItem("familyHistory");
-                  localStorage.removeItem("firstName");
-                  localStorage.removeItem("lastName");
-                  localStorage.removeItem("screeningHistory");
-                  localStorage.removeItem("smokeHistory");
-                  localStorage.removeItem("username");
-                  localStorage.setItem("accessToken", token);
-                  window.location.href = "/";
+        onSubmit={async (e) => {
+          e.preventDefault()
+          try {
+            if (
+              passwordRef.current.value === confirmPasswordRef.current.value
+            ) {
+              let emailInput = localStorage.getItem('email')
+              let usernameInput = localStorage.getItem('username')
+              let fnameInput = localStorage.getItem('firstName')
+              let lnameInput = localStorage.getItem('lastName')
+              let exerciseDurationInput =
+                localStorage.getItem('exerciseDuration')
+              let history = [
+                {
+                  bool: localStorage.getItem('familyHistory'),
+                  name: 'familyHistory',
+                },
+                {
+                  bool: localStorage.getItem('screeningHistory'),
+                  name: 'screeningHistory',
+                },
+                {
+                  bool: localStorage.getItem('smokeHistory'),
+                  name: 'smokeHistory',
+                },
+              ]
+              let historyToPassToBackend = []
+              for (let i = 0; i < history.length; i++) {
+                debugger
+                if (history[i].bool == 'true') {
+                  historyToPassToBackend.push(history[i].name)
                 }
-              })
-              .catch((reason)=>{
-                console.error(reason);
-              })
+              }
+              let body = {
+                username: usernameInput,
+                email: emailInput,
+                password: passwordRef.current.value,
+                confirmPassword: confirmPasswordRef.current.value,
+                fname: fnameInput,
+                lname: lnameInput,
+                exerciseDuration: exerciseDurationInput,
+                history: historyToPassToBackend,
+              }
+              const { data: responseData } = await api.post(
+                '/auth/register',
+                body,
+                { withCredentials: true }
+              )
+
+              setAccessToken(responseData.accessToken)
+              await JWTDecode(responseData.accessToken)
+
+              if (responseData.accessToken != undefined) {
+                localStorage.removeItem('email')
+                localStorage.removeItem('exerciseDuration')
+                localStorage.removeItem('familyHistory')
+                localStorage.removeItem('firstName')
+                localStorage.removeItem('lastName')
+                localStorage.removeItem('screeningHistory')
+                localStorage.removeItem('smokeHistory')
+                localStorage.removeItem('username')
+              }
+
+              navigate('/') // TODO: Change to navigate to homescreen
+            }
+          } catch (error) {
+            let message
+            if (isAxiosError(error)) {
+              message =
+                error.response?.data.message ||
+                'Something went wrong. Please try again later.'
+            }
+            console.log(message) // TODO: Display error on frontend
           }
         }}
       >
@@ -300,6 +313,6 @@ const Step3 = (props: { setStep: Function }) => {
         <Button className="mt-7">Sign up</Button>
       </form>
     </>
-  );
-};
-export default register;
+  )
+}
+export default register
