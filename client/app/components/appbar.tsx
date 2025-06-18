@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router'
 import { Button } from '~/components/ui/button'
+import useAuth from '~/hooks/useAuth'
 
 export default function AppBar() {
   let [classesForLogin, setClassesForLogin] = useState("flex flex-row gap-2 justify-center items-center");
+    const { accessToken, loading } = useAuth()
+  
     useEffect(() => {
-      if (localStorage.getItem("accessToken")) {
+      if (accessToken) {
         setClassesForLogin("flex flex-row gap-2 justify-center items-center hidden")
       } else {
         setClassesForLogin("flex flex-row gap-2 justify-center items-center")
