@@ -1,0 +1,27 @@
+{
+  "name": "project-delliver",
+  "version": "1.0.0",
+  "description": "This project is a full-stack PWA (progressive web application) that promotes healthy lifestyles, and encourages users to go for health screenings.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wolfyre243/project-delliver.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Wolfyre243/project-delliver/issues"
+  },
+  "homepage": "https://github.com/Wolfyre243/project-delliver#readme",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "prettier": "^3.5.3",
+    "pretty-quick": "^4.2.2"
+  }
+}
