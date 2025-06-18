@@ -55,11 +55,11 @@ const login = () => {
             }}>
                 <div className="mt-9">
                     <label htmlFor="username">Username</label>
-                    <Input ref={usernameRef} type="text" placeholder="Enter username" className="bg-[#222630] px-4 py-3 outline-none text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040] self-center w-full mt-2" name="username" id="username" />
+                    <Input required ref={usernameRef} type="text" placeholder="Enter username" className="bg-[#222630] px-4 py-3 outline-none text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040] self-center w-full mt-2" name="username" id="username" />
                 </div>
                 <div className="mt-4">
                     <label htmlFor="password">Password</label>
-                    <Input ref={passwordRef} type="password" placeholder="Enter Password" className="bg-[#222630] px-4 py-3 outline-none text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040] self-center w-full mt-2" name="password" id="password" />
+                    <Input required ref={passwordRef} type="password" placeholder="Enter Password" className="bg-[#222630] px-4 py-3 outline-none text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040] self-center w-full mt-2" name="password" id="password" />
                 </div>
                 <Button className="mt-9 w-full">Login</Button>
             </form>
