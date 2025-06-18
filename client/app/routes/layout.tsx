@@ -5,7 +5,7 @@ import AppBar from '~/components/appbar'
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <main className="flex flex-col">
+      <main className="flex flex-col h-full">
         <AppBar />
         <Outlet />
       </main>
