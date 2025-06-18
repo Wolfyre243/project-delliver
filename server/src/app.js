@@ -33,6 +33,7 @@ app.get('/api', (req, res) => {
   res.send('Server is online!')
 })
 
+// Redirect the user if they try to access the main page
 app.get('/', (req, res) => {
   res.redirect('/docs')
 })

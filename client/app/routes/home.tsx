@@ -1,49 +1,86 @@
-import { Button } from "~/components/ui/button";
-import type { Route } from "./+types/home";
-import { useRef } from "react";
-import stuff from "./stuff.svg";
-import { Input } from "~/components/ui/input";
+import { Button } from '~/components/ui/button'
+import type { Route } from './+types/home'
+import { useRef } from 'react'
+import stuff from './stuff.svg'
+import { Input } from '~/components/ui/input'
+
+import LiquidChrome from '~/components/backgrounds/LiquidChrome'
+import SplitText from '~/components/text-animations/SplitText'
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Landing Page" },
-    { name: "description", content: "Welcome to React Router" },
-  ];
+    { title: 'Landing Page' },
+    { name: 'description', content: 'Welcome to React Router' },
+  ]
 }
 
 export default function Home() {
-  let fName: any = useRef(null);
+  let fName: any = useRef(null)
   return (
     <>
-      <div className="flex justify-center h-150 items-center flex-col">
-        <h1 className="text-6xl text-center mt-3 leading-18 font-bold">
-          Fight Back with Every Step,<br></br>Your Health starts here
+      <div className="flex w-full h-full absolute -z-1 opacity-30">
+        <LiquidChrome
+          baseColor={[0.22, 0.25, 0.25]}
+          speed={0.2}
+          amplitude={0.6}
+          interactive={false}
+        />
+      </div>
+      <div className="flex justify-center w-full h-150 items-center flex-col p-4">
+        <h1 className="text-4xl md:text-6xl text-center mt-3 font-bold">
+          <SplitText
+            text="Fight Back with Every Step,"
+            delay={100}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-100px"
+            textAlign="center"
+          />
+          <br />
+          <SplitText
+            text="Your Health starts here."
+            delay={100}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-100px"
+            textAlign="center"
+          />
         </h1>
-        <p className="mt-3 text-xl">
-          Take on personalized health missions to help you live a healthier life{" "}
+        <p className="mt-3 text-xl text-center">
+          Take on personalized health missions to help you live a healthier
+          life{' '}
         </p>
         <form
           onSubmit={(e) => {
-            e.preventDefault();
-            localStorage.setItem('email',fName.current.value)
-            window.location.href = "/auth/register";
+            e.preventDefault()
+            localStorage.setItem('email', fName.current.value)
+            window.location.href = '/auth/register'
           }}
+          className="w-full md:w-1/2"
         >
-          <div className="flex gap-5 mt-8">
+          <div className="flex flex-row flex-wrap justify-center gap-5 mt-8">
             <Input
-              className="bg-[#222630] px-4 py-3 h-13.5 outline-none w-[400px] text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040] self-center"
+              className="w-full md:w-2/3 px-4 py-3 h-13.5 outline-none text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#929292] self-center"
               name="text"
               placeholder="Enter email"
               type="email"
               ref={fName}
               required
             />
-            <Button className="px-4 py-3 h-full">
+            <Button className="px-4 py-3 h-full w-fit">
               Next <img src={stuff} alt="arrow" />
             </Button>
           </div>
         </form>
       </div>
     </>
-  );
+  )
 }
