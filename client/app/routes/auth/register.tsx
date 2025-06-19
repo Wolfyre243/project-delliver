@@ -4,7 +4,7 @@ import { Button } from '~/components/ui/button'
 import { Checkbox } from '~/components/ui/checkbox'
 import { Input } from '~/components/ui/input'
 
-import AnimatedContent from '~/components/animations/AnimatedContent'
+// import AnimatedContent from '~/components/animations/AnimatedContent'
 
 import {
   Select,
@@ -36,7 +36,7 @@ function renderStep(step: any, setStep: any) {
   if (step === 1) {
     return (
       <>
-        <AnimatedContent
+        {/* <AnimatedContent
           distance={1000}
           direction="horizontal"
           reverse={true}
@@ -46,15 +46,15 @@ function renderStep(step: any, setStep: any) {
           animateOpacity
           scale={1}
           threshold={0.2}
-        >
-          <Step1 setStep={setStep} />
-        </AnimatedContent>
+        > */}
+        <Step1 setStep={setStep} />
+        {/* </AnimatedContent> */}
       </>
     )
   } else if (step === 2) {
     return (
       <>
-        <AnimatedContent
+        {/* <AnimatedContent
           distance={1000}
           direction="horizontal"
           reverse={true}
@@ -64,15 +64,15 @@ function renderStep(step: any, setStep: any) {
           animateOpacity
           scale={1}
           threshold={0.2}
-        >
-          <Step2 setStep={setStep} />
-        </AnimatedContent>
+        > */}
+        <Step2 setStep={setStep} />
+        {/* </AnimatedContent> */}
       </>
     )
   } else {
     return (
       <>
-        <AnimatedContent
+        {/* <AnimatedContent
           distance={1000}
           direction="horizontal"
           reverse={true}
@@ -82,9 +82,9 @@ function renderStep(step: any, setStep: any) {
           animateOpacity
           scale={1}
           threshold={0.2}
-        >
-          <Step3 setStep={setStep} />
-        </AnimatedContent>
+        > */}
+        <Step3 setStep={setStep} />
+        {/* </AnimatedContent> */}
       </>
     )
   }
