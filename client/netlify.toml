@@ -4,3 +4,4 @@ publish = "build/client"
 
 [dev]
 command = "react-router dev"
+framework = "#auto"
