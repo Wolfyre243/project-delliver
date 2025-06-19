@@ -47,4 +47,16 @@ model.retrieveByUsername = async (username) => {
     });
 }
 
+model.retrieveByUserID = async (userID) =>{
+    const sql = `
+    SELECT * FROM users WHERE user_id = $1
+    `
+    return query(sql, [userID]).then((result) => {
+    const { rows } = result;
+    if (rows.length === 0) {
+        throw new EMPTY_RESULT_ERROR(404, "User not found with the provided username.");
+    }
+    return rows[0];
+    });
+}
 export default model;

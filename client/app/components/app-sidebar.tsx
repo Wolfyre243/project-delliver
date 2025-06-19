@@ -5,17 +5,21 @@ import {
   Bot,
   Command,
   Frame,
-  GalleryVerticalEnd,
+  ScrollText,
   Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
+  HomeIcon,
+  Utensils,
+  CircleUserRound,
 } from "lucide-react"
 import logo from "../../public/logo.png"
 import { NavMain } from "~/components/nav-main"
 import { NavProjects } from "~/components/nav-projects"
 import { NavUser } from "~/components/nav-user"
 import { TeamSwitcher } from "~/components/team-switcher"
+import { useEffect } from 'react'
+import api from '~/services/api'
+import useAuth from '~/hooks/useAuth'
+import { isAxiosError } from 'axios'
 import {
   Sidebar,
   SidebarContent,
@@ -29,11 +33,14 @@ import {
   )
 }
 // This is sample data.
-const data = {
+
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  let [data,setData] = React.useState({
   user: {
-    name: "shadcn",
+    name: "placeholder",
     email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: CircleUserRound,
   },
   teams: [
     {
@@ -43,30 +50,48 @@ const data = {
     }
   ],
   projects: [
-    {
-      name: "Missions",
-      url: "#",
-      icon: Frame,
+      {
+      name: "Home",
+      url: "/dashboard",
+      icon: HomeIcon,
     },
     {
-      name: "Statistics",
-      url: "#",
-      icon: PieChart,
+      name: "Missions",
+      url: "/dashboard/missions",
+      icon: ScrollText,
     },
     {
       name: "Dietary",
-      url: "#",
-      icon: Map,
+      url: "/dashboard/dietary",
+      icon: Utensils,
     },
         {
       name: "Clinics",
-      url: "#",
+      url: "/dashboard/clinics",
       icon: Map,
     }
   ],
-}
+})
+  const { accessToken } = useAuth()
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+async function getData() {
+    try {
+      const {data: responseData} = await api.get("/users/getUserDetails",{withCredentials: true, headers:{Authorization: "Bearer "+accessToken}})
+      data.user.name = responseData.username;
+      data.user.email = responseData.email;
+    } catch (error) {
+      let message
+      if (isAxiosError(error)) {
+        message =
+          error.response?.data.message ||
+          'Something went wrong. Please try again later.'
+      }
+      console.log(message) 
+    }
+}
+  useEffect(()=>{
+    getData();
+  },[accessToken])
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>

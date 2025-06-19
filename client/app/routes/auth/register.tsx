@@ -23,7 +23,7 @@ const register = () => {
   return (
     <>
       <div className="flex justify-center flex-col items-center">
-        <div className="w-[87%] md:w-150 text-clip mt-5">
+        <div className="w-[87%] md:w-150 text-clip mt-5 p-3 mb-4">
           <h3>Step {step} of 3</h3>
           {renderStep(step, setStep)}
         </div>
