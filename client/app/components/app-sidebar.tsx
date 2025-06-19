@@ -18,7 +18,7 @@ import { NavProjects } from "~/components/nav-projects"
 import { NavUser } from "~/components/nav-user"
 import { TeamSwitcher } from "~/components/team-switcher"
 import { useEffect } from 'react'
-import api from '~/services/api'
+import {apiPrivate} from '~/services/api'
 import useAuth from '~/hooks/useAuth'
 import { isAxiosError } from 'axios'
 import LoadingSpinner from '~/components/LoadingSpinner'
@@ -83,7 +83,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
 async function getData() {
     try {
-      const {data: responseData} = await api.get("/users/getUserDetails",{withCredentials: true, headers:{Authorization: "Bearer "+accessToken}})
+      const {data: responseData} = await apiPrivate.get("/users/getUserDetails",{withCredentials: true})
       setData({
   user: {
     name: responseData.username,
