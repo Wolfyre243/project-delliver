@@ -1,6 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import pkg from 'gsap/ScrollTrigger'
+// @ts-ignore
+const { ScrollTrigger } = pkg
 import { SplitText as GSAPSplitText } from 'gsap/SplitText'
 
 gsap.registerPlugin(ScrollTrigger, GSAPSplitText)
