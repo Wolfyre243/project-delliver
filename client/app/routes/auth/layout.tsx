@@ -19,7 +19,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         navigate('/dashboard')
       } else {
         // If access token is gone from memory, generate a new one
-        await refreshToken()
+        try {
+          await refreshToken()
+        } catch (error) {
+          console.log(error)
+        }
       }
     })()
   }, [accessToken])
