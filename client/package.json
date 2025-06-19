@@ -6,7 +6,7 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "start": "npm run dev",
+    "start": "set PORT=5173 && react-router-serve ./build/server/server.js",
     "generate-pwa-assets": "pwa-assets-generator --preset minimal ./public/logo.png",
     "typecheck": "react-router typegen && tsc"
   },
@@ -20,8 +20,8 @@
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.7",
-    "@react-router/node": "^7.6.2",
-    "@react-router/serve": "^7.6.2",
+    "@react-router/node": "^7.5.3",
+    "@react-router/serve": "^7.5.3",
     "@react-three/fiber": "^9.1.2",
     "@vercel/react-router": "^1.1.2",
     "axios": "^1.10.0",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@netlify/vite-plugin-react-router": "^1.0.1",
-    "@react-router/dev": "^7.6.2",
+    "@react-router/dev": "^7.5.3",
     "@tailwindcss/vite": "^4.1.4",
     "@types/node": "^20",
     "@types/react": "^19.1.2",
