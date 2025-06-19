@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import stuff from './stuff.svg'
 import { Input } from '~/components/ui/input'
 import LiquidChrome from '~/components/backgrounds/LiquidChrome'
-import SplitText from '~/components/text-animations/SplitText'
+// import SplitText from '~/components/text-animations/SplitText'
 import LoadingSpinner from '~/components/LoadingSpinner'
 
 import useAuth from '~/hooks/useAuth'
@@ -67,7 +67,7 @@ const NotLoggedIn = (props: { classname: any }) => {
       </div>
       <div className="flex justify-center w-full h-150 items-center flex-col p-4 ">
         <h1 className="text-4xl md:text-6xl text-center mt-3 font-bold">
-          <SplitText
+          {/* <SplitText
             text="Fight Back with Every Step,"
             delay={100}
             duration={0.6}
@@ -78,9 +78,10 @@ const NotLoggedIn = (props: { classname: any }) => {
             threshold={0.1}
             rootMargin="-100px"
             textAlign="center"
-          />
+          /> */}
+          Fight Back with Every Step,
           <br />
-          <SplitText
+          {/* <SplitText
             text="Your Health starts here."
             delay={100}
             duration={0.6}
@@ -91,7 +92,8 @@ const NotLoggedIn = (props: { classname: any }) => {
             threshold={0.1}
             rootMargin="-100px"
             textAlign="center"
-          />
+          /> */}
+          Your Health starts here
         </h1>
         <p className="mt-3 text-xl text-center">
           Take on personalized health missions to help you live a healthier
