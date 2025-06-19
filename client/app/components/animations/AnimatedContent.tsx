@@ -1,7 +1,9 @@
 import React, { useRef, useEffect } from 'react'
 import type { ReactNode } from 'react'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import pkg from 'gsap/ScrollTrigger'
+// @ts-ignore
+const { ScrollTrigger } = pkg
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -67,7 +69,7 @@ const AnimatedContent: React.FC<AnimatedContentProps> = ({
     })
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill())
+      ScrollTrigger.getAll().forEach((t: any) => t.kill())
       gsap.killTweensOf(el)
     }
   }, [
