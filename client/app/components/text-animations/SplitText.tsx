@@ -3,7 +3,9 @@ import { gsap } from 'gsap'
 import pkg from 'gsap/ScrollTrigger'
 // @ts-ignore
 const { ScrollTrigger } = pkg
-import { SplitText as GSAPSplitText } from 'gsap/SplitText'
+import pkg2 from 'gsap/SplitText'
+// @ts-ignore
+const { SplitText: GSAPSplitText } = pkg2
 
 gsap.registerPlugin(ScrollTrigger, GSAPSplitText)
 
@@ -107,7 +109,7 @@ const SplitText: React.FC<SplitTextProps> = ({
 
     return () => {
       tl.kill()
-      ScrollTrigger.getAll().forEach((t) => t.kill())
+      ScrollTrigger.getAll().forEach((t: any) => t.kill())
       gsap.killTweensOf(targets)
       splitter.revert()
     }
