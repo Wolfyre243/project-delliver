@@ -6,6 +6,7 @@ import { Input } from '~/components/ui/input'
 import LiquidChrome from '~/components/backgrounds/LiquidChrome'
 // import SplitText from '~/components/text-animations/SplitText'
 import LoadingSpinner from '~/components/LoadingSpinner'
+import { useNavigate } from 'react-router'
 
 import useAuth from '~/hooks/useAuth'
 import type { SidebarInset, SidebarProvider } from '~/components/ui/sidebar'
@@ -45,16 +46,18 @@ export default function Home() {
 }
 
 const LoggedIn = (props: { classname: any }) => {
+    let navigate = useNavigate();
+
   const { accessToken, loading } = useAuth()
   useEffect(() => {
-    if (accessToken) window.location.href = '/dashboard'
+    if (accessToken) navigate('/dashboard');
   }, [accessToken, loading])
   return <div className={props.classname}></div>
 }
 
 const NotLoggedIn = (props: { classname: any }) => {
   let fName: any = useRef(null)
-
+  let navigate = useNavigate();
   return (
     <div className={props.classname}>
       <div className="flex w-full h-full absolute -z-1 opacity-30 ">
@@ -103,7 +106,7 @@ const NotLoggedIn = (props: { classname: any }) => {
           onSubmit={(e) => {
             e.preventDefault()
             localStorage.setItem('email', fName.current.value)
-            window.location.href = '/auth/register'
+            navigate('/auth/register');
           }}
           className="w-full md:w-1/2"
         >

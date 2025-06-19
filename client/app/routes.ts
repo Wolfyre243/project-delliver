@@ -30,4 +30,10 @@ export default [
       route('clinics','routes/dashboard/clinics.tsx')
     ]),
   ]),
+  ...prefix('assistant',[
+    layout('routes/assistant/layout.tsx',[
+      index('routes/assistant/assistant.tsx'),
+
+    ])
+  ])
 ] satisfies RouteConfig

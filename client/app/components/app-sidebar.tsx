@@ -10,6 +10,7 @@ import {
   HomeIcon,
   Utensils,
   CircleUserRound,
+  BotIcon
 } from "lucide-react"
 import logo from "../../public/logo.png"
 import { NavMain } from "~/components/nav-main"
@@ -70,6 +71,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       name: "Clinics",
       url: "/dashboard/clinics",
       icon: Map,
+    },
+        {
+      name: "Lova",
+      url: "/assistant",
+      icon: BotIcon
     }
   ],
 })
@@ -107,10 +113,15 @@ async function getData() {
       url: "/dashboard/dietary",
       icon: Utensils,
     },
-        {
+    {
       name: "Clinics",
       url: "/dashboard/clinics",
       icon: Map,
+    },
+    {
+      name: "Lova",
+      url: "/assistant",
+      icon: BotIcon
     }
   ],
 })
