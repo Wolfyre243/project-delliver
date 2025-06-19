@@ -8,6 +8,7 @@ import {
   LogOut,
   Sparkles,
 } from 'lucide-react'
+import { Link } from 'react-router'
 
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import {
@@ -28,6 +29,7 @@ import {
 import {
   type LucideIcon,
 } from "lucide-react"
+import { Button } from './ui/button'
 export function NavUser({
   user,
 }: {
@@ -90,8 +92,10 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <LogOut />
-              Log out
+              <Link to={'/auth/logout'} className='flex gap-2'>
+                <LogOut />
+                Log out
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
