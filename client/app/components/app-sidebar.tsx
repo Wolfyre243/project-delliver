@@ -83,7 +83,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
 async function getData() {
     try {
-      const {data: responseData} = await apiPrivate.get("/users/getUserDetails",{withCredentials: true})
+      const {data: responseData} = await apiPrivate.get("/users/getUserDetails",{withCredentials: true, headers: {Authorization: "bearer " + accessToken}})
       setData({
   user: {
     name: responseData.username,
