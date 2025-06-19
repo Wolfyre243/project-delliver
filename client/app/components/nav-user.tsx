@@ -92,7 +92,7 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link to={'/auth/logout'} className='flex gap-2'>
+              <Link to={'/auth/logout'} className='flex gap-2 w-full'>
                 <LogOut />
                 Log out
               </Link>

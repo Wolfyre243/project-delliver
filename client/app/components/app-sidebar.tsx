@@ -20,6 +20,7 @@ import { useEffect } from 'react'
 import api from '~/services/api'
 import useAuth from '~/hooks/useAuth'
 import { isAxiosError } from 'axios'
+import LoadingSpinner from '~/components/LoadingSpinner'
 import {
   Sidebar,
   SidebarContent,
@@ -46,7 +47,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     {
       name: "HealthNest",
       logo: logoOfTheApp,
-      plan: "Enterprise",
+      plan: "v1.0.0",
     }
   ],
   projects: [
@@ -72,13 +73,47 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     }
   ],
 })
-  const { accessToken } = useAuth()
+  const { accessToken, loading } = useAuth()
 
 async function getData() {
     try {
       const {data: responseData} = await api.get("/users/getUserDetails",{withCredentials: true, headers:{Authorization: "Bearer "+accessToken}})
-      data.user.name = responseData.username;
-      data.user.email = responseData.email;
+      setData({
+  user: {
+    name: responseData.username,
+    email: responseData.email,
+    avatar: CircleUserRound,
+  },
+  teams: [
+    {
+      name: "HealthNest",
+      logo: logoOfTheApp,
+      plan: "v1.0.0",
+    }
+  ],
+  projects: [
+      {
+      name: "Home",
+      url: "/dashboard",
+      icon: HomeIcon,
+    },
+    {
+      name: "Missions",
+      url: "/dashboard/missions",
+      icon: ScrollText,
+    },
+    {
+      name: "Dietary",
+      url: "/dashboard/dietary",
+      icon: Utensils,
+    },
+        {
+      name: "Clinics",
+      url: "/dashboard/clinics",
+      icon: Map,
+    }
+  ],
+})
     } catch (error) {
       let message
       if (isAxiosError(error)) {
@@ -91,8 +126,10 @@ async function getData() {
 }
   useEffect(()=>{
     getData();
-  },[accessToken])
+  },[accessToken,loading])
   return (
+    <>
+
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={data.teams}/>
@@ -105,6 +142,7 @@ async function getData() {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
+    </>
   )
 }
 

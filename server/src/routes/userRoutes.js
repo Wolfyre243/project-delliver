@@ -16,6 +16,10 @@ const userRouter = express.Router();
 userRouter.get('/',
     userController.retrieveAllUsers
 );
+/**
+ * GET
+ * Displays user details according to the access token
+ */
 userRouter.get("/getUserDetails",
     controller.verifyToken,
     userController.retrievUserByUserId
