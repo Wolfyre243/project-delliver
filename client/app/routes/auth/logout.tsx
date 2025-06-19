@@ -5,15 +5,16 @@ import { isAxiosError } from 'axios'
 import { useNavigate } from 'react-router'
 
 const Logout = () => {
-  const { setAccessToken } = useAuth()
+  const { setAccessToken, setUserId } = useAuth()
     const navigate = useNavigate()
-
+    
     async function logout() {
         try {
             const { data: responseData } = await api.post('/auth/logout',{},{
                 withCredentials: true
             })
             setAccessToken("");
+            setUserId(null);
             navigate('/');
         } catch (error) {
             let message
