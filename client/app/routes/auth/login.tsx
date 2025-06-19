@@ -44,9 +44,16 @@ const login = () => {
       setClassNameOfAlert('mt-6')
     }
   }
+  function getMessage(messageOfError:string) {
+    if (messageOfError == "Invalid username or password."){
+        return <p>{messageOfError} Please try again.</p>
+    } else {
+        return <p>{messageOfError}</p>
+    }
+  }
   return (
     <div className="flex justify-center flex-col items-center h-[90vh]">
-      <div className="w-150 p-8 shadow-grey shadow-md">
+      <div className="md:w-150 p-8 shadow-grey shadow-md w-screen">
         <h1 className="text-4xl font-bold leading-16 text-center">
           Welcome back
         </h1>
@@ -93,7 +100,7 @@ const login = () => {
             <AlertCircleIcon></AlertCircleIcon>
             <AlertTitle>Error {statusCodeOfError}:</AlertTitle>
             <AlertDescription>
-              <p>{messageOfError} Please try again.</p>
+              {getMessage(messageOfError)}
             </AlertDescription>
           </Alert>
         </div>
