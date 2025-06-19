@@ -328,10 +328,6 @@ const Step3 = (props: { setStep: Function }) => {
               )
 
               setAccessToken(responseData.accessToken)
-              window.localStorage.setItem(
-                'refresh_token',
-                responseData.refreshToken
-              )
               await JWTDecode(responseData.accessToken)
 
               if (responseData.accessToken != undefined) {

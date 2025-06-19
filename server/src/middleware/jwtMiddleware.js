@@ -212,7 +212,7 @@ controller.setTokens = (req, res, next) => {
   res
     .status(200)
     .cookie('refresh_token', refreshToken, cookieOptions)
-    .json({ accessToken, refreshToken })
+    .json({ accessToken })
 }
 
 export default controller

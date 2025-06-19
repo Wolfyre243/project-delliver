@@ -27,13 +27,9 @@ const login = () => {
         password: passwordInput,
       }
       const { data: responseData } = await api.post('/auth/login', body, {
-        headers: {
-          Cookie: `refresh_token=${window.localStorage.getItem('refresh_token')}`,
-        },
         withCredentials: true,
       })
       setAccessToken(responseData.accessToken)
-      window.localStorage.setItem('refresh_token', responseData.refreshToken)
       await JWTDecode(responseData.accessToken)
       navigate('/')
     } catch (error: any) {
