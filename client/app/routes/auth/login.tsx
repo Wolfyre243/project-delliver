@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import useAuth from '~/hooks/useAuth'
@@ -6,6 +6,8 @@ import api from "~/services/api";
 import { useJWTDecode } from '~/hooks/useJWTDecode'
 import { useNavigate } from 'react-router'
 import { isAxiosError } from "axios";
+import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
+import { AlertCircleIcon } from "lucide-react";
 
 const login = () => {
     const { setAccessToken } = useAuth();
@@ -13,7 +15,9 @@ const login = () => {
     let passwordRef: any = useRef(null);
     const JWTDecode = useJWTDecode()
     const navigate = useNavigate()
-
+    let [classNameOfAlert, setClassNameOfAlert] = useState("mt-6 hidden");
+    let [statusCodeOfError, setStatusCodeOfError] = useState("");
+    let [messageOfError, setMessageOfError] = useState("");
     async function handleSubmit() {
         try {
             let passwordInput = passwordRef.current.value;
@@ -30,14 +34,16 @@ const login = () => {
             setAccessToken(responseData.accessToken)
             await JWTDecode(responseData.accessToken);
             navigate('/');
-        } catch (error) {
+        } catch (error: any) {
             let message
             if (isAxiosError(error)) {
                 message =
                 error.response?.data.message ||
                 'Something went wrong. Please try again later.'
             }
-            console.log(message) // TODO: Display error on frontend
+            setStatusCodeOfError(error.status);
+            setMessageOfError(message);
+            setClassNameOfAlert("mt-6");
         }
     }
   return (
@@ -63,6 +69,15 @@ const login = () => {
                 </div>
                 <Button className="mt-9 w-full">Login</Button>
             </form>
+            <div className={classNameOfAlert}>
+                <Alert variant={"destructive"}>
+                    <AlertCircleIcon></AlertCircleIcon>
+                    <AlertTitle>Error {statusCodeOfError}:</AlertTitle>
+                    <AlertDescription>
+                        <p>{messageOfError} Please try again.</p>
+                    </AlertDescription>
+                </Alert>
+            </div>
         </div>
     </div>
   )
