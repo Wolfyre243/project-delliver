@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import stuff from './stuff.svg'
 import { Input } from '~/components/ui/input'
 import LiquidChrome from '~/components/backgrounds/LiquidChrome'
-import SplitText from '~/components/text-animations/SplitText'
+// import SplitText from '~/components/text-animations/SplitText'
 import LoadingSpinner from '~/components/LoadingSpinner'
 
 import useAuth from '~/hooks/useAuth'
