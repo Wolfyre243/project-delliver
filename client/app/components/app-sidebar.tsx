@@ -118,7 +118,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           },
           {
             name: 'Clinics',
-            url: '/dashboard/clinics',
+            url: '/clinics',
             icon: Map,
           },
           {
