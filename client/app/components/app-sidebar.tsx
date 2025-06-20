@@ -78,7 +78,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       },
       {
         name: 'Clinics',
-        url: '/clinics',
+        url: '/clinic',
         icon: Map,
       },
       {
@@ -127,7 +127,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             items: [
               {
                 title: "Missions library",
-                url: "/dashboard/missions",
+                url: "/dashboard/missionslibrary",
               },
               {
                 title: "My missions",
@@ -142,11 +142,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           },
           {
             name: 'Clinics',
-            url: '/clinics',
+            url: '/dashboard/clinic',
             icon: Map,
           },
           {
-            name: 'Lova',
+            name: 'Nessie',
             url: '/assistant',
             icon: BotIcon,
           },

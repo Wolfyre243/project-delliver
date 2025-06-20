@@ -25,8 +25,10 @@ export default [
   ...prefix('dashboard', [
     layout('routes/dashboard/layout.tsx', [
       index('routes/dashboard/home.tsx'),
-      route('missions', 'routes/dashboard/missions.tsx'),
+      route('mymissions', 'routes/dashboard/mymissions.tsx'),
       route('dietary', 'routes/dashboard/dietary.tsx'),
+      route('clinic','routes/dashboard/clinic.tsx'),
+      route('missionslibrary','routes/dashboard/missionslibrary.tsx')
     ]),
   ]),
 

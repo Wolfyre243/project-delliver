@@ -70,9 +70,9 @@ export function NavProjects({
                   {item.items?.map((subItem: any) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
+                        <Link to={subItem.url}>
                           <span>{subItem.title}</span>
-                        </a>
+                        </Link>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}
@@ -85,7 +85,7 @@ export function NavProjects({
             return (
           <SidebarMenuItem key={item.name}>
             
-            <SidebarMenuButton asChild>
+            <SidebarMenuButton  tooltip={item.name} asChild>
               <Link to={item.url}>
                 <item.icon />
                 <span>{item.name}</span>

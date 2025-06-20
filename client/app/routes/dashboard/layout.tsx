@@ -53,7 +53,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     <SelectContent className='w-fit'>
                       <SelectItem className='w-fit' value='light mode'><Sun></Sun></SelectItem>
                       <SelectItem value='dark mode' className='w-fit'><MoonIcon></MoonIcon></SelectItem>
-
                     </SelectContent>
                   </Select>
                 </div>

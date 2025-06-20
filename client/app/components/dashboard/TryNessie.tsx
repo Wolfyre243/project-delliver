@@ -8,7 +8,7 @@ export default function TryNessie() {
   return (
     // <div className="flex justify-between flex-col h-full flex-wrap p-5">
     <SpotlightCard className="flex justify-between flex-col h-full flex-wrap p-5 rounded-xl">
-      <h2 className="font-bold text-4xl text-center">Try our AI assistant</h2>
+      <h2 className="font-bold text-2xl text-center">Try our AI assistant</h2>
       <Button
         onClick={() => {
           navigate('/assistant')

@@ -2,7 +2,9 @@ import React from 'react'
 
 const Missions = () => {
   return (
-    <div>missions</div>
+    <>
+        <div>missions</div>
+    </>
   )
 }
 
