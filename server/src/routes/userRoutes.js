@@ -11,6 +11,8 @@ const userRouter = express.Router()
 
 userRouter.use(jwtMiddleware.verifyToken)
 
+userRouter.get('/', userController.retrieveAllUsers)
+
 /**
  * GET
  * Displays user details according to the access token

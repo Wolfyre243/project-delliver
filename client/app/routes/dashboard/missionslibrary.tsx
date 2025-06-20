@@ -54,7 +54,7 @@ import {
 type Checked = DropdownMenuCheckboxItemProps['checked']
 const MissionCard = () => {
   return (
-    <div className="flex flex-row w-1/4 p-2">
+    <div className="flex flex-row w-full lg:w-1/2 xl:w-1/4 p-2">
       <Card className="flex w-full">
         <CardHeader>
           <div className="flex gap-5 items-center">
