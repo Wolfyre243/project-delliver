@@ -1,5 +1,7 @@
 // Import
 import query from '../services/db.js'
+import prisma from '../services/prisma.js'
+
 import {
   UNIQUE_VIOLATION_ERROR,
   EMPTY_RESULT_ERROR,
@@ -78,7 +80,7 @@ model.retrieveByUsername = async (username) => {
 model.retrieveByUserID = async (userID) => {
   const sql = `
     SELECT * FROM users WHERE user_id = $1
-    `
+  `
   return query(sql, [userID]).then((result) => {
     const { rows } = result
     if (rows.length === 0) {
@@ -90,4 +92,17 @@ model.retrieveByUserID = async (userID) => {
     return rows[0]
   })
 }
+
+model.retrieveAll = async () => {
+  const sql = `
+  SELECT user_id, email, username
+  FROM users;
+  `
+
+  return query(sql).then((result) => {
+    const { rows } = result
+    return rows
+  })
+}
+
 export default model
