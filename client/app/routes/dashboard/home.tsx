@@ -20,12 +20,17 @@ export default function Page() {
           <div className="bg-muted/50 md:aspect-3704/3311 aspect-16/7 w-full rounded-xl">
           </div>
         </div>
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3 min-h-[100vh] md:min-h-min">
-            <div className="bg-muted/50 aspect-16/10 rounded-xl">
+          <div className="grid auto-rows-min gap-4 md:grid-cols-3 min-h-[100vh] md:min-h-min flex-1 flex-wrap h-full">
+            <div className="bg-muted/50 rounded-xl h-75">
               <TryNessie />
             </div>
-            <div className="bg-muted/50 aspect-16/10 rounded-xl" />
-            <div className="bg-muted/50 aspect-16/10 rounded-xl" />
+            <div className="bg-muted/50  rounded-xl">
+
+            </div>
+            
+            <div className="bg-muted/50 rounded-xl">
+            
+            </div>
           </div>
                 </div>
     </>
