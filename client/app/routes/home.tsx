@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react'
 import stuff from './stuff.svg'
 import { Input } from '~/components/ui/input'
 import LiquidChrome from '~/components/backgrounds/LiquidChrome'
-// import SplitText from '~/components/text-animations/SplitText'
 import LoadingSpinner from '~/components/LoadingSpinner'
 import { useNavigate } from 'react-router'
 
@@ -46,18 +45,18 @@ export default function Home() {
 }
 
 const LoggedIn = (props: { classname: any }) => {
-    let navigate = useNavigate();
+  let navigate = useNavigate()
 
   const { accessToken, loading } = useAuth()
   useEffect(() => {
-    if (accessToken) navigate('/dashboard');
+    if (accessToken) navigate('/dashboard')
   }, [accessToken, loading])
   return <div className={props.classname}></div>
 }
 
 const NotLoggedIn = (props: { classname: any }) => {
   let fName: any = useRef(null)
-  let navigate = useNavigate();
+  let navigate = useNavigate()
   return (
     <div className={props.classname}>
       <div className="flex w-full h-full absolute -z-1 opacity-30 ">
@@ -70,32 +69,8 @@ const NotLoggedIn = (props: { classname: any }) => {
       </div>
       <div className="flex justify-center w-full h-150 items-center flex-col p-4 ">
         <h1 className="text-4xl md:text-6xl text-center mt-3 font-bold">
-          {/* <SplitText
-            text="Fight Back with Every Step,"
-            delay={100}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: -5 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          /> */}
           Fight Back with Every Step,
           <br />
-          {/* <SplitText
-            text="Your Health starts here."
-            delay={100}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          /> */}
           Your Health starts here
         </h1>
         <p className="mt-3 text-xl text-center">
@@ -106,7 +81,7 @@ const NotLoggedIn = (props: { classname: any }) => {
           onSubmit={(e) => {
             e.preventDefault()
             localStorage.setItem('email', fName.current.value)
-            navigate('/auth/register');
+            navigate('/auth/register')
           }}
           className="w-full md:w-1/2"
         >
