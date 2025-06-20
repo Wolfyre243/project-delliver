@@ -3,6 +3,7 @@ import {
   Forward,
   MoreHorizontal,
   Trash2,
+  ChevronRight,
   type LucideIcon,
 } from "lucide-react"
 
@@ -21,6 +22,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
+    SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
 } from "~/components/ui/sidebar"
 import { Link } from 'react-router'
 
@@ -35,17 +39,50 @@ export function NavProjects({
   projects: {
     name: string
     url: string
-    icon: LucideIcon
+    icon?: LucideIcon
+    isActive?: boolean
+    items?: {
+      title: string
+      url: string
+    }[]
   }[]
 }) {
   const { isMobile } = useSidebar()
-
-  return (
-    <SidebarGroup className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground flex mt-3">
-      <SidebarMenu>
-        {projects.map((item) => (
-
-
+  function checkSideBar(item: any) {
+    if (item.name === "Missions"){
+            return (
+<Collapsible
+            key={item.name}
+            asChild
+            defaultOpen={item.isActive}
+            className="group/collapsible"
+          >
+            <SidebarMenuItem>
+              <CollapsibleTrigger asChild>
+                <SidebarMenuButton tooltip={item.name}>
+                  {item.icon && <item.icon />}
+                  <span>{item.name}</span>
+                  <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                </SidebarMenuButton>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <SidebarMenuSub>
+                  {item.items?.map((subItem: any) => (
+                    <SidebarMenuSubItem key={subItem.title}>
+                      <SidebarMenuSubButton asChild>
+                        <a href={subItem.url}>
+                          <span>{subItem.title}</span>
+                        </a>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  ))}
+                </SidebarMenuSub>
+              </CollapsibleContent>
+            </SidebarMenuItem>
+          </Collapsible>
+            );
+          } else {
+            return (
           <SidebarMenuItem key={item.name}>
             
             <SidebarMenuButton asChild>
@@ -57,6 +94,17 @@ export function NavProjects({
             </SidebarMenuButton>
 
           </SidebarMenuItem>
+            );
+
+          }
+  }
+  return (
+    <SidebarGroup className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground flex mt-3">
+      <SidebarMenu>
+        {projects.map((item) => (
+          
+          checkSideBar(item)
+
         ))}
       </SidebarMenu>
     </SidebarGroup>

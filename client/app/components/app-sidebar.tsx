@@ -55,11 +55,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         url: '/dashboard',
         icon: HomeIcon,
       },
-      {
-        name: 'Missions',
-        url: '/dashboard/missions',
-        icon: ScrollText,
-      },
+                {
+            name: "Missions",
+            url: "/dashboard/missions",
+            icon: ScrollText,
+            isActive: true,
+            items: [
+              {
+                title: "Missions library",
+                url: "/dashboard/missions",
+              },
+              {
+                title: "Starred",
+                url: "#",
+              },
+            ],
+          },
       {
         name: 'Dietary',
         url: '/dashboard/dietary',
@@ -76,6 +87,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         icon: BotIcon,
       },
     ],
+
   })
   const { accessToken, loading } = useAuth()
 
@@ -108,9 +120,20 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             icon: HomeIcon,
           },
           {
-            name: 'Missions',
-            url: '/dashboard/missions',
+            name: "Missions",
+            url: "/dashboard/missions",
             icon: ScrollText,
+            isActive: true,
+            items: [
+              {
+                title: "Missions library",
+                url: "/dashboard/missions",
+              },
+              {
+                title: "My missions",
+                url: "/dashboard/mymissions",
+              },
+            ],
           },
           {
             name: 'Dietary',
@@ -127,7 +150,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             url: '/assistant',
             icon: BotIcon,
           },
-        ],
+        ]
       })
     } catch (error) {
       let message
