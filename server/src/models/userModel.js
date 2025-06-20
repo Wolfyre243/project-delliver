@@ -84,10 +84,7 @@ model.retrieveByUserID = async (userID) => {
   return query(sql, [userID]).then((result) => {
     const { rows } = result
     if (rows.length === 0) {
-      throw new EMPTY_RESULT_ERROR(
-        404,
-        'User not found with the provided username.'
-      )
+      throw new EMPTY_RESULT_ERROR(404, 'User not found with the provided ID.')
     }
     return rows[0]
   })
