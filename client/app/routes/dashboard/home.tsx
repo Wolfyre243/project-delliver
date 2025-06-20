@@ -16,26 +16,23 @@ import { apiPrivate } from '~/services/api'
 import useAuth from '~/hooks/useAuth'
 
 export default function Page() {
-  let [username,setUsername] = useState("");
-  const { accessToken, loading} = useAuth();
+  let [username, setUsername] = useState('')
+  const { accessToken, loading } = useAuth()
   async function getData() {
     try {
-      const { data: responseData } = await apiPrivate.get(
-        '/users/getUserDetails',
-        {
-          withCredentials: true,
-          headers: { Authorization: 'bearer ' + accessToken },
-        }
-      )
-      setUsername(responseData.username);
+      const { data: responseData } = await apiPrivate.get('/users/details', {
+        withCredentials: true,
+        headers: { Authorization: 'bearer ' + accessToken },
+      })
+      setUsername(responseData.username)
     } catch (error) {
-            let message
-            if (isAxiosError(error)) {
-              message =
-                error.response?.data.message ||
-                'Something went wrong. Please try again later.'
-            }
-            console.log(message)
+      let message
+      if (isAxiosError(error)) {
+        message =
+          error.response?.data.message ||
+          'Something went wrong. Please try again later.'
+      }
+      console.log(message)
     }
   }
   useEffect(()=>{
@@ -43,27 +40,23 @@ export default function Page() {
   },[accessToken, loading])
   return (
     <>
-      <h1 className='m-4 text-3xl font-bold'>Hello, {username}!</h1>
+      <h1 className="m-4 text-3xl font-bold">Hello, {username}!</h1>
       <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
         <div className="grid auto-rows-min gap-4 md:grid-cols-3">
           <div className="bg-muted/50 aspect-16/7 rounded-xl md:col-span-2 col-span-1" />
           <div className="bg-muted/50 md:aspect-3704/3311 aspect-16/7 w-full rounded-xl">
-            <Missions/>
+            <Missions />
           </div>
         </div>
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3 min-h-[100vh] md:min-h-min flex-1 flex-wrap h-full">
-            <div className="bg-muted/50 rounded-xl h-75">
-              <TryNessie />
-            </div>
-            <div className="bg-muted/50  rounded-xl">
-
-            </div>
-            
-            <div className="bg-muted/50 rounded-xl">
-            
-            </div>
+        <div className="grid auto-rows-min gap-4 md:grid-cols-3 min-h-[100vh] md:min-h-min flex-1 flex-wrap h-full">
+          <div className="bg-muted/50 rounded-xl h-75">
+            <TryNessie />
           </div>
-                </div>
+          <div className="bg-muted/50  rounded-xl"></div>
+
+          <div className="bg-muted/50 rounded-xl"></div>
+        </div>
+      </div>
     </>
   )
 }

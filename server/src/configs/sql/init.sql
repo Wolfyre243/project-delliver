@@ -102,7 +102,26 @@ VALUES
 (1, 'John', 'Doe', 'no activity', '{"familyHistory", "screeningHistory"}'),
 (2, 'Shanna', 'Lee', 'no activity', '{"familyHistory", "screeningHistory"}');
 
+INSERT INTO missioncategory (category_id)
+VALUES
+('fitness'), ('nutrition'), ('sleep');
 
+INSERT INTO mission (creator_id, category_id, mission_text, visibility, is_community, timespan)
+VALUES 
+-- Fitness
+(1, 'fitness', 'Complete a 20-minute HIIT workout', 'public', false, 1),
+(2, 'fitness', 'Walk 10,000 steps today', 'private', false, 1),
+(1, 'fitness', 'Do 3 sets of squats and pushups', 'public', true, 2),
+
+-- Nutrition
+(1, 'nutrition', 'Eat 5 servings of vegetables', 'public', false, 1),
+(2, 'nutrition', 'Drink 8 glasses of water', 'private', false, 1),
+(1, 'nutrition', 'Avoid sugary snacks for 24 hours', 'public', true, 1),
+
+-- Sleep
+(2, 'sleep', 'Sleep at least 8 hours tonight', 'public', false, 1),
+(2, 'sleep', 'No screens 1 hour before bed', 'private', true, 1),
+(1, 'sleep', 'Go to bed before 11PM', 'public', false, 3);
 
 
 
