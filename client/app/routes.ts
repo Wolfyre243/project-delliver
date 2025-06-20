@@ -26,14 +26,15 @@ export default [
     layout('routes/dashboard/layout.tsx', [
       index('routes/dashboard/home.tsx'),
       route('missions', 'routes/dashboard/missions.tsx'),
-      route('dietary','routes/dashboard/dietary.tsx'),
-      route('clinics','routes/dashboard/clinics.tsx')
+      route('dietary', 'routes/dashboard/dietary.tsx'),
     ]),
   ]),
-  ...prefix('assistant',[
-    layout('routes/assistant/layout.tsx',[
-      index('routes/assistant/assistant.tsx'),
 
-    ])
-  ])
+  ...prefix('clinics', [
+    layout('routes/clinics/layout.tsx', [index('routes/clinics/home.tsx')]),
+  ]),
+
+  ...prefix('assistant', [
+    layout('routes/assistant/layout.tsx', [index('routes/assistant/home.tsx')]),
+  ]),
 ] satisfies RouteConfig
