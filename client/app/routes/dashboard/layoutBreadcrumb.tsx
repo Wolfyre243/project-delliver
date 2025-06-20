@@ -4,6 +4,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
+  BreadcrumbPage,
   BreadcrumbSeparator,
 } from '~/components/ui/breadcrumb'
 import { useLocation } from 'react-router'
@@ -18,6 +19,15 @@ const LayoutBreadcrumb = (props: { href: any }) => {
   const breadcrumbLinks = segments.map((segment, i) => {
     if (segment === '') return
     url += `/${segment}`
+    if (i == segments.length-1){
+       return (
+        <>
+            <BreadcrumbItem>
+                <BreadcrumbPage>{segment}</BreadcrumbPage>
+            </BreadcrumbItem>
+        </>
+       ) 
+    } else {
     return (
       <>
         <BreadcrumbItem>
@@ -31,6 +41,8 @@ const LayoutBreadcrumb = (props: { href: any }) => {
         <BreadcrumbSeparator />
       </>
     )
+    }
+
   })
 
   return (
