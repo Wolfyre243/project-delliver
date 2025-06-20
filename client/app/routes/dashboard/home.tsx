@@ -40,7 +40,7 @@ export default function Page() {
   }
   useEffect(()=>{
     getData();
-  },[])
+  },[accessToken, loading])
   return (
     <>
       <h1 className='m-4 text-3xl font-bold'>Hello, {username}!</h1>
