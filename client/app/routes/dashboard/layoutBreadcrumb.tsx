@@ -23,15 +23,6 @@ const LayoutBreadcrumb = (props: { href: any }) => {
   const breadcrumbLinks = segments.map((segment, i) => {
     if (segment === '') return
     url += `/${segment}`
-    if (i == segments.length-1){
-       return (
-        <>
-            <BreadcrumbItem>
-                <BreadcrumbPage>{segment}</BreadcrumbPage>
-            </BreadcrumbItem>
-        </>
-       ) 
-    } else {
     return (
       <>
         {i == segments.length - 1 ? (
@@ -53,8 +44,6 @@ const LayoutBreadcrumb = (props: { href: any }) => {
         )}
       </>
     )
-    }
-
   })
 
   return (
