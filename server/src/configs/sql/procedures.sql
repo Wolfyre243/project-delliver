@@ -28,3 +28,65 @@ BEGIN
 END;
 $$
 LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE FUNCTION retrieve_all_missions(
+	IN p_search VARCHAR(100),
+	IN p_category_arr VARCHAR(20)[],
+	IN p_creator VARCHAR(50),
+	IN p_page INT,
+	IN p_limit INT
+)
+RETURNS TABLE (
+	mission_id INT,
+	creator_username VARCHAR(50),
+	category VARCHAR(20),
+	mission_text VARCHAR(150),
+	is_community BOOLEAN,
+	timespan INT,
+	created_at TIMESTAMPTZ
+)
+AS $$
+BEGIN
+	
+	RETURN QUERY
+	SELECT
+		m.mission_id, 
+		u.username as creator_username,
+		m.category_id as category, m.mission_text, m.is_community, m.timespan,
+		m.created_at
+	FROM mission m
+	JOIN users u ON m.creator_id = u.user_id
+	WHERE
+		(COALESCE(p_creator, '') = '' OR u.username ILIKE '%' || p_creator || '%') AND
+		(COALESCE(p_search, '') = '' OR m.mission_text ILIKE '%' || p_search || '%') AND
+		(m.category_id = ANY(p_category_arr) OR array_length(p_category_arr, 1) IS NULL) AND
+		m.visibility = 'public'
+	ORDER BY m.mission_id ASC
+	LIMIT p_limit
+	OFFSET (p_page - 1) * p_limit;
+
+END;
+$$
+LANGUAGE plpgsql;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

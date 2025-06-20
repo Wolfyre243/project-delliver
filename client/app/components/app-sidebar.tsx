@@ -55,22 +55,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         url: '/dashboard',
         icon: HomeIcon,
       },
-                {
-            name: "Missions",
-            url: "/dashboard/missions",
-            icon: ScrollText,
-            isActive: true,
-            items: [
-              {
-                title: "Missions library",
-                url: "/dashboard/missions",
-              },
-              {
-                title: "Starred",
-                url: "#",
-              },
-            ],
+      {
+        name: 'Missions',
+        url: '/dashboard/missions',
+        icon: ScrollText,
+        isActive: true,
+        items: [
+          {
+            title: 'Missions library',
+            url: '/dashboard/missions',
           },
+          {
+            title: 'Starred',
+            url: '#',
+          },
+        ],
+      },
       {
         name: 'Dietary',
         url: '/dashboard/dietary',
@@ -87,19 +87,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         icon: BotIcon,
       },
     ],
-
   })
   const { accessToken, loading } = useAuth()
 
   async function getData() {
     try {
-      const { data: responseData } = await apiPrivate.get(
-        '/users/getUserDetails',
-        {
-          withCredentials: true,
-          headers: { Authorization: 'bearer ' + accessToken },
-        }
-      )
+      const { data: responseData } = await apiPrivate.get('/users/details', {
+        withCredentials: true,
+        headers: { Authorization: 'bearer ' + accessToken },
+      })
       setData({
         user: {
           name: responseData.username,
@@ -120,18 +116,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             icon: HomeIcon,
           },
           {
-            name: "Missions",
-            url: "/dashboard/missions",
+            name: 'Missions',
+            url: '/dashboard/missions',
             icon: ScrollText,
             isActive: true,
             items: [
               {
-                title: "Missions library",
-                url: "/dashboard/missionslibrary",
+                title: 'Missions library',
+                url: '/dashboard/missionslibrary',
               },
               {
-                title: "My missions",
-                url: "/dashboard/mymissions",
+                title: 'My missions',
+                url: '/dashboard/mymissions',
               },
             ],
           },
@@ -150,7 +146,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             url: '/assistant',
             icon: BotIcon,
           },
-        ]
+        ],
       })
     } catch (error) {
       let message
