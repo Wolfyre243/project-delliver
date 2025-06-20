@@ -26,6 +26,7 @@ import {
   Calculator,
   Calendar,
   CreditCard,
+  SearchIcon,
   Settings,
   Smile,
   User,
@@ -88,11 +89,14 @@ const Missions = () => {
     <>
       <div className="p-4 flex flex-col justify-start ">
         <h1 className="text-3xl font-bold mb-6">Mission Library</h1>
-        <div className="flex justify-start">
+        <div className="flex justify-start items-center">
           <Input
             placeholder="Search here..."
             className="bg-[#222630] px-4 py-3 outline-none text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040] self-center w-100 h-10"
           ></Input>
+          <Button variant={'ghost'} className="hover:cursor-pointer">
+            <SearchIcon />
+          </Button>
         </div>
 
         <div className="flex justify-start gap-3 mt-3">
@@ -157,7 +161,7 @@ const Missions = () => {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <div className="mt-4 flex flex-wrap w-full">
+        <div className="mt-4 flex flex-wrap w-full justify-start">
           <MissionCard />
           <MissionCard />
 
