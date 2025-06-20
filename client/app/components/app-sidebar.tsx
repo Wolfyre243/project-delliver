@@ -22,6 +22,7 @@ import { apiPrivate } from '~/services/api'
 import useAuth from '~/hooks/useAuth'
 import { isAxiosError } from 'axios'
 import LoadingSpinner from '~/components/LoadingSpinner'
+import { Link } from 'react-router'
 import {
   Sidebar,
   SidebarContent,
@@ -118,7 +119,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           },
           {
             name: 'Clinics',
-            url: '/dashboard/clinics',
+            url: '/clinics',
             icon: Map,
           },
           {
@@ -145,7 +146,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <>
       <Sidebar collapsible="icon" {...props}>
         <SidebarHeader>
-          <TeamSwitcher teams={data.teams} />
+          <Link to="/">
+            <TeamSwitcher teams={data.teams} />
+          </Link>
         </SidebarHeader>
         <SidebarContent>
           <NavProjects projects={data.projects} />
