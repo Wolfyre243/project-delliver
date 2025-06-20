@@ -8,7 +8,7 @@ const LayoutBreadcrumb = (props:{href: any}) => {
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink href={props.href}>
-                        ad
+                        {props.href}
                     </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator/>

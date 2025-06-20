@@ -23,7 +23,7 @@ import { useEffect, useState } from 'react'
 export default function Layout({ children }: { children: React.ReactNode }) {
   let [windowHref, setWindowHref] = useState("");
   useEffect(()=>{
-    setWindowHref(window.location.href)
+    setWindowHref(window.location.pathname)
   },[])
   return (
     <>
