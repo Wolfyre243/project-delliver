@@ -16,7 +16,6 @@ const userRouter = express.Router()
  *   description: User endpoints
  */
 
-userRouter.use(jwtMiddleware.verifyToken)
 
 /**
  * @swagger
@@ -42,6 +41,6 @@ userRouter.get('/', userController.retrieveAllUsers)
  *       404:
  *         description: User not found
  */
-userRouter.get('/details', userController.retrieveUserByUserId)
+userRouter.get('/details', jwtMiddleware.verifyToken,userController.retrieveUserByUserId)
 
 export default userRouter

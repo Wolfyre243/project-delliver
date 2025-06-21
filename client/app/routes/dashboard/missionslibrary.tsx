@@ -174,7 +174,6 @@ function CommandForCreators() {
     try {
       const {data: responseData} = await apiPrivate.get('/users',{
         withCredentials: true,
-        headers: { Authorization: 'bearer ' + accessToken },
       })
       setUsernames(responseData)
     } catch (error) {
