@@ -35,6 +35,45 @@ const logoOfTheApp = () => {
 }
 // This is sample data.
 
+const navLinks = [
+  {
+    name: 'Home',
+    url: '/dashboard',
+    icon: HomeIcon,
+  },
+  {
+    name: 'Missions',
+    url: '/dashboard/missions',
+    icon: ScrollText,
+    isActive: true,
+    items: [
+      {
+        title: 'Missions library',
+        url: '/dashboard/missionslibrary',
+      },
+      {
+        title: 'My missions',
+        url: '/dashboard/mymissions',
+      },
+    ],
+  },
+  {
+    name: 'Dietary',
+    url: '/dashboard/dietary',
+    icon: Utensils,
+  },
+  {
+    name: 'Clinics',
+    url: '/dashboard/clinic',
+    icon: Map,
+  },
+  {
+    name: 'Nessie',
+    url: '/assistant',
+    icon: BotIcon,
+  },
+]
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   let [data, setData] = React.useState({
     user: {
@@ -49,44 +88,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         plan: 'v1.0.0',
       },
     ],
-    projects: [
-      {
-        name: 'Home',
-        url: '/dashboard',
-        icon: HomeIcon,
-      },
-      {
-        name: 'Missions',
-        url: '/dashboard/missions',
-        icon: ScrollText,
-        isActive: true,
-        items: [
-          {
-            title: 'Missions library',
-            url: '/dashboard/missions',
-          },
-          {
-            title: 'Starred',
-            url: '#',
-          },
-        ],
-      },
-      {
-        name: 'Dietary',
-        url: '/dashboard/dietary',
-        icon: Utensils,
-      },
-      {
-        name: 'Clinics',
-        url: '/clinic',
-        icon: Map,
-      },
-      {
-        name: 'Lova',
-        url: '/assistant',
-        icon: BotIcon,
-      },
-    ],
+    projects: navLinks,
   })
   const { accessToken, loading } = useAuth()
 
@@ -109,44 +111,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             plan: 'v1.0.0',
           },
         ],
-        projects: [
-          {
-            name: 'Home',
-            url: '/dashboard',
-            icon: HomeIcon,
-          },
-          {
-            name: 'Missions',
-            url: '/dashboard/missions',
-            icon: ScrollText,
-            isActive: true,
-            items: [
-              {
-                title: 'Missions library',
-                url: '/dashboard/missionslibrary',
-              },
-              {
-                title: 'My missions',
-                url: '/dashboard/mymissions',
-              },
-            ],
-          },
-          {
-            name: 'Dietary',
-            url: '/dashboard/dietary',
-            icon: Utensils,
-          },
-          {
-            name: 'Clinics',
-            url: '/dashboard/clinic',
-            icon: Map,
-          },
-          {
-            name: 'Nessie',
-            url: '/assistant',
-            icon: BotIcon,
-          },
-        ],
+        projects: navLinks,
       })
     } catch (error) {
       let message
