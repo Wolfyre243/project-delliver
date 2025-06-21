@@ -18,8 +18,6 @@ controller.retrieveAllMissions = async (req, res, next) => {
   sort = ['asc', 'desc'].includes(sort) ? sort : 'desc' // If invalid sort provided, default to 'desc'
 
   const limit = 10
-
-  // If a single category is provided, add it into the array
   if (!category) {
     category = null
   } else if (!Array.isArray(category)) {
