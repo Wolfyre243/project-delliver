@@ -17,11 +17,6 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type userprofile = $Result.DefaultSelection<Prisma.$userprofilePayload>
 /**
- * Model User
- *
- */
-export type User = $Result.DefaultSelection<Prisma.$UserPayload>
-/**
  * Model mission
  *
  */
@@ -43,6 +38,11 @@ export type sessions = $Result.DefaultSelection<Prisma.$sessionsPayload>
  */
 export type usermissioncompletion =
   $Result.DefaultSelection<Prisma.$usermissioncompletionPayload>
+/**
+ * Model users
+ *
+ */
+export type users = $Result.DefaultSelection<Prisma.$usersPayload>
 
 /**
  * Enums
@@ -238,16 +238,6 @@ export class PrismaClient<
   get userprofile(): Prisma.userprofileDelegate<ExtArgs, ClientOptions>
 
   /**
-   * `prisma.user`: Exposes CRUD operations for the **User** model.
-   * Example usage:
-   * ```ts
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
-   * ```
-   */
-  get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>
-
-  /**
    * `prisma.mission`: Exposes CRUD operations for the **mission** model.
    * Example usage:
    * ```ts
@@ -289,6 +279,16 @@ export class PrismaClient<
     ExtArgs,
     ClientOptions
   >
+
+  /**
+   * `prisma.users`: Exposes CRUD operations for the **users** model.
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Users
+   * const users = await prisma.users.findMany()
+   * ```
+   */
+  get users(): Prisma.usersDelegate<ExtArgs, ClientOptions>
 }
 
 export namespace Prisma {
@@ -746,11 +746,11 @@ export namespace Prisma {
 
   export const ModelName: {
     userprofile: 'userprofile'
-    User: 'User'
     mission: 'mission'
     missioncategory: 'missioncategory'
     sessions: 'sessions'
     usermissioncompletion: 'usermissioncompletion'
+    users: 'users'
   }
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -780,11 +780,11 @@ export namespace Prisma {
     meta: {
       modelProps:
         | 'userprofile'
-        | 'user'
         | 'mission'
         | 'missioncategory'
         | 'sessions'
         | 'usermissioncompletion'
+        | 'users'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -861,80 +861,6 @@ export namespace Prisma {
             result:
               | $Utils.Optional<UserprofileCountAggregateOutputType>
               | number
-          }
-        }
-      }
-      User: {
-        payload: Prisma.$UserPayload<ExtArgs>
-        fields: Prisma.UserFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.UserFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          findFirst: {
-            args: Prisma.UserFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          findMany: {
-            args: Prisma.UserFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
-          }
-          create: {
-            args: Prisma.UserCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          createMany: {
-            args: Prisma.UserCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
-          }
-          delete: {
-            args: Prisma.UserDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          update: {
-            args: Prisma.UserUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          deleteMany: {
-            args: Prisma.UserDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.UserUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
-          }
-          upsert: {
-            args: Prisma.UserUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserPayload>
-          }
-          aggregate: {
-            args: Prisma.UserAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateUser>
-          }
-          groupBy: {
-            args: Prisma.UserGroupByArgs<ExtArgs>
-            result: $Utils.Optional<UserGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.UserCountArgs<ExtArgs>
-            result: $Utils.Optional<UserCountAggregateOutputType> | number
           }
         }
       }
@@ -1238,6 +1164,80 @@ export namespace Prisma {
           }
         }
       }
+      users: {
+        payload: Prisma.$usersPayload<ExtArgs>
+        fields: Prisma.usersFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.usersFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usersPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.usersFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usersPayload>
+          }
+          findFirst: {
+            args: Prisma.usersFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usersPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.usersFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usersPayload>
+          }
+          findMany: {
+            args: Prisma.usersFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usersPayload>[]
+          }
+          create: {
+            args: Prisma.usersCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usersPayload>
+          }
+          createMany: {
+            args: Prisma.usersCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.usersCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usersPayload>[]
+          }
+          delete: {
+            args: Prisma.usersDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usersPayload>
+          }
+          update: {
+            args: Prisma.usersUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usersPayload>
+          }
+          deleteMany: {
+            args: Prisma.usersDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.usersUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.usersUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usersPayload>[]
+          }
+          upsert: {
+            args: Prisma.usersUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$usersPayload>
+          }
+          aggregate: {
+            args: Prisma.UsersAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUsers>
+          }
+          groupBy: {
+            args: Prisma.usersGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UsersGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.usersCountArgs<ExtArgs>
+            result: $Utils.Optional<UsersCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1327,11 +1327,11 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     userprofile?: userprofileOmit
-    user?: UserOmit
     mission?: missionOmit
     missioncategory?: missioncategoryOmit
     sessions?: sessionsOmit
     usermissioncompletion?: usermissioncompletionOmit
+    users?: usersOmit
   }
 
   /* Types for Logging */
@@ -1435,66 +1435,6 @@ export namespace Prisma {
    */
 
   /**
-   * Count Type UserCountOutputType
-   */
-
-  export type UserCountOutputType = {
-    mission: number
-    sessions: number
-    usermissioncompletion: number
-  }
-
-  export type UserCountOutputTypeSelect<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    mission?: boolean | UserCountOutputTypeCountMissionArgs
-    sessions?: boolean | UserCountOutputTypeCountSessionsArgs
-    usermissioncompletion?:
-      | boolean
-      | UserCountOutputTypeCountUsermissioncompletionArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeDefaultArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the UserCountOutputType
-     */
-    select?: UserCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountMissionArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    where?: missionWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountSessionsArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    where?: sessionsWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountUsermissioncompletionArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    where?: usermissioncompletionWhereInput
-  }
-
-  /**
    * Count Type MissionCountOutputType
    */
 
@@ -1566,6 +1506,66 @@ export namespace Prisma {
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     where?: missionWhereInput
+  }
+
+  /**
+   * Count Type UsersCountOutputType
+   */
+
+  export type UsersCountOutputType = {
+    mission: number
+    sessions: number
+    usermissioncompletion: number
+  }
+
+  export type UsersCountOutputTypeSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    mission?: boolean | UsersCountOutputTypeCountMissionArgs
+    sessions?: boolean | UsersCountOutputTypeCountSessionsArgs
+    usermissioncompletion?:
+      | boolean
+      | UsersCountOutputTypeCountUsermissioncompletionArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the UsersCountOutputType
+     */
+    select?: UsersCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountMissionArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: missionWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountSessionsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: sessionsWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountUsermissioncompletionArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: usermissioncompletionWhereInput
   }
 
   /**
@@ -1802,7 +1802,7 @@ export namespace Prisma {
       updated_at?: boolean
       exercise_duration?: boolean
       history?: boolean
-      User?: boolean | UserDefaultArgs<ExtArgs>
+      User?: boolean | usersDefaultArgs<ExtArgs>
     },
     ExtArgs['result']['userprofile']
   >
@@ -1819,7 +1819,7 @@ export namespace Prisma {
       updated_at?: boolean
       exercise_duration?: boolean
       history?: boolean
-      User?: boolean | UserDefaultArgs<ExtArgs>
+      User?: boolean | usersDefaultArgs<ExtArgs>
     },
     ExtArgs['result']['userprofile']
   >
@@ -1836,7 +1836,7 @@ export namespace Prisma {
       updated_at?: boolean
       exercise_duration?: boolean
       history?: boolean
-      User?: boolean | UserDefaultArgs<ExtArgs>
+      User?: boolean | usersDefaultArgs<ExtArgs>
     },
     ExtArgs['result']['userprofile']
   >
@@ -1868,17 +1868,17 @@ export namespace Prisma {
   export type userprofileInclude<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | usersDefaultArgs<ExtArgs>
   }
   export type userprofileIncludeCreateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | usersDefaultArgs<ExtArgs>
   }
   export type userprofileIncludeUpdateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | usersDefaultArgs<ExtArgs>
   }
 
   export type $userprofilePayload<
@@ -1886,7 +1886,7 @@ export namespace Prisma {
   > = {
     name: 'userprofile'
     objects: {
-      User: Prisma.$UserPayload<ExtArgs>
+      User: Prisma.$usersPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<
       {
@@ -2448,11 +2448,11 @@ export namespace Prisma {
     GlobalOmitOptions = {},
   > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise'
-    User<T extends UserDefaultArgs<ExtArgs> = {}>(
-      args?: Subset<T, UserDefaultArgs<ExtArgs>>
-    ): Prisma__UserClient<
+    User<T extends usersDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, usersDefaultArgs<ExtArgs>>
+    ): Prisma__usersClient<
       | $Result.GetResult<
-          Prisma.$UserPayload<ExtArgs>,
+          Prisma.$usersPayload<ExtArgs>,
           T,
           'findUniqueOrThrow',
           GlobalOmitOptions
@@ -2965,1500 +2965,6 @@ export namespace Prisma {
   }
 
   /**
-   * Model User
-   */
-
-  export type AggregateUser = {
-    _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
-    _min: UserMinAggregateOutputType | null
-    _max: UserMaxAggregateOutputType | null
-  }
-
-  export type UserAvgAggregateOutputType = {
-    user_id: number | null
-  }
-
-  export type UserSumAggregateOutputType = {
-    user_id: number | null
-  }
-
-  export type UserMinAggregateOutputType = {
-    user_id: number | null
-    username: string | null
-    email: string | null
-    password: string | null
-    is_verified: boolean | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type UserMaxAggregateOutputType = {
-    user_id: number | null
-    username: string | null
-    email: string | null
-    password: string | null
-    is_verified: boolean | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type UserCountAggregateOutputType = {
-    user_id: number
-    username: number
-    email: number
-    password: number
-    is_verified: number
-    created_at: number
-    updated_at: number
-    _all: number
-  }
-
-  export type UserAvgAggregateInputType = {
-    user_id?: true
-  }
-
-  export type UserSumAggregateInputType = {
-    user_id?: true
-  }
-
-  export type UserMinAggregateInputType = {
-    user_id?: true
-    username?: true
-    email?: true
-    password?: true
-    is_verified?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type UserMaxAggregateInputType = {
-    user_id?: true
-    username?: true
-    email?: true
-    password?: true
-    is_verified?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type UserCountAggregateInputType = {
-    user_id?: true
-    username?: true
-    email?: true
-    password?: true
-    is_verified?: true
-    created_at?: true
-    updated_at?: true
-    _all?: true
-  }
-
-  export type UserAggregateArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Filter which User to aggregate.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
-     * Sets the start position
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
-     * Count returned Users
-     **/
-    _count?: true | UserCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
-     * Select which fields to average
-     **/
-    _avg?: UserAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
-     * Select which fields to sum
-     **/
-    _sum?: UserSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
-     * Select which fields to find the minimum value
-     **/
-    _min?: UserMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
-     * Select which fields to find the maximum value
-     **/
-    _max?: UserMaxAggregateInputType
-  }
-
-  export type GetUserAggregateType<T extends UserAggregateArgs> = {
-    [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateUser[P]>
-      : GetScalarType<T[P], AggregateUser[P]>
-  }
-
-  export type UserGroupByArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    where?: UserWhereInput
-    orderBy?:
-      | UserOrderByWithAggregationInput
-      | UserOrderByWithAggregationInput[]
-    by: UserScalarFieldEnum[] | UserScalarFieldEnum
-    having?: UserScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: UserCountAggregateInputType | true
-    _avg?: UserAvgAggregateInputType
-    _sum?: UserSumAggregateInputType
-    _min?: UserMinAggregateInputType
-    _max?: UserMaxAggregateInputType
-  }
-
-  export type UserGroupByOutputType = {
-    user_id: number
-    username: string
-    email: string
-    password: string
-    is_verified: boolean | null
-    created_at: Date | null
-    updated_at: Date | null
-    _count: UserCountAggregateOutputType | null
-    _avg: UserAvgAggregateOutputType | null
-    _sum: UserSumAggregateOutputType | null
-    _min: UserMinAggregateOutputType | null
-    _max: UserMaxAggregateOutputType | null
-  }
-
-  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<UserGroupByOutputType, T['by']> & {
-        [P in keyof T & keyof UserGroupByOutputType]: P extends '_count'
-          ? T[P] extends boolean
-            ? number
-            : GetScalarType<T[P], UserGroupByOutputType[P]>
-          : GetScalarType<T[P], UserGroupByOutputType[P]>
-      }
-    >
-  >
-
-  export type UserSelect<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = $Extensions.GetSelect<
-    {
-      user_id?: boolean
-      username?: boolean
-      email?: boolean
-      password?: boolean
-      is_verified?: boolean
-      created_at?: boolean
-      updated_at?: boolean
-      mission?: boolean | User$missionArgs<ExtArgs>
-      sessions?: boolean | User$sessionsArgs<ExtArgs>
-      usermissioncompletion?: boolean | User$usermissioncompletionArgs<ExtArgs>
-      userprofile?: boolean | User$userprofileArgs<ExtArgs>
-      _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
-    },
-    ExtArgs['result']['user']
-  >
-
-  export type UserSelectCreateManyAndReturn<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = $Extensions.GetSelect<
-    {
-      user_id?: boolean
-      username?: boolean
-      email?: boolean
-      password?: boolean
-      is_verified?: boolean
-      created_at?: boolean
-      updated_at?: boolean
-    },
-    ExtArgs['result']['user']
-  >
-
-  export type UserSelectUpdateManyAndReturn<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = $Extensions.GetSelect<
-    {
-      user_id?: boolean
-      username?: boolean
-      email?: boolean
-      password?: boolean
-      is_verified?: boolean
-      created_at?: boolean
-      updated_at?: boolean
-    },
-    ExtArgs['result']['user']
-  >
-
-  export type UserSelectScalar = {
-    user_id?: boolean
-    username?: boolean
-    email?: boolean
-    password?: boolean
-    is_verified?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-  }
-
-  export type UserOmit<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = $Extensions.GetOmit<
-    | 'user_id'
-    | 'username'
-    | 'email'
-    | 'password'
-    | 'is_verified'
-    | 'created_at'
-    | 'updated_at',
-    ExtArgs['result']['user']
-  >
-  export type UserInclude<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    mission?: boolean | User$missionArgs<ExtArgs>
-    sessions?: boolean | User$sessionsArgs<ExtArgs>
-    usermissioncompletion?: boolean | User$usermissioncompletionArgs<ExtArgs>
-    userprofile?: boolean | User$userprofileArgs<ExtArgs>
-    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type UserIncludeCreateManyAndReturn<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {}
-  export type UserIncludeUpdateManyAndReturn<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {}
-
-  export type $UserPayload<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    name: 'User'
-    objects: {
-      mission: Prisma.$missionPayload<ExtArgs>[]
-      sessions: Prisma.$sessionsPayload<ExtArgs>[]
-      usermissioncompletion: Prisma.$usermissioncompletionPayload<ExtArgs>[]
-      userprofile: Prisma.$userprofilePayload<ExtArgs> | null
-    }
-    scalars: $Extensions.GetPayloadResult<
-      {
-        user_id: number
-        username: string
-        email: string
-        password: string
-        is_verified: boolean | null
-        created_at: Date | null
-        updated_at: Date | null
-      },
-      ExtArgs['result']['user']
-    >
-    composites: {}
-  }
-
-  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> =
-    $Result.GetResult<Prisma.$UserPayload, S>
-
-  type UserCountArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-    select?: UserCountAggregateInputType | true
-  }
-
-  export interface UserDelegate<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-    GlobalOmitOptions = {},
-  > {
-    [K: symbol]: {
-      types: Prisma.TypeMap<ExtArgs>['model']['User']
-      meta: { name: 'User' }
-    }
-    /**
-     * Find zero or one User that matches the filter.
-     * @param {UserFindUniqueArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends UserFindUniqueArgs>(
-      args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'findUnique',
-        GlobalOmitOptions
-      > | null,
-      null,
-      ExtArgs,
-      GlobalOmitOptions
-    >
-
-    /**
-     * Find one User that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(
-      args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'findUniqueOrThrow',
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >
-
-    /**
-     * Find the first User that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindFirstArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends UserFindFirstArgs>(
-      args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'findFirst',
-        GlobalOmitOptions
-      > | null,
-      null,
-      ExtArgs,
-      GlobalOmitOptions
-    >
-
-    /**
-     * Find the first User that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(
-      args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'findFirstOrThrow',
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >
-
-    /**
-     * Find zero or more Users that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Users
-     * const users = await prisma.user.findMany()
-     *
-     * // Get first 10 Users
-     * const users = await prisma.user.findMany({ take: 10 })
-     *
-     * // Only select the `user_id`
-     * const userWithUser_idOnly = await prisma.user.findMany({ select: { user_id: true } })
-     *
-     */
-    findMany<T extends UserFindManyArgs>(
-      args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'findMany',
-        GlobalOmitOptions
-      >
-    >
-
-    /**
-     * Create a User.
-     * @param {UserCreateArgs} args - Arguments to create a User.
-     * @example
-     * // Create one User
-     * const User = await prisma.user.create({
-     *   data: {
-     *     // ... data to create a User
-     *   }
-     * })
-     *
-     */
-    create<T extends UserCreateArgs>(
-      args: SelectSubset<T, UserCreateArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'create',
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >
-
-    /**
-     * Create many Users.
-     * @param {UserCreateManyArgs} args - Arguments to create many Users.
-     * @example
-     * // Create many Users
-     * const user = await prisma.user.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *
-     */
-    createMany<T extends UserCreateManyArgs>(
-      args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Users and returns the data saved in the database.
-     * @param {UserCreateManyAndReturnArgs} args - Arguments to create many Users.
-     * @example
-     * // Create many Users
-     * const user = await prisma.user.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *
-     * // Create many Users and only return the `user_id`
-     * const userWithUser_idOnly = await prisma.user.createManyAndReturn({
-     *   select: { user_id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     *
-     */
-    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(
-      args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'createManyAndReturn',
-        GlobalOmitOptions
-      >
-    >
-
-    /**
-     * Delete a User.
-     * @param {UserDeleteArgs} args - Arguments to delete one User.
-     * @example
-     * // Delete one User
-     * const User = await prisma.user.delete({
-     *   where: {
-     *     // ... filter to delete one User
-     *   }
-     * })
-     *
-     */
-    delete<T extends UserDeleteArgs>(
-      args: SelectSubset<T, UserDeleteArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'delete',
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >
-
-    /**
-     * Update one User.
-     * @param {UserUpdateArgs} args - Arguments to update one User.
-     * @example
-     * // Update one User
-     * const user = await prisma.user.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     *
-     */
-    update<T extends UserUpdateArgs>(
-      args: SelectSubset<T, UserUpdateArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'update',
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >
-
-    /**
-     * Delete zero or more Users.
-     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
-     * @example
-     * // Delete a few Users
-     * const { count } = await prisma.user.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     *
-     */
-    deleteMany<T extends UserDeleteManyArgs>(
-      args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Users.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Users
-     * const user = await prisma.user.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     *
-     */
-    updateMany<T extends UserUpdateManyArgs>(
-      args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Users and returns the data updated in the database.
-     * @param {UserUpdateManyAndReturnArgs} args - Arguments to update many Users.
-     * @example
-     * // Update many Users
-     * const user = await prisma.user.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *
-     * // Update zero or more Users and only return the `user_id`
-     * const userWithUser_idOnly = await prisma.user.updateManyAndReturn({
-     *   select: { user_id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     *
-     */
-    updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(
-      args: SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      $Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'updateManyAndReturn',
-        GlobalOmitOptions
-      >
-    >
-
-    /**
-     * Create or update one User.
-     * @param {UserUpsertArgs} args - Arguments to update or create a User.
-     * @example
-     * // Update or create a User
-     * const user = await prisma.user.upsert({
-     *   create: {
-     *     // ... data to create a User
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the User we want to update
-     *   }
-     * })
-     */
-    upsert<T extends UserUpsertArgs>(
-      args: SelectSubset<T, UserUpsertArgs<ExtArgs>>
-    ): Prisma__UserClient<
-      $Result.GetResult<
-        Prisma.$UserPayload<ExtArgs>,
-        T,
-        'upsert',
-        GlobalOmitOptions
-      >,
-      never,
-      ExtArgs,
-      GlobalOmitOptions
-    >
-
-    /**
-     * Count the number of Users.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserCountArgs} args - Arguments to filter Users to count.
-     * @example
-     * // Count the number of Users
-     * const count = await prisma.user.count({
-     *   where: {
-     *     // ... the filter for the Users we want to count
-     *   }
-     * })
-     **/
-    count<T extends UserCountArgs>(
-      args?: Subset<T, UserCountArgs>
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], UserCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a User.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-     **/
-    aggregate<T extends UserAggregateArgs>(
-      args: Subset<T, UserAggregateArgs>
-    ): Prisma.PrismaPromise<GetUserAggregateType<T>>
-
-    /**
-     * Group by User.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     *
-     **/
-    groupBy<
-      T extends UserGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: UserGroupByArgs['orderBy'] }
-        : { orderBy?: UserGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<
-        Keys<MaybeTupleToUnion<T['orderBy']>>
-      >,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-        ? `Error: "by" must not be empty.`
-        : HavingValid extends False
-          ? {
-              [P in HavingFields]: P extends ByFields
-                ? never
-                : P extends string
-                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-                  : [
-                      Error,
-                      'Field ',
-                      P,
-                      ` in "having" needs to be provided in "by"`,
-                    ]
-            }[HavingFields]
-          : 'take' extends Keys<T>
-            ? 'orderBy' extends Keys<T>
-              ? ByValid extends True
-                ? {}
-                : {
-                    [P in OrderFields]: P extends ByFields
-                      ? never
-                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-                  }[OrderFields]
-              : 'Error: If you provide "take", you also need to provide "orderBy"'
-            : 'skip' extends Keys<T>
-              ? 'orderBy' extends Keys<T>
-                ? ByValid extends True
-                  ? {}
-                  : {
-                      [P in OrderFields]: P extends ByFields
-                        ? never
-                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-                    }[OrderFields]
-                : 'Error: If you provide "skip", you also need to provide "orderBy"'
-              : ByValid extends True
-                ? {}
-                : {
-                    [P in OrderFields]: P extends ByFields
-                      ? never
-                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-                  }[OrderFields],
-    >(
-      args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors
-    ): {} extends InputErrors
-      ? GetUserGroupByPayload<T>
-      : Prisma.PrismaPromise<InputErrors>
-    /**
-     * Fields of the User model
-     */
-    readonly fields: UserFieldRefs
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for User.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__UserClient<
-    T,
-    Null = never,
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-    GlobalOmitOptions = {},
-  > extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise'
-    mission<T extends User$missionArgs<ExtArgs> = {}>(
-      args?: Subset<T, User$missionArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      | $Result.GetResult<
-          Prisma.$missionPayload<ExtArgs>,
-          T,
-          'findMany',
-          GlobalOmitOptions
-        >
-      | Null
-    >
-    sessions<T extends User$sessionsArgs<ExtArgs> = {}>(
-      args?: Subset<T, User$sessionsArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      | $Result.GetResult<
-          Prisma.$sessionsPayload<ExtArgs>,
-          T,
-          'findMany',
-          GlobalOmitOptions
-        >
-      | Null
-    >
-    usermissioncompletion<
-      T extends User$usermissioncompletionArgs<ExtArgs> = {},
-    >(
-      args?: Subset<T, User$usermissioncompletionArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<
-      | $Result.GetResult<
-          Prisma.$usermissioncompletionPayload<ExtArgs>,
-          T,
-          'findMany',
-          GlobalOmitOptions
-        >
-      | Null
-    >
-    userprofile<T extends User$userprofileArgs<ExtArgs> = {}>(
-      args?: Subset<T, User$userprofileArgs<ExtArgs>>
-    ): Prisma__userprofileClient<
-      $Result.GetResult<
-        Prisma.$userprofilePayload<ExtArgs>,
-        T,
-        'findUniqueOrThrow',
-        GlobalOmitOptions
-      > | null,
-      null,
-      ExtArgs,
-      GlobalOmitOptions
-    >
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(
-      onfulfilled?:
-        | ((value: T) => TResult1 | PromiseLike<TResult1>)
-        | undefined
-        | null,
-      onrejected?:
-        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(
-      onrejected?:
-        | ((reason: any) => TResult | PromiseLike<TResult>)
-        | undefined
-        | null
-    ): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-  /**
-   * Fields of the User model
-   */
-  interface UserFieldRefs {
-    readonly user_id: FieldRef<'User', 'Int'>
-    readonly username: FieldRef<'User', 'String'>
-    readonly email: FieldRef<'User', 'String'>
-    readonly password: FieldRef<'User', 'String'>
-    readonly is_verified: FieldRef<'User', 'Boolean'>
-    readonly created_at: FieldRef<'User', 'DateTime'>
-    readonly updated_at: FieldRef<'User', 'DateTime'>
-  }
-
-  // Custom InputTypes
-  /**
-   * User findUnique
-   */
-  export type UserFindUniqueArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where: UserWhereUniqueInput
-  }
-
-  /**
-   * User findUniqueOrThrow
-   */
-  export type UserFindUniqueOrThrowArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where: UserWhereUniqueInput
-  }
-
-  /**
-   * User findFirst
-   */
-  export type UserFindFirstArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
-     * Sets the position for searching for Users.
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
-     * Filter by unique combinations of Users.
-     */
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-  /**
-   * User findFirstOrThrow
-   */
-  export type UserFindFirstOrThrowArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
-     * Sets the position for searching for Users.
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
-     * Filter by unique combinations of Users.
-     */
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-  /**
-   * User findMany
-   */
-  export type UserFindManyArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which Users to fetch.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
-     * Sets the position for listing Users.
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
-  }
-
-  /**
-   * User create
-   */
-  export type UserCreateArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * The data needed to create a User.
-     */
-    data: XOR<UserCreateInput, UserUncheckedCreateInput>
-  }
-
-  /**
-   * User createMany
-   */
-  export type UserCreateManyArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * The data used to create many Users.
-     */
-    data: UserCreateManyInput | UserCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * User createManyAndReturn
-   */
-  export type UserCreateManyAndReturnArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * The data used to create many Users.
-     */
-    data: UserCreateManyInput | UserCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * User update
-   */
-  export type UserUpdateArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * The data needed to update a User.
-     */
-    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
-    /**
-     * Choose, which User to update.
-     */
-    where: UserWhereUniqueInput
-  }
-
-  /**
-   * User updateMany
-   */
-  export type UserUpdateManyArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * The data used to update Users.
-     */
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
-    /**
-     * Filter which Users to update
-     */
-    where?: UserWhereInput
-    /**
-     * Limit how many Users to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * User updateManyAndReturn
-   */
-  export type UserUpdateManyAndReturnArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * The data used to update Users.
-     */
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
-    /**
-     * Filter which Users to update
-     */
-    where?: UserWhereInput
-    /**
-     * Limit how many Users to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * User upsert
-   */
-  export type UserUpsertArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * The filter to search for the User to update in case it exists.
-     */
-    where: UserWhereUniqueInput
-    /**
-     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
-     */
-    create: XOR<UserCreateInput, UserUncheckedCreateInput>
-    /**
-     * In case the User was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
-  }
-
-  /**
-   * User delete
-   */
-  export type UserDeleteArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter which User to delete.
-     */
-    where: UserWhereUniqueInput
-  }
-
-  /**
-   * User deleteMany
-   */
-  export type UserDeleteManyArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Filter which Users to delete
-     */
-    where?: UserWhereInput
-    /**
-     * Limit how many Users to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * User.mission
-   */
-  export type User$missionArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the mission
-     */
-    select?: missionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the mission
-     */
-    omit?: missionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: missionInclude<ExtArgs> | null
-    where?: missionWhereInput
-    orderBy?:
-      | missionOrderByWithRelationInput
-      | missionOrderByWithRelationInput[]
-    cursor?: missionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: MissionScalarFieldEnum | MissionScalarFieldEnum[]
-  }
-
-  /**
-   * User.sessions
-   */
-  export type User$sessionsArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the sessions
-     */
-    select?: sessionsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the sessions
-     */
-    omit?: sessionsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: sessionsInclude<ExtArgs> | null
-    where?: sessionsWhereInput
-    orderBy?:
-      | sessionsOrderByWithRelationInput
-      | sessionsOrderByWithRelationInput[]
-    cursor?: sessionsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SessionsScalarFieldEnum | SessionsScalarFieldEnum[]
-  }
-
-  /**
-   * User.usermissioncompletion
-   */
-  export type User$usermissioncompletionArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the usermissioncompletion
-     */
-    select?: usermissioncompletionSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the usermissioncompletion
-     */
-    omit?: usermissioncompletionOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: usermissioncompletionInclude<ExtArgs> | null
-    where?: usermissioncompletionWhereInput
-    orderBy?:
-      | usermissioncompletionOrderByWithRelationInput
-      | usermissioncompletionOrderByWithRelationInput[]
-    cursor?: usermissioncompletionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?:
-      | UsermissioncompletionScalarFieldEnum
-      | UsermissioncompletionScalarFieldEnum[]
-  }
-
-  /**
-   * User.userprofile
-   */
-  export type User$userprofileArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the userprofile
-     */
-    select?: userprofileSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the userprofile
-     */
-    omit?: userprofileOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: userprofileInclude<ExtArgs> | null
-    where?: userprofileWhereInput
-  }
-
-  /**
-   * User without action
-   */
-  export type UserDefaultArgs<
-    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
-  > = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-  }
-
-  /**
    * Model mission
    */
 
@@ -4695,7 +3201,7 @@ export namespace Prisma {
       timespan?: boolean
       created_at?: boolean
       missioncategory?: boolean | missioncategoryDefaultArgs<ExtArgs>
-      User?: boolean | UserDefaultArgs<ExtArgs>
+      User?: boolean | usersDefaultArgs<ExtArgs>
       usermissioncompletion?:
         | boolean
         | mission$usermissioncompletionArgs<ExtArgs>
@@ -4717,7 +3223,7 @@ export namespace Prisma {
       timespan?: boolean
       created_at?: boolean
       missioncategory?: boolean | missioncategoryDefaultArgs<ExtArgs>
-      User?: boolean | UserDefaultArgs<ExtArgs>
+      User?: boolean | usersDefaultArgs<ExtArgs>
     },
     ExtArgs['result']['mission']
   >
@@ -4735,7 +3241,7 @@ export namespace Prisma {
       timespan?: boolean
       created_at?: boolean
       missioncategory?: boolean | missioncategoryDefaultArgs<ExtArgs>
-      User?: boolean | UserDefaultArgs<ExtArgs>
+      User?: boolean | usersDefaultArgs<ExtArgs>
     },
     ExtArgs['result']['mission']
   >
@@ -4768,7 +3274,7 @@ export namespace Prisma {
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     missioncategory?: boolean | missioncategoryDefaultArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | usersDefaultArgs<ExtArgs>
     usermissioncompletion?: boolean | mission$usermissioncompletionArgs<ExtArgs>
     _count?: boolean | MissionCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -4776,13 +3282,13 @@ export namespace Prisma {
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     missioncategory?: boolean | missioncategoryDefaultArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | usersDefaultArgs<ExtArgs>
   }
   export type missionIncludeUpdateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     missioncategory?: boolean | missioncategoryDefaultArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | usersDefaultArgs<ExtArgs>
   }
 
   export type $missionPayload<
@@ -4791,7 +3297,7 @@ export namespace Prisma {
     name: 'mission'
     objects: {
       missioncategory: Prisma.$missioncategoryPayload<ExtArgs>
-      User: Prisma.$UserPayload<ExtArgs>
+      User: Prisma.$usersPayload<ExtArgs>
       usermissioncompletion: Prisma.$usermissioncompletionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<
@@ -5364,11 +3870,11 @@ export namespace Prisma {
       ExtArgs,
       GlobalOmitOptions
     >
-    User<T extends UserDefaultArgs<ExtArgs> = {}>(
-      args?: Subset<T, UserDefaultArgs<ExtArgs>>
-    ): Prisma__UserClient<
+    User<T extends usersDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, usersDefaultArgs<ExtArgs>>
+    ): Prisma__usersClient<
       | $Result.GetResult<
-          Prisma.$UserPayload<ExtArgs>,
+          Prisma.$usersPayload<ExtArgs>,
           T,
           'findUniqueOrThrow',
           GlobalOmitOptions
@@ -7422,7 +5928,7 @@ export namespace Prisma {
       is_active?: boolean
       login_at?: boolean
       logout_at?: boolean
-      User?: boolean | UserDefaultArgs<ExtArgs>
+      User?: boolean | usersDefaultArgs<ExtArgs>
     },
     ExtArgs['result']['sessions']
   >
@@ -7437,7 +5943,7 @@ export namespace Prisma {
       is_active?: boolean
       login_at?: boolean
       logout_at?: boolean
-      User?: boolean | UserDefaultArgs<ExtArgs>
+      User?: boolean | usersDefaultArgs<ExtArgs>
     },
     ExtArgs['result']['sessions']
   >
@@ -7452,7 +5958,7 @@ export namespace Prisma {
       is_active?: boolean
       login_at?: boolean
       logout_at?: boolean
-      User?: boolean | UserDefaultArgs<ExtArgs>
+      User?: boolean | usersDefaultArgs<ExtArgs>
     },
     ExtArgs['result']['sessions']
   >
@@ -7480,17 +5986,17 @@ export namespace Prisma {
   export type sessionsInclude<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | usersDefaultArgs<ExtArgs>
   }
   export type sessionsIncludeCreateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | usersDefaultArgs<ExtArgs>
   }
   export type sessionsIncludeUpdateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | usersDefaultArgs<ExtArgs>
   }
 
   export type $sessionsPayload<
@@ -7498,7 +6004,7 @@ export namespace Prisma {
   > = {
     name: 'sessions'
     objects: {
-      User: Prisma.$UserPayload<ExtArgs>
+      User: Prisma.$usersPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<
       {
@@ -8054,11 +6560,11 @@ export namespace Prisma {
     GlobalOmitOptions = {},
   > extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise'
-    User<T extends UserDefaultArgs<ExtArgs> = {}>(
-      args?: Subset<T, UserDefaultArgs<ExtArgs>>
-    ): Prisma__UserClient<
+    User<T extends usersDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, usersDefaultArgs<ExtArgs>>
+    ): Prisma__usersClient<
       | $Result.GetResult<
-          Prisma.$UserPayload<ExtArgs>,
+          Prisma.$usersPayload<ExtArgs>,
           T,
           'findUniqueOrThrow',
           GlobalOmitOptions
@@ -8791,7 +7297,7 @@ export namespace Prisma {
       started_at?: boolean
       ended_at?: boolean
       mission?: boolean | missionDefaultArgs<ExtArgs>
-      User?: boolean | UserDefaultArgs<ExtArgs>
+      User?: boolean | usersDefaultArgs<ExtArgs>
     },
     ExtArgs['result']['usermissioncompletion']
   >
@@ -8807,7 +7313,7 @@ export namespace Prisma {
       started_at?: boolean
       ended_at?: boolean
       mission?: boolean | missionDefaultArgs<ExtArgs>
-      User?: boolean | UserDefaultArgs<ExtArgs>
+      User?: boolean | usersDefaultArgs<ExtArgs>
     },
     ExtArgs['result']['usermissioncompletion']
   >
@@ -8823,7 +7329,7 @@ export namespace Prisma {
       started_at?: boolean
       ended_at?: boolean
       mission?: boolean | missionDefaultArgs<ExtArgs>
-      User?: boolean | UserDefaultArgs<ExtArgs>
+      User?: boolean | usersDefaultArgs<ExtArgs>
     },
     ExtArgs['result']['usermissioncompletion']
   >
@@ -8852,19 +7358,19 @@ export namespace Prisma {
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     mission?: boolean | missionDefaultArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | usersDefaultArgs<ExtArgs>
   }
   export type usermissioncompletionIncludeCreateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     mission?: boolean | missionDefaultArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | usersDefaultArgs<ExtArgs>
   }
   export type usermissioncompletionIncludeUpdateManyAndReturn<
     ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
   > = {
     mission?: boolean | missionDefaultArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    User?: boolean | usersDefaultArgs<ExtArgs>
   }
 
   export type $usermissioncompletionPayload<
@@ -8873,7 +7379,7 @@ export namespace Prisma {
     name: 'usermissioncompletion'
     objects: {
       mission: Prisma.$missionPayload<ExtArgs>
-      User: Prisma.$UserPayload<ExtArgs>
+      User: Prisma.$usersPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<
       {
@@ -9460,11 +7966,11 @@ export namespace Prisma {
       ExtArgs,
       GlobalOmitOptions
     >
-    User<T extends UserDefaultArgs<ExtArgs> = {}>(
-      args?: Subset<T, UserDefaultArgs<ExtArgs>>
-    ): Prisma__UserClient<
+    User<T extends usersDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, usersDefaultArgs<ExtArgs>>
+    ): Prisma__usersClient<
       | $Result.GetResult<
-          Prisma.$UserPayload<ExtArgs>,
+          Prisma.$usersPayload<ExtArgs>,
           T,
           'findUniqueOrThrow',
           GlobalOmitOptions
@@ -9997,6 +8503,1502 @@ export namespace Prisma {
   }
 
   /**
+   * Model users
+   */
+
+  export type AggregateUsers = {
+    _count: UsersCountAggregateOutputType | null
+    _avg: UsersAvgAggregateOutputType | null
+    _sum: UsersSumAggregateOutputType | null
+    _min: UsersMinAggregateOutputType | null
+    _max: UsersMaxAggregateOutputType | null
+  }
+
+  export type UsersAvgAggregateOutputType = {
+    user_id: number | null
+  }
+
+  export type UsersSumAggregateOutputType = {
+    user_id: number | null
+  }
+
+  export type UsersMinAggregateOutputType = {
+    user_id: number | null
+    username: string | null
+    email: string | null
+    password: string | null
+    is_verified: boolean | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type UsersMaxAggregateOutputType = {
+    user_id: number | null
+    username: string | null
+    email: string | null
+    password: string | null
+    is_verified: boolean | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type UsersCountAggregateOutputType = {
+    user_id: number
+    username: number
+    email: number
+    password: number
+    is_verified: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+  export type UsersAvgAggregateInputType = {
+    user_id?: true
+  }
+
+  export type UsersSumAggregateInputType = {
+    user_id?: true
+  }
+
+  export type UsersMinAggregateInputType = {
+    user_id?: true
+    username?: true
+    email?: true
+    password?: true
+    is_verified?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type UsersMaxAggregateInputType = {
+    user_id?: true
+    username?: true
+    email?: true
+    password?: true
+    is_verified?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type UsersCountAggregateInputType = {
+    user_id?: true
+    username?: true
+    email?: true
+    password?: true
+    is_verified?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type UsersAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Filter which users to aggregate.
+     */
+    where?: usersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of users to fetch.
+     */
+    orderBy?: usersOrderByWithRelationInput | usersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the start position
+     */
+    cursor?: usersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Count returned users
+     **/
+    _count?: true | UsersCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to average
+     **/
+    _avg?: UsersAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to sum
+     **/
+    _sum?: UsersSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the minimum value
+     **/
+    _min?: UsersMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     *
+     * Select which fields to find the maximum value
+     **/
+    _max?: UsersMaxAggregateInputType
+  }
+
+  export type GetUsersAggregateType<T extends UsersAggregateArgs> = {
+    [P in keyof T & keyof AggregateUsers]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUsers[P]>
+      : GetScalarType<T[P], AggregateUsers[P]>
+  }
+
+  export type usersGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: usersWhereInput
+    orderBy?:
+      | usersOrderByWithAggregationInput
+      | usersOrderByWithAggregationInput[]
+    by: UsersScalarFieldEnum[] | UsersScalarFieldEnum
+    having?: usersScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UsersCountAggregateInputType | true
+    _avg?: UsersAvgAggregateInputType
+    _sum?: UsersSumAggregateInputType
+    _min?: UsersMinAggregateInputType
+    _max?: UsersMaxAggregateInputType
+  }
+
+  export type UsersGroupByOutputType = {
+    user_id: number
+    username: string
+    email: string
+    password: string
+    is_verified: boolean | null
+    created_at: Date | null
+    updated_at: Date | null
+    _count: UsersCountAggregateOutputType | null
+    _avg: UsersAvgAggregateOutputType | null
+    _sum: UsersSumAggregateOutputType | null
+    _min: UsersMinAggregateOutputType | null
+    _max: UsersMaxAggregateOutputType | null
+  }
+
+  type GetUsersGroupByPayload<T extends usersGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<UsersGroupByOutputType, T['by']> & {
+          [P in keyof T & keyof UsersGroupByOutputType]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UsersGroupByOutputType[P]>
+            : GetScalarType<T[P], UsersGroupByOutputType[P]>
+        }
+      >
+    >
+
+  export type usersSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      user_id?: boolean
+      username?: boolean
+      email?: boolean
+      password?: boolean
+      is_verified?: boolean
+      created_at?: boolean
+      updated_at?: boolean
+      mission?: boolean | users$missionArgs<ExtArgs>
+      sessions?: boolean | users$sessionsArgs<ExtArgs>
+      usermissioncompletion?: boolean | users$usermissioncompletionArgs<ExtArgs>
+      userprofile?: boolean | users$userprofileArgs<ExtArgs>
+      _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['users']
+  >
+
+  export type usersSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      user_id?: boolean
+      username?: boolean
+      email?: boolean
+      password?: boolean
+      is_verified?: boolean
+      created_at?: boolean
+      updated_at?: boolean
+    },
+    ExtArgs['result']['users']
+  >
+
+  export type usersSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      user_id?: boolean
+      username?: boolean
+      email?: boolean
+      password?: boolean
+      is_verified?: boolean
+      created_at?: boolean
+      updated_at?: boolean
+    },
+    ExtArgs['result']['users']
+  >
+
+  export type usersSelectScalar = {
+    user_id?: boolean
+    username?: boolean
+    email?: boolean
+    password?: boolean
+    is_verified?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type usersOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    | 'user_id'
+    | 'username'
+    | 'email'
+    | 'password'
+    | 'is_verified'
+    | 'created_at'
+    | 'updated_at',
+    ExtArgs['result']['users']
+  >
+  export type usersInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    mission?: boolean | users$missionArgs<ExtArgs>
+    sessions?: boolean | users$sessionsArgs<ExtArgs>
+    usermissioncompletion?: boolean | users$usermissioncompletionArgs<ExtArgs>
+    userprofile?: boolean | users$userprofileArgs<ExtArgs>
+    _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type usersIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {}
+  export type usersIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {}
+
+  export type $usersPayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'users'
+    objects: {
+      mission: Prisma.$missionPayload<ExtArgs>[]
+      sessions: Prisma.$sessionsPayload<ExtArgs>[]
+      usermissioncompletion: Prisma.$usermissioncompletionPayload<ExtArgs>[]
+      userprofile: Prisma.$userprofilePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<
+      {
+        user_id: number
+        username: string
+        email: string
+        password: string
+        is_verified: boolean | null
+        created_at: Date | null
+        updated_at: Date | null
+      },
+      ExtArgs['result']['users']
+    >
+    composites: {}
+  }
+
+  type usersGetPayload<
+    S extends boolean | null | undefined | usersDefaultArgs,
+  > = $Result.GetResult<Prisma.$usersPayload, S>
+
+  type usersCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<usersFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: UsersCountAggregateInputType | true
+  }
+
+  export interface usersDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['users']
+      meta: { name: 'users' }
+    }
+    /**
+     * Find zero or one Users that matches the filter.
+     * @param {usersFindUniqueArgs} args - Arguments to find a Users
+     * @example
+     * // Get one Users
+     * const users = await prisma.users.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends usersFindUniqueArgs>(
+      args: SelectSubset<T, usersFindUniqueArgs<ExtArgs>>
+    ): Prisma__usersClient<
+      $Result.GetResult<
+        Prisma.$usersPayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+
+    /**
+     * Find one Users that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {usersFindUniqueOrThrowArgs} args - Arguments to find a Users
+     * @example
+     * // Get one Users
+     * const users = await prisma.users.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends usersFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, usersFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__usersClient<
+      $Result.GetResult<
+        Prisma.$usersPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+
+    /**
+     * Find the first Users that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {usersFindFirstArgs} args - Arguments to find a Users
+     * @example
+     * // Get one Users
+     * const users = await prisma.users.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends usersFindFirstArgs>(
+      args?: SelectSubset<T, usersFindFirstArgs<ExtArgs>>
+    ): Prisma__usersClient<
+      $Result.GetResult<
+        Prisma.$usersPayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+
+    /**
+     * Find the first Users that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {usersFindFirstOrThrowArgs} args - Arguments to find a Users
+     * @example
+     * // Get one Users
+     * const users = await prisma.users.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends usersFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, usersFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__usersClient<
+      $Result.GetResult<
+        Prisma.$usersPayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+
+    /**
+     * Find zero or more Users that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {usersFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Users
+     * const users = await prisma.users.findMany()
+     *
+     * // Get first 10 Users
+     * const users = await prisma.users.findMany({ take: 10 })
+     *
+     * // Only select the `user_id`
+     * const usersWithUser_idOnly = await prisma.users.findMany({ select: { user_id: true } })
+     *
+     */
+    findMany<T extends usersFindManyArgs>(
+      args?: SelectSubset<T, usersFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$usersPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >
+
+    /**
+     * Create a Users.
+     * @param {usersCreateArgs} args - Arguments to create a Users.
+     * @example
+     * // Create one Users
+     * const Users = await prisma.users.create({
+     *   data: {
+     *     // ... data to create a Users
+     *   }
+     * })
+     *
+     */
+    create<T extends usersCreateArgs>(
+      args: SelectSubset<T, usersCreateArgs<ExtArgs>>
+    ): Prisma__usersClient<
+      $Result.GetResult<
+        Prisma.$usersPayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+
+    /**
+     * Create many Users.
+     * @param {usersCreateManyArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const users = await prisma.users.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     */
+    createMany<T extends usersCreateManyArgs>(
+      args?: SelectSubset<T, usersCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Users and returns the data saved in the database.
+     * @param {usersCreateManyAndReturnArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const users = await prisma.users.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Create many Users and only return the `user_id`
+     * const usersWithUser_idOnly = await prisma.users.createManyAndReturn({
+     *   select: { user_id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    createManyAndReturn<T extends usersCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, usersCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$usersPayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
+
+    /**
+     * Delete a Users.
+     * @param {usersDeleteArgs} args - Arguments to delete one Users.
+     * @example
+     * // Delete one Users
+     * const Users = await prisma.users.delete({
+     *   where: {
+     *     // ... filter to delete one Users
+     *   }
+     * })
+     *
+     */
+    delete<T extends usersDeleteArgs>(
+      args: SelectSubset<T, usersDeleteArgs<ExtArgs>>
+    ): Prisma__usersClient<
+      $Result.GetResult<
+        Prisma.$usersPayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+
+    /**
+     * Update one Users.
+     * @param {usersUpdateArgs} args - Arguments to update one Users.
+     * @example
+     * // Update one Users
+     * const users = await prisma.users.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    update<T extends usersUpdateArgs>(
+      args: SelectSubset<T, usersUpdateArgs<ExtArgs>>
+    ): Prisma__usersClient<
+      $Result.GetResult<
+        Prisma.$usersPayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+
+    /**
+     * Delete zero or more Users.
+     * @param {usersDeleteManyArgs} args - Arguments to filter Users to delete.
+     * @example
+     * // Delete a few Users
+     * const { count } = await prisma.users.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     *
+     */
+    deleteMany<T extends usersDeleteManyArgs>(
+      args?: SelectSubset<T, usersDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {usersUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Users
+     * const users = await prisma.users.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     *
+     */
+    updateMany<T extends usersUpdateManyArgs>(
+      args: SelectSubset<T, usersUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users and returns the data updated in the database.
+     * @param {usersUpdateManyAndReturnArgs} args - Arguments to update many Users.
+     * @example
+     * // Update many Users
+     * const users = await prisma.users.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *
+     * // Update zero or more Users and only return the `user_id`
+     * const usersWithUser_idOnly = await prisma.users.updateManyAndReturn({
+     *   select: { user_id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     *
+     */
+    updateManyAndReturn<T extends usersUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, usersUpdateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$usersPayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
+
+    /**
+     * Create or update one Users.
+     * @param {usersUpsertArgs} args - Arguments to update or create a Users.
+     * @example
+     * // Update or create a Users
+     * const users = await prisma.users.upsert({
+     *   create: {
+     *     // ... data to create a Users
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Users we want to update
+     *   }
+     * })
+     */
+    upsert<T extends usersUpsertArgs>(
+      args: SelectSubset<T, usersUpsertArgs<ExtArgs>>
+    ): Prisma__usersClient<
+      $Result.GetResult<
+        Prisma.$usersPayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+
+    /**
+     * Count the number of Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {usersCountArgs} args - Arguments to filter Users to count.
+     * @example
+     * // Count the number of Users
+     * const count = await prisma.users.count({
+     *   where: {
+     *     // ... the filter for the Users we want to count
+     *   }
+     * })
+     **/
+    count<T extends usersCountArgs>(
+      args?: Subset<T, usersCountArgs>
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UsersCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UsersAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+     **/
+    aggregate<T extends UsersAggregateArgs>(
+      args: Subset<T, UsersAggregateArgs>
+    ): Prisma.PrismaPromise<GetUsersAggregateType<T>>
+
+    /**
+     * Group by Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {usersGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     *
+     **/
+    groupBy<
+      T extends usersGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: usersGroupByArgs['orderBy'] }
+        : { orderBy?: usersGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
+                ? never
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ]
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, usersGroupByArgs, OrderByArg> & InputErrors
+    ): {} extends InputErrors
+      ? GetUsersGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>
+    /**
+     * Fields of the users model
+     */
+    readonly fields: usersFieldRefs
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for users.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__usersClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise'
+    mission<T extends users$missionArgs<ExtArgs> = {}>(
+      args?: Subset<T, users$missionArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$missionPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >
+    sessions<T extends users$sessionsArgs<ExtArgs> = {}>(
+      args?: Subset<T, users$sessionsArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$sessionsPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >
+    usermissioncompletion<
+      T extends users$usermissioncompletionArgs<ExtArgs> = {},
+    >(
+      args?: Subset<T, users$usermissioncompletionArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$usermissioncompletionPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >
+    userprofile<T extends users$userprofileArgs<ExtArgs> = {}>(
+      args?: Subset<T, users$userprofileArgs<ExtArgs>>
+    ): Prisma__userprofileClient<
+      $Result.GetResult<
+        Prisma.$userprofilePayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?:
+        | ((value: T) => TResult1 | PromiseLike<TResult1>)
+        | undefined
+        | null,
+      onrejected?:
+        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+        | undefined
+        | null
+    ): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(
+      onrejected?:
+        | ((reason: any) => TResult | PromiseLike<TResult>)
+        | undefined
+        | null
+    ): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+  /**
+   * Fields of the users model
+   */
+  interface usersFieldRefs {
+    readonly user_id: FieldRef<'users', 'Int'>
+    readonly username: FieldRef<'users', 'String'>
+    readonly email: FieldRef<'users', 'String'>
+    readonly password: FieldRef<'users', 'String'>
+    readonly is_verified: FieldRef<'users', 'Boolean'>
+    readonly created_at: FieldRef<'users', 'DateTime'>
+    readonly updated_at: FieldRef<'users', 'DateTime'>
+  }
+
+  // Custom InputTypes
+  /**
+   * users findUnique
+   */
+  export type usersFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    /**
+     * Filter, which users to fetch.
+     */
+    where: usersWhereUniqueInput
+  }
+
+  /**
+   * users findUniqueOrThrow
+   */
+  export type usersFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    /**
+     * Filter, which users to fetch.
+     */
+    where: usersWhereUniqueInput
+  }
+
+  /**
+   * users findFirst
+   */
+  export type usersFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    /**
+     * Filter, which users to fetch.
+     */
+    where?: usersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of users to fetch.
+     */
+    orderBy?: usersOrderByWithRelationInput | usersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for users.
+     */
+    cursor?: usersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of users.
+     */
+    distinct?: UsersScalarFieldEnum | UsersScalarFieldEnum[]
+  }
+
+  /**
+   * users findFirstOrThrow
+   */
+  export type usersFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    /**
+     * Filter, which users to fetch.
+     */
+    where?: usersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of users to fetch.
+     */
+    orderBy?: usersOrderByWithRelationInput | usersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for searching for users.
+     */
+    cursor?: usersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     *
+     * Filter by unique combinations of users.
+     */
+    distinct?: UsersScalarFieldEnum | UsersScalarFieldEnum[]
+  }
+
+  /**
+   * users findMany
+   */
+  export type usersFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    /**
+     * Filter, which users to fetch.
+     */
+    where?: usersWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     *
+     * Determine the order of users to fetch.
+     */
+    orderBy?: usersOrderByWithRelationInput | usersOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     *
+     * Sets the position for listing users.
+     */
+    cursor?: usersWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Take `±n` users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     *
+     * Skip the first `n` users.
+     */
+    skip?: number
+    distinct?: UsersScalarFieldEnum | UsersScalarFieldEnum[]
+  }
+
+  /**
+   * users create
+   */
+  export type usersCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    /**
+     * The data needed to create a users.
+     */
+    data: XOR<usersCreateInput, usersUncheckedCreateInput>
+  }
+
+  /**
+   * users createMany
+   */
+  export type usersCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * The data used to create many users.
+     */
+    data: usersCreateManyInput | usersCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * users createManyAndReturn
+   */
+  export type usersCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * The data used to create many users.
+     */
+    data: usersCreateManyInput | usersCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * users update
+   */
+  export type usersUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    /**
+     * The data needed to update a users.
+     */
+    data: XOR<usersUpdateInput, usersUncheckedUpdateInput>
+    /**
+     * Choose, which users to update.
+     */
+    where: usersWhereUniqueInput
+  }
+
+  /**
+   * users updateMany
+   */
+  export type usersUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * The data used to update users.
+     */
+    data: XOR<usersUpdateManyMutationInput, usersUncheckedUpdateManyInput>
+    /**
+     * Filter which users to update
+     */
+    where?: usersWhereInput
+    /**
+     * Limit how many users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * users updateManyAndReturn
+   */
+  export type usersUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * The data used to update users.
+     */
+    data: XOR<usersUpdateManyMutationInput, usersUncheckedUpdateManyInput>
+    /**
+     * Filter which users to update
+     */
+    where?: usersWhereInput
+    /**
+     * Limit how many users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * users upsert
+   */
+  export type usersUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    /**
+     * The filter to search for the users to update in case it exists.
+     */
+    where: usersWhereUniqueInput
+    /**
+     * In case the users found by the `where` argument doesn't exist, create a new users with this data.
+     */
+    create: XOR<usersCreateInput, usersUncheckedCreateInput>
+    /**
+     * In case the users was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<usersUpdateInput, usersUncheckedUpdateInput>
+  }
+
+  /**
+   * users delete
+   */
+  export type usersDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+    /**
+     * Filter which users to delete.
+     */
+    where: usersWhereUniqueInput
+  }
+
+  /**
+   * users deleteMany
+   */
+  export type usersDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Filter which users to delete
+     */
+    where?: usersWhereInput
+    /**
+     * Limit how many users to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * users.mission
+   */
+  export type users$missionArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the mission
+     */
+    select?: missionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the mission
+     */
+    omit?: missionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: missionInclude<ExtArgs> | null
+    where?: missionWhereInput
+    orderBy?:
+      | missionOrderByWithRelationInput
+      | missionOrderByWithRelationInput[]
+    cursor?: missionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MissionScalarFieldEnum | MissionScalarFieldEnum[]
+  }
+
+  /**
+   * users.sessions
+   */
+  export type users$sessionsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the sessions
+     */
+    select?: sessionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sessions
+     */
+    omit?: sessionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: sessionsInclude<ExtArgs> | null
+    where?: sessionsWhereInput
+    orderBy?:
+      | sessionsOrderByWithRelationInput
+      | sessionsOrderByWithRelationInput[]
+    cursor?: sessionsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SessionsScalarFieldEnum | SessionsScalarFieldEnum[]
+  }
+
+  /**
+   * users.usermissioncompletion
+   */
+  export type users$usermissioncompletionArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the usermissioncompletion
+     */
+    select?: usermissioncompletionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usermissioncompletion
+     */
+    omit?: usermissioncompletionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usermissioncompletionInclude<ExtArgs> | null
+    where?: usermissioncompletionWhereInput
+    orderBy?:
+      | usermissioncompletionOrderByWithRelationInput
+      | usermissioncompletionOrderByWithRelationInput[]
+    cursor?: usermissioncompletionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?:
+      | UsermissioncompletionScalarFieldEnum
+      | UsermissioncompletionScalarFieldEnum[]
+  }
+
+  /**
+   * users.userprofile
+   */
+  export type users$userprofileArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the userprofile
+     */
+    select?: userprofileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the userprofile
+     */
+    omit?: userprofileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: userprofileInclude<ExtArgs> | null
+    where?: userprofileWhereInput
+  }
+
+  /**
+   * users without action
+   */
+  export type usersDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    /**
+     * Select specific fields to fetch from the users
+     */
+    select?: usersSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the users
+     */
+    omit?: usersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usersInclude<ExtArgs> | null
+  }
+
+  /**
    * Enums
    */
 
@@ -10023,19 +10025,6 @@ export namespace Prisma {
 
   export type UserprofileScalarFieldEnum =
     (typeof UserprofileScalarFieldEnum)[keyof typeof UserprofileScalarFieldEnum]
-
-  export const UserScalarFieldEnum: {
-    user_id: 'user_id'
-    username: 'username'
-    email: 'email'
-    password: 'password'
-    is_verified: 'is_verified'
-    created_at: 'created_at'
-    updated_at: 'updated_at'
-  }
-
-  export type UserScalarFieldEnum =
-    (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
   export const MissionScalarFieldEnum: {
     mission_id: 'mission_id'
@@ -10082,6 +10071,19 @@ export namespace Prisma {
 
   export type UsermissioncompletionScalarFieldEnum =
     (typeof UsermissioncompletionScalarFieldEnum)[keyof typeof UsermissioncompletionScalarFieldEnum]
+
+  export const UsersScalarFieldEnum: {
+    user_id: 'user_id'
+    username: 'username'
+    email: 'email'
+    password: 'password'
+    is_verified: 'is_verified'
+    created_at: 'created_at'
+    updated_at: 'updated_at'
+  }
+
+  export type UsersScalarFieldEnum =
+    (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
 
   export const SortOrder: {
     asc: 'asc'
@@ -10157,14 +10159,6 @@ export namespace Prisma {
   >
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
-    $PrismaModel,
-    'Boolean'
-  >
-
-  /**
    * Reference to a field of type 'visibility'
    */
   export type EnumvisibilityFieldRefInput<$PrismaModel> = FieldRefInputType<
@@ -10178,6 +10172,14 @@ export namespace Prisma {
   export type ListEnumvisibilityFieldRefInput<$PrismaModel> = FieldRefInputType<
     $PrismaModel,
     'visibility[]'
+  >
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Boolean'
   >
 
   /**
@@ -10212,7 +10214,7 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<'userprofile'> | Date | string | null
     exercise_duration?: StringFilter<'userprofile'> | string
     history?: StringNullableListFilter<'userprofile'>
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    User?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
 
   export type userprofileOrderByWithRelationInput = {
@@ -10224,7 +10226,7 @@ export namespace Prisma {
     updated_at?: SortOrderInput | SortOrder
     exercise_duration?: SortOrder
     history?: SortOrder
-    User?: UserOrderByWithRelationInput
+    User?: usersOrderByWithRelationInput
   }
 
   export type userprofileWhereUniqueInput = Prisma.AtLeast<
@@ -10240,7 +10242,7 @@ export namespace Prisma {
       updated_at?: DateTimeNullableFilter<'userprofile'> | Date | string | null
       exercise_duration?: StringFilter<'userprofile'> | string
       history?: StringNullableListFilter<'userprofile'>
-      User?: XOR<UserScalarRelationFilter, UserWhereInput>
+      User?: XOR<UsersScalarRelationFilter, usersWhereInput>
     },
     'profile_id' | 'user_id'
   >
@@ -10287,103 +10289,6 @@ export namespace Prisma {
     history?: StringNullableListFilter<'userprofile'>
   }
 
-  export type UserWhereInput = {
-    AND?: UserWhereInput | UserWhereInput[]
-    OR?: UserWhereInput[]
-    NOT?: UserWhereInput | UserWhereInput[]
-    user_id?: IntFilter<'User'> | number
-    username?: StringFilter<'User'> | string
-    email?: StringFilter<'User'> | string
-    password?: StringFilter<'User'> | string
-    is_verified?: BoolNullableFilter<'User'> | boolean | null
-    created_at?: DateTimeNullableFilter<'User'> | Date | string | null
-    updated_at?: DateTimeNullableFilter<'User'> | Date | string | null
-    mission?: MissionListRelationFilter
-    sessions?: SessionsListRelationFilter
-    usermissioncompletion?: UsermissioncompletionListRelationFilter
-    userprofile?: XOR<
-      UserprofileNullableScalarRelationFilter,
-      userprofileWhereInput
-    > | null
-  }
-
-  export type UserOrderByWithRelationInput = {
-    user_id?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    is_verified?: SortOrderInput | SortOrder
-    created_at?: SortOrderInput | SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    mission?: missionOrderByRelationAggregateInput
-    sessions?: sessionsOrderByRelationAggregateInput
-    usermissioncompletion?: usermissioncompletionOrderByRelationAggregateInput
-    userprofile?: userprofileOrderByWithRelationInput
-  }
-
-  export type UserWhereUniqueInput = Prisma.AtLeast<
-    {
-      user_id?: number
-      username?: string
-      email?: string
-      AND?: UserWhereInput | UserWhereInput[]
-      OR?: UserWhereInput[]
-      NOT?: UserWhereInput | UserWhereInput[]
-      password?: StringFilter<'User'> | string
-      is_verified?: BoolNullableFilter<'User'> | boolean | null
-      created_at?: DateTimeNullableFilter<'User'> | Date | string | null
-      updated_at?: DateTimeNullableFilter<'User'> | Date | string | null
-      mission?: MissionListRelationFilter
-      sessions?: SessionsListRelationFilter
-      usermissioncompletion?: UsermissioncompletionListRelationFilter
-      userprofile?: XOR<
-        UserprofileNullableScalarRelationFilter,
-        userprofileWhereInput
-      > | null
-    },
-    'user_id' | 'username' | 'email'
-  >
-
-  export type UserOrderByWithAggregationInput = {
-    user_id?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    is_verified?: SortOrderInput | SortOrder
-    created_at?: SortOrderInput | SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    _count?: UserCountOrderByAggregateInput
-    _avg?: UserAvgOrderByAggregateInput
-    _max?: UserMaxOrderByAggregateInput
-    _min?: UserMinOrderByAggregateInput
-    _sum?: UserSumOrderByAggregateInput
-  }
-
-  export type UserScalarWhereWithAggregatesInput = {
-    AND?:
-      | UserScalarWhereWithAggregatesInput
-      | UserScalarWhereWithAggregatesInput[]
-    OR?: UserScalarWhereWithAggregatesInput[]
-    NOT?:
-      | UserScalarWhereWithAggregatesInput
-      | UserScalarWhereWithAggregatesInput[]
-    user_id?: IntWithAggregatesFilter<'User'> | number
-    username?: StringWithAggregatesFilter<'User'> | string
-    email?: StringWithAggregatesFilter<'User'> | string
-    password?: StringWithAggregatesFilter<'User'> | string
-    is_verified?: BoolNullableWithAggregatesFilter<'User'> | boolean | null
-    created_at?:
-      | DateTimeNullableWithAggregatesFilter<'User'>
-      | Date
-      | string
-      | null
-    updated_at?:
-      | DateTimeNullableWithAggregatesFilter<'User'>
-      | Date
-      | string
-      | null
-  }
-
   export type missionWhereInput = {
     AND?: missionWhereInput | missionWhereInput[]
     OR?: missionWhereInput[]
@@ -10400,7 +10305,7 @@ export namespace Prisma {
       MissioncategoryScalarRelationFilter,
       missioncategoryWhereInput
     >
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    User?: XOR<UsersScalarRelationFilter, usersWhereInput>
     usermissioncompletion?: UsermissioncompletionListRelationFilter
   }
 
@@ -10414,7 +10319,7 @@ export namespace Prisma {
     timespan?: SortOrder
     created_at?: SortOrderInput | SortOrder
     missioncategory?: missioncategoryOrderByWithRelationInput
-    User?: UserOrderByWithRelationInput
+    User?: usersOrderByWithRelationInput
     usermissioncompletion?: usermissioncompletionOrderByRelationAggregateInput
   }
 
@@ -10435,7 +10340,7 @@ export namespace Prisma {
         MissioncategoryScalarRelationFilter,
         missioncategoryWhereInput
       >
-      User?: XOR<UserScalarRelationFilter, UserWhereInput>
+      User?: XOR<UsersScalarRelationFilter, usersWhereInput>
       usermissioncompletion?: UsermissioncompletionListRelationFilter
     },
     'mission_id' | 'mission_text'
@@ -10541,7 +10446,7 @@ export namespace Prisma {
     is_active?: BoolNullableFilter<'sessions'> | boolean | null
     login_at?: DateTimeNullableFilter<'sessions'> | Date | string | null
     logout_at?: DateTimeNullableFilter<'sessions'> | Date | string | null
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    User?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
 
   export type sessionsOrderByWithRelationInput = {
@@ -10551,7 +10456,7 @@ export namespace Prisma {
     is_active?: SortOrderInput | SortOrder
     login_at?: SortOrderInput | SortOrder
     logout_at?: SortOrderInput | SortOrder
-    User?: UserOrderByWithRelationInput
+    User?: usersOrderByWithRelationInput
   }
 
   export type sessionsWhereUniqueInput = Prisma.AtLeast<
@@ -10565,7 +10470,7 @@ export namespace Prisma {
       is_active?: BoolNullableFilter<'sessions'> | boolean | null
       login_at?: DateTimeNullableFilter<'sessions'> | Date | string | null
       logout_at?: DateTimeNullableFilter<'sessions'> | Date | string | null
-      User?: XOR<UserScalarRelationFilter, UserWhereInput>
+      User?: XOR<UsersScalarRelationFilter, usersWhereInput>
     },
     'session_id'
   >
@@ -10630,7 +10535,7 @@ export namespace Prisma {
       | string
       | null
     mission?: XOR<MissionScalarRelationFilter, missionWhereInput>
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    User?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
 
   export type usermissioncompletionOrderByWithRelationInput = {
@@ -10641,7 +10546,7 @@ export namespace Prisma {
     started_at?: SortOrderInput | SortOrder
     ended_at?: SortOrderInput | SortOrder
     mission?: missionOrderByWithRelationInput
-    User?: UserOrderByWithRelationInput
+    User?: usersOrderByWithRelationInput
   }
 
   export type usermissioncompletionWhereUniqueInput = Prisma.AtLeast<
@@ -10664,7 +10569,7 @@ export namespace Prisma {
         | string
         | null
       mission?: XOR<MissionScalarRelationFilter, missionWhereInput>
-      User?: XOR<UserScalarRelationFilter, UserWhereInput>
+      User?: XOR<UsersScalarRelationFilter, usersWhereInput>
     },
     'missioncompletion_id'
   >
@@ -10712,6 +10617,103 @@ export namespace Prisma {
       | null
   }
 
+  export type usersWhereInput = {
+    AND?: usersWhereInput | usersWhereInput[]
+    OR?: usersWhereInput[]
+    NOT?: usersWhereInput | usersWhereInput[]
+    user_id?: IntFilter<'users'> | number
+    username?: StringFilter<'users'> | string
+    email?: StringFilter<'users'> | string
+    password?: StringFilter<'users'> | string
+    is_verified?: BoolNullableFilter<'users'> | boolean | null
+    created_at?: DateTimeNullableFilter<'users'> | Date | string | null
+    updated_at?: DateTimeNullableFilter<'users'> | Date | string | null
+    mission?: MissionListRelationFilter
+    sessions?: SessionsListRelationFilter
+    usermissioncompletion?: UsermissioncompletionListRelationFilter
+    userprofile?: XOR<
+      UserprofileNullableScalarRelationFilter,
+      userprofileWhereInput
+    > | null
+  }
+
+  export type usersOrderByWithRelationInput = {
+    user_id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    is_verified?: SortOrderInput | SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    mission?: missionOrderByRelationAggregateInput
+    sessions?: sessionsOrderByRelationAggregateInput
+    usermissioncompletion?: usermissioncompletionOrderByRelationAggregateInput
+    userprofile?: userprofileOrderByWithRelationInput
+  }
+
+  export type usersWhereUniqueInput = Prisma.AtLeast<
+    {
+      user_id?: number
+      username?: string
+      email?: string
+      AND?: usersWhereInput | usersWhereInput[]
+      OR?: usersWhereInput[]
+      NOT?: usersWhereInput | usersWhereInput[]
+      password?: StringFilter<'users'> | string
+      is_verified?: BoolNullableFilter<'users'> | boolean | null
+      created_at?: DateTimeNullableFilter<'users'> | Date | string | null
+      updated_at?: DateTimeNullableFilter<'users'> | Date | string | null
+      mission?: MissionListRelationFilter
+      sessions?: SessionsListRelationFilter
+      usermissioncompletion?: UsermissioncompletionListRelationFilter
+      userprofile?: XOR<
+        UserprofileNullableScalarRelationFilter,
+        userprofileWhereInput
+      > | null
+    },
+    'user_id' | 'username' | 'email'
+  >
+
+  export type usersOrderByWithAggregationInput = {
+    user_id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    is_verified?: SortOrderInput | SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    _count?: usersCountOrderByAggregateInput
+    _avg?: usersAvgOrderByAggregateInput
+    _max?: usersMaxOrderByAggregateInput
+    _min?: usersMinOrderByAggregateInput
+    _sum?: usersSumOrderByAggregateInput
+  }
+
+  export type usersScalarWhereWithAggregatesInput = {
+    AND?:
+      | usersScalarWhereWithAggregatesInput
+      | usersScalarWhereWithAggregatesInput[]
+    OR?: usersScalarWhereWithAggregatesInput[]
+    NOT?:
+      | usersScalarWhereWithAggregatesInput
+      | usersScalarWhereWithAggregatesInput[]
+    user_id?: IntWithAggregatesFilter<'users'> | number
+    username?: StringWithAggregatesFilter<'users'> | string
+    email?: StringWithAggregatesFilter<'users'> | string
+    password?: StringWithAggregatesFilter<'users'> | string
+    is_verified?: BoolNullableWithAggregatesFilter<'users'> | boolean | null
+    created_at?:
+      | DateTimeNullableWithAggregatesFilter<'users'>
+      | Date
+      | string
+      | null
+    updated_at?:
+      | DateTimeNullableWithAggregatesFilter<'users'>
+      | Date
+      | string
+      | null
+  }
+
   export type userprofileCreateInput = {
     first_name: string
     last_name: string
@@ -10719,7 +10721,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     exercise_duration: string
     history?: userprofileCreatehistoryInput | string[]
-    User: UserCreateNestedOneWithoutUserprofileInput
+    User: usersCreateNestedOneWithoutUserprofileInput
   }
 
   export type userprofileUncheckedCreateInput = {
@@ -10748,7 +10750,7 @@ export namespace Prisma {
       | null
     exercise_duration?: StringFieldUpdateOperationsInput | string
     history?: userprofileUpdatehistoryInput | string[]
-    User?: UserUpdateOneRequiredWithoutUserprofileNestedInput
+    User?: usersUpdateOneRequiredWithoutUserprofileNestedInput
   }
 
   export type userprofileUncheckedUpdateInput = {
@@ -10817,121 +10819,6 @@ export namespace Prisma {
     history?: userprofileUpdatehistoryInput | string[]
   }
 
-  export type UserCreateInput = {
-    username: string
-    email: string
-    password: string
-    is_verified?: boolean | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    mission?: missionCreateNestedManyWithoutUserInput
-    sessions?: sessionsCreateNestedManyWithoutUserInput
-    usermissioncompletion?: usermissioncompletionCreateNestedManyWithoutUserInput
-    userprofile?: userprofileCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUncheckedCreateInput = {
-    user_id?: number
-    username: string
-    email: string
-    password: string
-    is_verified?: boolean | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    mission?: missionUncheckedCreateNestedManyWithoutUserInput
-    sessions?: sessionsUncheckedCreateNestedManyWithoutUserInput
-    usermissioncompletion?: usermissioncompletionUncheckedCreateNestedManyWithoutUserInput
-    userprofile?: userprofileUncheckedCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUpdateInput = {
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    created_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    updated_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    mission?: missionUpdateManyWithoutUserNestedInput
-    sessions?: sessionsUpdateManyWithoutUserNestedInput
-    usermissioncompletion?: usermissioncompletionUpdateManyWithoutUserNestedInput
-    userprofile?: userprofileUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    created_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    updated_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    mission?: missionUncheckedUpdateManyWithoutUserNestedInput
-    sessions?: sessionsUncheckedUpdateManyWithoutUserNestedInput
-    usermissioncompletion?: usermissioncompletionUncheckedUpdateManyWithoutUserNestedInput
-    userprofile?: userprofileUncheckedUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserCreateManyInput = {
-    user_id?: number
-    username: string
-    email: string
-    password: string
-    is_verified?: boolean | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-  }
-
-  export type UserUpdateManyMutationInput = {
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    created_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    updated_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-  }
-
-  export type UserUncheckedUpdateManyInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    created_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    updated_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-  }
-
   export type missionCreateInput = {
     mission_text: string
     visibility: $Enums.visibility
@@ -10939,7 +10826,7 @@ export namespace Prisma {
     timespan: number
     created_at?: Date | string | null
     missioncategory: missioncategoryCreateNestedOneWithoutMissionInput
-    User: UserCreateNestedOneWithoutMissionInput
+    User: usersCreateNestedOneWithoutMissionInput
     usermissioncompletion?: usermissioncompletionCreateNestedManyWithoutMissionInput
   }
 
@@ -10966,7 +10853,7 @@ export namespace Prisma {
       | string
       | null
     missioncategory?: missioncategoryUpdateOneRequiredWithoutMissionNestedInput
-    User?: UserUpdateOneRequiredWithoutMissionNestedInput
+    User?: usersUpdateOneRequiredWithoutMissionNestedInput
     usermissioncompletion?: usermissioncompletionUpdateManyWithoutMissionNestedInput
   }
 
@@ -11068,7 +10955,7 @@ export namespace Prisma {
     is_active?: boolean | null
     login_at?: Date | string | null
     logout_at?: Date | string | null
-    User: UserCreateNestedOneWithoutSessionsInput
+    User: usersCreateNestedOneWithoutSessionsInput
   }
 
   export type sessionsUncheckedCreateInput = {
@@ -11089,7 +10976,7 @@ export namespace Prisma {
       | Date
       | string
       | null
-    User?: UserUpdateOneRequiredWithoutSessionsNestedInput
+    User?: usersUpdateOneRequiredWithoutSessionsNestedInput
   }
 
   export type sessionsUncheckedUpdateInput = {
@@ -11143,7 +11030,7 @@ export namespace Prisma {
     started_at?: Date | string | null
     ended_at?: Date | string | null
     mission: missionCreateNestedOneWithoutUsermissioncompletionInput
-    User: UserCreateNestedOneWithoutUsermissioncompletionInput
+    User: usersCreateNestedOneWithoutUsermissioncompletionInput
   }
 
   export type usermissioncompletionUncheckedCreateInput = {
@@ -11164,7 +11051,7 @@ export namespace Prisma {
       | null
     ended_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     mission?: missionUpdateOneRequiredWithoutUsermissioncompletionNestedInput
-    User?: UserUpdateOneRequiredWithoutUsermissioncompletionNestedInput
+    User?: usersUpdateOneRequiredWithoutUsermissioncompletionNestedInput
   }
 
   export type usermissioncompletionUncheckedUpdateInput = {
@@ -11212,6 +11099,121 @@ export namespace Prisma {
     ended_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type usersCreateInput = {
+    username: string
+    email: string
+    password: string
+    is_verified?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    mission?: missionCreateNestedManyWithoutUserInput
+    sessions?: sessionsCreateNestedManyWithoutUserInput
+    usermissioncompletion?: usermissioncompletionCreateNestedManyWithoutUserInput
+    userprofile?: userprofileCreateNestedOneWithoutUserInput
+  }
+
+  export type usersUncheckedCreateInput = {
+    user_id?: number
+    username: string
+    email: string
+    password: string
+    is_verified?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    mission?: missionUncheckedCreateNestedManyWithoutUserInput
+    sessions?: sessionsUncheckedCreateNestedManyWithoutUserInput
+    usermissioncompletion?: usermissioncompletionUncheckedCreateNestedManyWithoutUserInput
+    userprofile?: userprofileUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type usersUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    updated_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    mission?: missionUpdateManyWithoutUserNestedInput
+    sessions?: sessionsUpdateManyWithoutUserNestedInput
+    usermissioncompletion?: usermissioncompletionUpdateManyWithoutUserNestedInput
+    userprofile?: userprofileUpdateOneWithoutUserNestedInput
+  }
+
+  export type usersUncheckedUpdateInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    updated_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    mission?: missionUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: sessionsUncheckedUpdateManyWithoutUserNestedInput
+    usermissioncompletion?: usermissioncompletionUncheckedUpdateManyWithoutUserNestedInput
+    userprofile?: userprofileUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type usersCreateManyInput = {
+    user_id?: number
+    username: string
+    email: string
+    password: string
+    is_verified?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type usersUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    updated_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+  }
+
+  export type usersUncheckedUpdateManyInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    updated_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -11257,9 +11259,9 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
+  export type UsersScalarRelationFilter = {
+    is?: usersWhereInput
+    isNot?: usersWhereInput
   }
 
   export type SortOrderInput = {
@@ -11360,21 +11362,21 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type EnumvisibilityFilter<$PrismaModel = never> = {
+    equals?: $Enums.visibility | EnumvisibilityFieldRefInput<$PrismaModel>
+    in?: $Enums.visibility[] | ListEnumvisibilityFieldRefInput<$PrismaModel>
+    notIn?: $Enums.visibility[] | ListEnumvisibilityFieldRefInput<$PrismaModel>
+    not?: NestedEnumvisibilityFilter<$PrismaModel> | $Enums.visibility
+  }
+
   export type BoolNullableFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
-  export type MissionListRelationFilter = {
-    every?: missionWhereInput
-    some?: missionWhereInput
-    none?: missionWhereInput
-  }
-
-  export type SessionsListRelationFilter = {
-    every?: sessionsWhereInput
-    some?: sessionsWhereInput
-    none?: sessionsWhereInput
+  export type MissioncategoryScalarRelationFilter = {
+    is?: missioncategoryWhereInput
+    isNot?: missioncategoryWhereInput
   }
 
   export type UsermissioncompletionListRelationFilter = {
@@ -11383,79 +11385,8 @@ export namespace Prisma {
     none?: usermissioncompletionWhereInput
   }
 
-  export type UserprofileNullableScalarRelationFilter = {
-    is?: userprofileWhereInput | null
-    isNot?: userprofileWhereInput | null
-  }
-
-  export type missionOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type sessionsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type usermissioncompletionOrderByRelationAggregateInput = {
     _count?: SortOrder
-  }
-
-  export type UserCountOrderByAggregateInput = {
-    user_id?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    is_verified?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type UserAvgOrderByAggregateInput = {
-    user_id?: SortOrder
-  }
-
-  export type UserMaxOrderByAggregateInput = {
-    user_id?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    is_verified?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type UserMinOrderByAggregateInput = {
-    user_id?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-    password?: SortOrder
-    is_verified?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type UserSumOrderByAggregateInput = {
-    user_id?: SortOrder
-  }
-
-  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
-  }
-
-  export type EnumvisibilityFilter<$PrismaModel = never> = {
-    equals?: $Enums.visibility | EnumvisibilityFieldRefInput<$PrismaModel>
-    in?: $Enums.visibility[] | ListEnumvisibilityFieldRefInput<$PrismaModel>
-    notIn?: $Enums.visibility[] | ListEnumvisibilityFieldRefInput<$PrismaModel>
-    not?: NestedEnumvisibilityFilter<$PrismaModel> | $Enums.visibility
-  }
-
-  export type MissioncategoryScalarRelationFilter = {
-    is?: missioncategoryWhereInput
-    isNot?: missioncategoryWhereInput
   }
 
   export type missionCountOrderByAggregateInput = {
@@ -11515,6 +11446,14 @@ export namespace Prisma {
     _max?: NestedEnumvisibilityFilter<$PrismaModel>
   }
 
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -11528,6 +11467,16 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type MissionListRelationFilter = {
+    every?: missionWhereInput
+    some?: missionWhereInput
+    none?: missionWhereInput
+  }
+
+  export type missionOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type missioncategoryCountOrderByAggregateInput = {
@@ -11644,17 +11593,70 @@ export namespace Prisma {
     mission_id?: SortOrder
   }
 
+  export type SessionsListRelationFilter = {
+    every?: sessionsWhereInput
+    some?: sessionsWhereInput
+    none?: sessionsWhereInput
+  }
+
+  export type UserprofileNullableScalarRelationFilter = {
+    is?: userprofileWhereInput | null
+    isNot?: userprofileWhereInput | null
+  }
+
+  export type sessionsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type usersCountOrderByAggregateInput = {
+    user_id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    is_verified?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type usersAvgOrderByAggregateInput = {
+    user_id?: SortOrder
+  }
+
+  export type usersMaxOrderByAggregateInput = {
+    user_id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    is_verified?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type usersMinOrderByAggregateInput = {
+    user_id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    is_verified?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type usersSumOrderByAggregateInput = {
+    user_id?: SortOrder
+  }
+
   export type userprofileCreatehistoryInput = {
     set: string[]
   }
 
-  export type UserCreateNestedOneWithoutUserprofileInput = {
+  export type usersCreateNestedOneWithoutUserprofileInput = {
     create?: XOR<
-      UserCreateWithoutUserprofileInput,
-      UserUncheckedCreateWithoutUserprofileInput
+      usersCreateWithoutUserprofileInput,
+      usersUncheckedCreateWithoutUserprofileInput
     >
-    connectOrCreate?: UserCreateOrConnectWithoutUserprofileInput
-    connect?: UserWhereUniqueInput
+    connectOrCreate?: usersCreateOrConnectWithoutUserprofileInput
+    connect?: usersWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -11670,20 +11672,20 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type UserUpdateOneRequiredWithoutUserprofileNestedInput = {
+  export type usersUpdateOneRequiredWithoutUserprofileNestedInput = {
     create?: XOR<
-      UserCreateWithoutUserprofileInput,
-      UserUncheckedCreateWithoutUserprofileInput
+      usersCreateWithoutUserprofileInput,
+      usersUncheckedCreateWithoutUserprofileInput
     >
-    connectOrCreate?: UserCreateOrConnectWithoutUserprofileInput
-    upsert?: UserUpsertWithoutUserprofileInput
-    connect?: UserWhereUniqueInput
+    connectOrCreate?: usersCreateOrConnectWithoutUserprofileInput
+    upsert?: usersUpsertWithoutUserprofileInput
+    connect?: usersWhereUniqueInput
     update?: XOR<
       XOR<
-        UserUpdateToOneWithWhereWithoutUserprofileInput,
-        UserUpdateWithoutUserprofileInput
+        usersUpdateToOneWithWhereWithoutUserprofileInput,
+        usersUpdateWithoutUserprofileInput
       >,
-      UserUncheckedUpdateWithoutUserprofileInput
+      usersUncheckedUpdateWithoutUserprofileInput
     >
   }
 
@@ -11693,6 +11695,347 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type missioncategoryCreateNestedOneWithoutMissionInput = {
+    create?: XOR<
+      missioncategoryCreateWithoutMissionInput,
+      missioncategoryUncheckedCreateWithoutMissionInput
+    >
+    connectOrCreate?: missioncategoryCreateOrConnectWithoutMissionInput
+    connect?: missioncategoryWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutMissionInput = {
+    create?: XOR<
+      usersCreateWithoutMissionInput,
+      usersUncheckedCreateWithoutMissionInput
+    >
+    connectOrCreate?: usersCreateOrConnectWithoutMissionInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usermissioncompletionCreateNestedManyWithoutMissionInput = {
+    create?:
+      | XOR<
+          usermissioncompletionCreateWithoutMissionInput,
+          usermissioncompletionUncheckedCreateWithoutMissionInput
+        >
+      | usermissioncompletionCreateWithoutMissionInput[]
+      | usermissioncompletionUncheckedCreateWithoutMissionInput[]
+    connectOrCreate?:
+      | usermissioncompletionCreateOrConnectWithoutMissionInput
+      | usermissioncompletionCreateOrConnectWithoutMissionInput[]
+    createMany?: usermissioncompletionCreateManyMissionInputEnvelope
+    connect?:
+      | usermissioncompletionWhereUniqueInput
+      | usermissioncompletionWhereUniqueInput[]
+  }
+
+  export type usermissioncompletionUncheckedCreateNestedManyWithoutMissionInput =
+    {
+      create?:
+        | XOR<
+            usermissioncompletionCreateWithoutMissionInput,
+            usermissioncompletionUncheckedCreateWithoutMissionInput
+          >
+        | usermissioncompletionCreateWithoutMissionInput[]
+        | usermissioncompletionUncheckedCreateWithoutMissionInput[]
+      connectOrCreate?:
+        | usermissioncompletionCreateOrConnectWithoutMissionInput
+        | usermissioncompletionCreateOrConnectWithoutMissionInput[]
+      createMany?: usermissioncompletionCreateManyMissionInputEnvelope
+      connect?:
+        | usermissioncompletionWhereUniqueInput
+        | usermissioncompletionWhereUniqueInput[]
+    }
+
+  export type EnumvisibilityFieldUpdateOperationsInput = {
+    set?: $Enums.visibility
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
+  }
+
+  export type missioncategoryUpdateOneRequiredWithoutMissionNestedInput = {
+    create?: XOR<
+      missioncategoryCreateWithoutMissionInput,
+      missioncategoryUncheckedCreateWithoutMissionInput
+    >
+    connectOrCreate?: missioncategoryCreateOrConnectWithoutMissionInput
+    upsert?: missioncategoryUpsertWithoutMissionInput
+    connect?: missioncategoryWhereUniqueInput
+    update?: XOR<
+      XOR<
+        missioncategoryUpdateToOneWithWhereWithoutMissionInput,
+        missioncategoryUpdateWithoutMissionInput
+      >,
+      missioncategoryUncheckedUpdateWithoutMissionInput
+    >
+  }
+
+  export type usersUpdateOneRequiredWithoutMissionNestedInput = {
+    create?: XOR<
+      usersCreateWithoutMissionInput,
+      usersUncheckedCreateWithoutMissionInput
+    >
+    connectOrCreate?: usersCreateOrConnectWithoutMissionInput
+    upsert?: usersUpsertWithoutMissionInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<
+      XOR<
+        usersUpdateToOneWithWhereWithoutMissionInput,
+        usersUpdateWithoutMissionInput
+      >,
+      usersUncheckedUpdateWithoutMissionInput
+    >
+  }
+
+  export type usermissioncompletionUpdateManyWithoutMissionNestedInput = {
+    create?:
+      | XOR<
+          usermissioncompletionCreateWithoutMissionInput,
+          usermissioncompletionUncheckedCreateWithoutMissionInput
+        >
+      | usermissioncompletionCreateWithoutMissionInput[]
+      | usermissioncompletionUncheckedCreateWithoutMissionInput[]
+    connectOrCreate?:
+      | usermissioncompletionCreateOrConnectWithoutMissionInput
+      | usermissioncompletionCreateOrConnectWithoutMissionInput[]
+    upsert?:
+      | usermissioncompletionUpsertWithWhereUniqueWithoutMissionInput
+      | usermissioncompletionUpsertWithWhereUniqueWithoutMissionInput[]
+    createMany?: usermissioncompletionCreateManyMissionInputEnvelope
+    set?:
+      | usermissioncompletionWhereUniqueInput
+      | usermissioncompletionWhereUniqueInput[]
+    disconnect?:
+      | usermissioncompletionWhereUniqueInput
+      | usermissioncompletionWhereUniqueInput[]
+    delete?:
+      | usermissioncompletionWhereUniqueInput
+      | usermissioncompletionWhereUniqueInput[]
+    connect?:
+      | usermissioncompletionWhereUniqueInput
+      | usermissioncompletionWhereUniqueInput[]
+    update?:
+      | usermissioncompletionUpdateWithWhereUniqueWithoutMissionInput
+      | usermissioncompletionUpdateWithWhereUniqueWithoutMissionInput[]
+    updateMany?:
+      | usermissioncompletionUpdateManyWithWhereWithoutMissionInput
+      | usermissioncompletionUpdateManyWithWhereWithoutMissionInput[]
+    deleteMany?:
+      | usermissioncompletionScalarWhereInput
+      | usermissioncompletionScalarWhereInput[]
+  }
+
+  export type usermissioncompletionUncheckedUpdateManyWithoutMissionNestedInput =
+    {
+      create?:
+        | XOR<
+            usermissioncompletionCreateWithoutMissionInput,
+            usermissioncompletionUncheckedCreateWithoutMissionInput
+          >
+        | usermissioncompletionCreateWithoutMissionInput[]
+        | usermissioncompletionUncheckedCreateWithoutMissionInput[]
+      connectOrCreate?:
+        | usermissioncompletionCreateOrConnectWithoutMissionInput
+        | usermissioncompletionCreateOrConnectWithoutMissionInput[]
+      upsert?:
+        | usermissioncompletionUpsertWithWhereUniqueWithoutMissionInput
+        | usermissioncompletionUpsertWithWhereUniqueWithoutMissionInput[]
+      createMany?: usermissioncompletionCreateManyMissionInputEnvelope
+      set?:
+        | usermissioncompletionWhereUniqueInput
+        | usermissioncompletionWhereUniqueInput[]
+      disconnect?:
+        | usermissioncompletionWhereUniqueInput
+        | usermissioncompletionWhereUniqueInput[]
+      delete?:
+        | usermissioncompletionWhereUniqueInput
+        | usermissioncompletionWhereUniqueInput[]
+      connect?:
+        | usermissioncompletionWhereUniqueInput
+        | usermissioncompletionWhereUniqueInput[]
+      update?:
+        | usermissioncompletionUpdateWithWhereUniqueWithoutMissionInput
+        | usermissioncompletionUpdateWithWhereUniqueWithoutMissionInput[]
+      updateMany?:
+        | usermissioncompletionUpdateManyWithWhereWithoutMissionInput
+        | usermissioncompletionUpdateManyWithWhereWithoutMissionInput[]
+      deleteMany?:
+        | usermissioncompletionScalarWhereInput
+        | usermissioncompletionScalarWhereInput[]
+    }
+
+  export type missionCreateNestedManyWithoutMissioncategoryInput = {
+    create?:
+      | XOR<
+          missionCreateWithoutMissioncategoryInput,
+          missionUncheckedCreateWithoutMissioncategoryInput
+        >
+      | missionCreateWithoutMissioncategoryInput[]
+      | missionUncheckedCreateWithoutMissioncategoryInput[]
+    connectOrCreate?:
+      | missionCreateOrConnectWithoutMissioncategoryInput
+      | missionCreateOrConnectWithoutMissioncategoryInput[]
+    createMany?: missionCreateManyMissioncategoryInputEnvelope
+    connect?: missionWhereUniqueInput | missionWhereUniqueInput[]
+  }
+
+  export type missionUncheckedCreateNestedManyWithoutMissioncategoryInput = {
+    create?:
+      | XOR<
+          missionCreateWithoutMissioncategoryInput,
+          missionUncheckedCreateWithoutMissioncategoryInput
+        >
+      | missionCreateWithoutMissioncategoryInput[]
+      | missionUncheckedCreateWithoutMissioncategoryInput[]
+    connectOrCreate?:
+      | missionCreateOrConnectWithoutMissioncategoryInput
+      | missionCreateOrConnectWithoutMissioncategoryInput[]
+    createMany?: missionCreateManyMissioncategoryInputEnvelope
+    connect?: missionWhereUniqueInput | missionWhereUniqueInput[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type missionUpdateManyWithoutMissioncategoryNestedInput = {
+    create?:
+      | XOR<
+          missionCreateWithoutMissioncategoryInput,
+          missionUncheckedCreateWithoutMissioncategoryInput
+        >
+      | missionCreateWithoutMissioncategoryInput[]
+      | missionUncheckedCreateWithoutMissioncategoryInput[]
+    connectOrCreate?:
+      | missionCreateOrConnectWithoutMissioncategoryInput
+      | missionCreateOrConnectWithoutMissioncategoryInput[]
+    upsert?:
+      | missionUpsertWithWhereUniqueWithoutMissioncategoryInput
+      | missionUpsertWithWhereUniqueWithoutMissioncategoryInput[]
+    createMany?: missionCreateManyMissioncategoryInputEnvelope
+    set?: missionWhereUniqueInput | missionWhereUniqueInput[]
+    disconnect?: missionWhereUniqueInput | missionWhereUniqueInput[]
+    delete?: missionWhereUniqueInput | missionWhereUniqueInput[]
+    connect?: missionWhereUniqueInput | missionWhereUniqueInput[]
+    update?:
+      | missionUpdateWithWhereUniqueWithoutMissioncategoryInput
+      | missionUpdateWithWhereUniqueWithoutMissioncategoryInput[]
+    updateMany?:
+      | missionUpdateManyWithWhereWithoutMissioncategoryInput
+      | missionUpdateManyWithWhereWithoutMissioncategoryInput[]
+    deleteMany?: missionScalarWhereInput | missionScalarWhereInput[]
+  }
+
+  export type missionUncheckedUpdateManyWithoutMissioncategoryNestedInput = {
+    create?:
+      | XOR<
+          missionCreateWithoutMissioncategoryInput,
+          missionUncheckedCreateWithoutMissioncategoryInput
+        >
+      | missionCreateWithoutMissioncategoryInput[]
+      | missionUncheckedCreateWithoutMissioncategoryInput[]
+    connectOrCreate?:
+      | missionCreateOrConnectWithoutMissioncategoryInput
+      | missionCreateOrConnectWithoutMissioncategoryInput[]
+    upsert?:
+      | missionUpsertWithWhereUniqueWithoutMissioncategoryInput
+      | missionUpsertWithWhereUniqueWithoutMissioncategoryInput[]
+    createMany?: missionCreateManyMissioncategoryInputEnvelope
+    set?: missionWhereUniqueInput | missionWhereUniqueInput[]
+    disconnect?: missionWhereUniqueInput | missionWhereUniqueInput[]
+    delete?: missionWhereUniqueInput | missionWhereUniqueInput[]
+    connect?: missionWhereUniqueInput | missionWhereUniqueInput[]
+    update?:
+      | missionUpdateWithWhereUniqueWithoutMissioncategoryInput
+      | missionUpdateWithWhereUniqueWithoutMissioncategoryInput[]
+    updateMany?:
+      | missionUpdateManyWithWhereWithoutMissioncategoryInput
+      | missionUpdateManyWithWhereWithoutMissioncategoryInput[]
+    deleteMany?: missionScalarWhereInput | missionScalarWhereInput[]
+  }
+
+  export type usersCreateNestedOneWithoutSessionsInput = {
+    create?: XOR<
+      usersCreateWithoutSessionsInput,
+      usersUncheckedCreateWithoutSessionsInput
+    >
+    connectOrCreate?: usersCreateOrConnectWithoutSessionsInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type usersUpdateOneRequiredWithoutSessionsNestedInput = {
+    create?: XOR<
+      usersCreateWithoutSessionsInput,
+      usersUncheckedCreateWithoutSessionsInput
+    >
+    connectOrCreate?: usersCreateOrConnectWithoutSessionsInput
+    upsert?: usersUpsertWithoutSessionsInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<
+      XOR<
+        usersUpdateToOneWithWhereWithoutSessionsInput,
+        usersUpdateWithoutSessionsInput
+      >,
+      usersUncheckedUpdateWithoutSessionsInput
+    >
+  }
+
+  export type missionCreateNestedOneWithoutUsermissioncompletionInput = {
+    create?: XOR<
+      missionCreateWithoutUsermissioncompletionInput,
+      missionUncheckedCreateWithoutUsermissioncompletionInput
+    >
+    connectOrCreate?: missionCreateOrConnectWithoutUsermissioncompletionInput
+    connect?: missionWhereUniqueInput
+  }
+
+  export type usersCreateNestedOneWithoutUsermissioncompletionInput = {
+    create?: XOR<
+      usersCreateWithoutUsermissioncompletionInput,
+      usersUncheckedCreateWithoutUsermissioncompletionInput
+    >
+    connectOrCreate?: usersCreateOrConnectWithoutUsermissioncompletionInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type missionUpdateOneRequiredWithoutUsermissioncompletionNestedInput =
+    {
+      create?: XOR<
+        missionCreateWithoutUsermissioncompletionInput,
+        missionUncheckedCreateWithoutUsermissioncompletionInput
+      >
+      connectOrCreate?: missionCreateOrConnectWithoutUsermissioncompletionInput
+      upsert?: missionUpsertWithoutUsermissioncompletionInput
+      connect?: missionWhereUniqueInput
+      update?: XOR<
+        XOR<
+          missionUpdateToOneWithWhereWithoutUsermissioncompletionInput,
+          missionUpdateWithoutUsermissioncompletionInput
+        >,
+        missionUncheckedUpdateWithoutUsermissioncompletionInput
+      >
+    }
+
+  export type usersUpdateOneRequiredWithoutUsermissioncompletionNestedInput = {
+    create?: XOR<
+      usersCreateWithoutUsermissioncompletionInput,
+      usersUncheckedCreateWithoutUsermissioncompletionInput
+    >
+    connectOrCreate?: usersCreateOrConnectWithoutUsermissioncompletionInput
+    upsert?: usersUpsertWithoutUsermissioncompletionInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<
+      XOR<
+        usersUpdateToOneWithWhereWithoutUsermissioncompletionInput,
+        usersUpdateWithoutUsermissioncompletionInput
+      >,
+      usersUncheckedUpdateWithoutUsermissioncompletionInput
+    >
   }
 
   export type missionCreateNestedManyWithoutUserInput = {
@@ -11805,10 +12148,6 @@ export namespace Prisma {
     >
     connectOrCreate?: userprofileCreateOrConnectWithoutUserInput
     connect?: userprofileWhereUniqueInput
-  }
-
-  export type NullableBoolFieldUpdateOperationsInput = {
-    set?: boolean | null
   }
 
   export type missionUpdateManyWithoutUserNestedInput = {
@@ -12037,343 +12376,6 @@ export namespace Prisma {
     >
   }
 
-  export type missioncategoryCreateNestedOneWithoutMissionInput = {
-    create?: XOR<
-      missioncategoryCreateWithoutMissionInput,
-      missioncategoryUncheckedCreateWithoutMissionInput
-    >
-    connectOrCreate?: missioncategoryCreateOrConnectWithoutMissionInput
-    connect?: missioncategoryWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutMissionInput = {
-    create?: XOR<
-      UserCreateWithoutMissionInput,
-      UserUncheckedCreateWithoutMissionInput
-    >
-    connectOrCreate?: UserCreateOrConnectWithoutMissionInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type usermissioncompletionCreateNestedManyWithoutMissionInput = {
-    create?:
-      | XOR<
-          usermissioncompletionCreateWithoutMissionInput,
-          usermissioncompletionUncheckedCreateWithoutMissionInput
-        >
-      | usermissioncompletionCreateWithoutMissionInput[]
-      | usermissioncompletionUncheckedCreateWithoutMissionInput[]
-    connectOrCreate?:
-      | usermissioncompletionCreateOrConnectWithoutMissionInput
-      | usermissioncompletionCreateOrConnectWithoutMissionInput[]
-    createMany?: usermissioncompletionCreateManyMissionInputEnvelope
-    connect?:
-      | usermissioncompletionWhereUniqueInput
-      | usermissioncompletionWhereUniqueInput[]
-  }
-
-  export type usermissioncompletionUncheckedCreateNestedManyWithoutMissionInput =
-    {
-      create?:
-        | XOR<
-            usermissioncompletionCreateWithoutMissionInput,
-            usermissioncompletionUncheckedCreateWithoutMissionInput
-          >
-        | usermissioncompletionCreateWithoutMissionInput[]
-        | usermissioncompletionUncheckedCreateWithoutMissionInput[]
-      connectOrCreate?:
-        | usermissioncompletionCreateOrConnectWithoutMissionInput
-        | usermissioncompletionCreateOrConnectWithoutMissionInput[]
-      createMany?: usermissioncompletionCreateManyMissionInputEnvelope
-      connect?:
-        | usermissioncompletionWhereUniqueInput
-        | usermissioncompletionWhereUniqueInput[]
-    }
-
-  export type EnumvisibilityFieldUpdateOperationsInput = {
-    set?: $Enums.visibility
-  }
-
-  export type missioncategoryUpdateOneRequiredWithoutMissionNestedInput = {
-    create?: XOR<
-      missioncategoryCreateWithoutMissionInput,
-      missioncategoryUncheckedCreateWithoutMissionInput
-    >
-    connectOrCreate?: missioncategoryCreateOrConnectWithoutMissionInput
-    upsert?: missioncategoryUpsertWithoutMissionInput
-    connect?: missioncategoryWhereUniqueInput
-    update?: XOR<
-      XOR<
-        missioncategoryUpdateToOneWithWhereWithoutMissionInput,
-        missioncategoryUpdateWithoutMissionInput
-      >,
-      missioncategoryUncheckedUpdateWithoutMissionInput
-    >
-  }
-
-  export type UserUpdateOneRequiredWithoutMissionNestedInput = {
-    create?: XOR<
-      UserCreateWithoutMissionInput,
-      UserUncheckedCreateWithoutMissionInput
-    >
-    connectOrCreate?: UserCreateOrConnectWithoutMissionInput
-    upsert?: UserUpsertWithoutMissionInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<
-      XOR<
-        UserUpdateToOneWithWhereWithoutMissionInput,
-        UserUpdateWithoutMissionInput
-      >,
-      UserUncheckedUpdateWithoutMissionInput
-    >
-  }
-
-  export type usermissioncompletionUpdateManyWithoutMissionNestedInput = {
-    create?:
-      | XOR<
-          usermissioncompletionCreateWithoutMissionInput,
-          usermissioncompletionUncheckedCreateWithoutMissionInput
-        >
-      | usermissioncompletionCreateWithoutMissionInput[]
-      | usermissioncompletionUncheckedCreateWithoutMissionInput[]
-    connectOrCreate?:
-      | usermissioncompletionCreateOrConnectWithoutMissionInput
-      | usermissioncompletionCreateOrConnectWithoutMissionInput[]
-    upsert?:
-      | usermissioncompletionUpsertWithWhereUniqueWithoutMissionInput
-      | usermissioncompletionUpsertWithWhereUniqueWithoutMissionInput[]
-    createMany?: usermissioncompletionCreateManyMissionInputEnvelope
-    set?:
-      | usermissioncompletionWhereUniqueInput
-      | usermissioncompletionWhereUniqueInput[]
-    disconnect?:
-      | usermissioncompletionWhereUniqueInput
-      | usermissioncompletionWhereUniqueInput[]
-    delete?:
-      | usermissioncompletionWhereUniqueInput
-      | usermissioncompletionWhereUniqueInput[]
-    connect?:
-      | usermissioncompletionWhereUniqueInput
-      | usermissioncompletionWhereUniqueInput[]
-    update?:
-      | usermissioncompletionUpdateWithWhereUniqueWithoutMissionInput
-      | usermissioncompletionUpdateWithWhereUniqueWithoutMissionInput[]
-    updateMany?:
-      | usermissioncompletionUpdateManyWithWhereWithoutMissionInput
-      | usermissioncompletionUpdateManyWithWhereWithoutMissionInput[]
-    deleteMany?:
-      | usermissioncompletionScalarWhereInput
-      | usermissioncompletionScalarWhereInput[]
-  }
-
-  export type usermissioncompletionUncheckedUpdateManyWithoutMissionNestedInput =
-    {
-      create?:
-        | XOR<
-            usermissioncompletionCreateWithoutMissionInput,
-            usermissioncompletionUncheckedCreateWithoutMissionInput
-          >
-        | usermissioncompletionCreateWithoutMissionInput[]
-        | usermissioncompletionUncheckedCreateWithoutMissionInput[]
-      connectOrCreate?:
-        | usermissioncompletionCreateOrConnectWithoutMissionInput
-        | usermissioncompletionCreateOrConnectWithoutMissionInput[]
-      upsert?:
-        | usermissioncompletionUpsertWithWhereUniqueWithoutMissionInput
-        | usermissioncompletionUpsertWithWhereUniqueWithoutMissionInput[]
-      createMany?: usermissioncompletionCreateManyMissionInputEnvelope
-      set?:
-        | usermissioncompletionWhereUniqueInput
-        | usermissioncompletionWhereUniqueInput[]
-      disconnect?:
-        | usermissioncompletionWhereUniqueInput
-        | usermissioncompletionWhereUniqueInput[]
-      delete?:
-        | usermissioncompletionWhereUniqueInput
-        | usermissioncompletionWhereUniqueInput[]
-      connect?:
-        | usermissioncompletionWhereUniqueInput
-        | usermissioncompletionWhereUniqueInput[]
-      update?:
-        | usermissioncompletionUpdateWithWhereUniqueWithoutMissionInput
-        | usermissioncompletionUpdateWithWhereUniqueWithoutMissionInput[]
-      updateMany?:
-        | usermissioncompletionUpdateManyWithWhereWithoutMissionInput
-        | usermissioncompletionUpdateManyWithWhereWithoutMissionInput[]
-      deleteMany?:
-        | usermissioncompletionScalarWhereInput
-        | usermissioncompletionScalarWhereInput[]
-    }
-
-  export type missionCreateNestedManyWithoutMissioncategoryInput = {
-    create?:
-      | XOR<
-          missionCreateWithoutMissioncategoryInput,
-          missionUncheckedCreateWithoutMissioncategoryInput
-        >
-      | missionCreateWithoutMissioncategoryInput[]
-      | missionUncheckedCreateWithoutMissioncategoryInput[]
-    connectOrCreate?:
-      | missionCreateOrConnectWithoutMissioncategoryInput
-      | missionCreateOrConnectWithoutMissioncategoryInput[]
-    createMany?: missionCreateManyMissioncategoryInputEnvelope
-    connect?: missionWhereUniqueInput | missionWhereUniqueInput[]
-  }
-
-  export type missionUncheckedCreateNestedManyWithoutMissioncategoryInput = {
-    create?:
-      | XOR<
-          missionCreateWithoutMissioncategoryInput,
-          missionUncheckedCreateWithoutMissioncategoryInput
-        >
-      | missionCreateWithoutMissioncategoryInput[]
-      | missionUncheckedCreateWithoutMissioncategoryInput[]
-    connectOrCreate?:
-      | missionCreateOrConnectWithoutMissioncategoryInput
-      | missionCreateOrConnectWithoutMissioncategoryInput[]
-    createMany?: missionCreateManyMissioncategoryInputEnvelope
-    connect?: missionWhereUniqueInput | missionWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
-  export type missionUpdateManyWithoutMissioncategoryNestedInput = {
-    create?:
-      | XOR<
-          missionCreateWithoutMissioncategoryInput,
-          missionUncheckedCreateWithoutMissioncategoryInput
-        >
-      | missionCreateWithoutMissioncategoryInput[]
-      | missionUncheckedCreateWithoutMissioncategoryInput[]
-    connectOrCreate?:
-      | missionCreateOrConnectWithoutMissioncategoryInput
-      | missionCreateOrConnectWithoutMissioncategoryInput[]
-    upsert?:
-      | missionUpsertWithWhereUniqueWithoutMissioncategoryInput
-      | missionUpsertWithWhereUniqueWithoutMissioncategoryInput[]
-    createMany?: missionCreateManyMissioncategoryInputEnvelope
-    set?: missionWhereUniqueInput | missionWhereUniqueInput[]
-    disconnect?: missionWhereUniqueInput | missionWhereUniqueInput[]
-    delete?: missionWhereUniqueInput | missionWhereUniqueInput[]
-    connect?: missionWhereUniqueInput | missionWhereUniqueInput[]
-    update?:
-      | missionUpdateWithWhereUniqueWithoutMissioncategoryInput
-      | missionUpdateWithWhereUniqueWithoutMissioncategoryInput[]
-    updateMany?:
-      | missionUpdateManyWithWhereWithoutMissioncategoryInput
-      | missionUpdateManyWithWhereWithoutMissioncategoryInput[]
-    deleteMany?: missionScalarWhereInput | missionScalarWhereInput[]
-  }
-
-  export type missionUncheckedUpdateManyWithoutMissioncategoryNestedInput = {
-    create?:
-      | XOR<
-          missionCreateWithoutMissioncategoryInput,
-          missionUncheckedCreateWithoutMissioncategoryInput
-        >
-      | missionCreateWithoutMissioncategoryInput[]
-      | missionUncheckedCreateWithoutMissioncategoryInput[]
-    connectOrCreate?:
-      | missionCreateOrConnectWithoutMissioncategoryInput
-      | missionCreateOrConnectWithoutMissioncategoryInput[]
-    upsert?:
-      | missionUpsertWithWhereUniqueWithoutMissioncategoryInput
-      | missionUpsertWithWhereUniqueWithoutMissioncategoryInput[]
-    createMany?: missionCreateManyMissioncategoryInputEnvelope
-    set?: missionWhereUniqueInput | missionWhereUniqueInput[]
-    disconnect?: missionWhereUniqueInput | missionWhereUniqueInput[]
-    delete?: missionWhereUniqueInput | missionWhereUniqueInput[]
-    connect?: missionWhereUniqueInput | missionWhereUniqueInput[]
-    update?:
-      | missionUpdateWithWhereUniqueWithoutMissioncategoryInput
-      | missionUpdateWithWhereUniqueWithoutMissioncategoryInput[]
-    updateMany?:
-      | missionUpdateManyWithWhereWithoutMissioncategoryInput
-      | missionUpdateManyWithWhereWithoutMissioncategoryInput[]
-    deleteMany?: missionScalarWhereInput | missionScalarWhereInput[]
-  }
-
-  export type UserCreateNestedOneWithoutSessionsInput = {
-    create?: XOR<
-      UserCreateWithoutSessionsInput,
-      UserUncheckedCreateWithoutSessionsInput
-    >
-    connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
-    create?: XOR<
-      UserCreateWithoutSessionsInput,
-      UserUncheckedCreateWithoutSessionsInput
-    >
-    connectOrCreate?: UserCreateOrConnectWithoutSessionsInput
-    upsert?: UserUpsertWithoutSessionsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<
-      XOR<
-        UserUpdateToOneWithWhereWithoutSessionsInput,
-        UserUpdateWithoutSessionsInput
-      >,
-      UserUncheckedUpdateWithoutSessionsInput
-    >
-  }
-
-  export type missionCreateNestedOneWithoutUsermissioncompletionInput = {
-    create?: XOR<
-      missionCreateWithoutUsermissioncompletionInput,
-      missionUncheckedCreateWithoutUsermissioncompletionInput
-    >
-    connectOrCreate?: missionCreateOrConnectWithoutUsermissioncompletionInput
-    connect?: missionWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutUsermissioncompletionInput = {
-    create?: XOR<
-      UserCreateWithoutUsermissioncompletionInput,
-      UserUncheckedCreateWithoutUsermissioncompletionInput
-    >
-    connectOrCreate?: UserCreateOrConnectWithoutUsermissioncompletionInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type missionUpdateOneRequiredWithoutUsermissioncompletionNestedInput =
-    {
-      create?: XOR<
-        missionCreateWithoutUsermissioncompletionInput,
-        missionUncheckedCreateWithoutUsermissioncompletionInput
-      >
-      connectOrCreate?: missionCreateOrConnectWithoutUsermissioncompletionInput
-      upsert?: missionUpsertWithoutUsermissioncompletionInput
-      connect?: missionWhereUniqueInput
-      update?: XOR<
-        XOR<
-          missionUpdateToOneWithWhereWithoutUsermissioncompletionInput,
-          missionUpdateWithoutUsermissioncompletionInput
-        >,
-        missionUncheckedUpdateWithoutUsermissioncompletionInput
-      >
-    }
-
-  export type UserUpdateOneRequiredWithoutUsermissioncompletionNestedInput = {
-    create?: XOR<
-      UserCreateWithoutUsermissioncompletionInput,
-      UserUncheckedCreateWithoutUsermissioncompletionInput
-    >
-    connectOrCreate?: UserCreateOrConnectWithoutUsermissioncompletionInput
-    upsert?: UserUpsertWithoutUsermissioncompletionInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<
-      XOR<
-        UserUpdateToOneWithWhereWithoutUsermissioncompletionInput,
-        UserUpdateWithoutUsermissioncompletionInput
-      >,
-      UserUncheckedUpdateWithoutUsermissioncompletionInput
-    >
-  }
-
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -12484,24 +12486,16 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedBoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
-  }
-
-  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
-  }
-
   export type NestedEnumvisibilityFilter<$PrismaModel = never> = {
     equals?: $Enums.visibility | EnumvisibilityFieldRefInput<$PrismaModel>
     in?: $Enums.visibility[] | ListEnumvisibilityFieldRefInput<$PrismaModel>
     notIn?: $Enums.visibility[] | ListEnumvisibilityFieldRefInput<$PrismaModel>
     not?: NestedEnumvisibilityFilter<$PrismaModel> | $Enums.visibility
+  }
+
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
   export type NestedEnumvisibilityWithAggregatesFilter<$PrismaModel = never> = {
@@ -12514,6 +12508,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumvisibilityFilter<$PrismaModel>
     _max?: NestedEnumvisibilityFilter<$PrismaModel>
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -12547,7 +12549,7 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type UserCreateWithoutUserprofileInput = {
+  export type usersCreateWithoutUserprofileInput = {
     username: string
     email: string
     password: string
@@ -12559,7 +12561,7 @@ export namespace Prisma {
     usermissioncompletion?: usermissioncompletionCreateNestedManyWithoutUserInput
   }
 
-  export type UserUncheckedCreateWithoutUserprofileInput = {
+  export type usersUncheckedCreateWithoutUserprofileInput = {
     user_id?: number
     username: string
     email: string
@@ -12572,35 +12574,35 @@ export namespace Prisma {
     usermissioncompletion?: usermissioncompletionUncheckedCreateNestedManyWithoutUserInput
   }
 
-  export type UserCreateOrConnectWithoutUserprofileInput = {
-    where: UserWhereUniqueInput
+  export type usersCreateOrConnectWithoutUserprofileInput = {
+    where: usersWhereUniqueInput
     create: XOR<
-      UserCreateWithoutUserprofileInput,
-      UserUncheckedCreateWithoutUserprofileInput
+      usersCreateWithoutUserprofileInput,
+      usersUncheckedCreateWithoutUserprofileInput
     >
   }
 
-  export type UserUpsertWithoutUserprofileInput = {
+  export type usersUpsertWithoutUserprofileInput = {
     update: XOR<
-      UserUpdateWithoutUserprofileInput,
-      UserUncheckedUpdateWithoutUserprofileInput
+      usersUpdateWithoutUserprofileInput,
+      usersUncheckedUpdateWithoutUserprofileInput
     >
     create: XOR<
-      UserCreateWithoutUserprofileInput,
-      UserUncheckedCreateWithoutUserprofileInput
+      usersCreateWithoutUserprofileInput,
+      usersUncheckedCreateWithoutUserprofileInput
     >
-    where?: UserWhereInput
+    where?: usersWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutUserprofileInput = {
-    where?: UserWhereInput
+  export type usersUpdateToOneWithWhereWithoutUserprofileInput = {
+    where?: usersWhereInput
     data: XOR<
-      UserUpdateWithoutUserprofileInput,
-      UserUncheckedUpdateWithoutUserprofileInput
+      usersUpdateWithoutUserprofileInput,
+      usersUncheckedUpdateWithoutUserprofileInput
     >
   }
 
-  export type UserUpdateWithoutUserprofileInput = {
+  export type usersUpdateWithoutUserprofileInput = {
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -12620,7 +12622,7 @@ export namespace Prisma {
     usermissioncompletion?: usermissioncompletionUpdateManyWithoutUserNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutUserprofileInput = {
+  export type usersUncheckedUpdateWithoutUserprofileInput = {
     user_id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -12639,6 +12641,574 @@ export namespace Prisma {
     mission?: missionUncheckedUpdateManyWithoutUserNestedInput
     sessions?: sessionsUncheckedUpdateManyWithoutUserNestedInput
     usermissioncompletion?: usermissioncompletionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type missioncategoryCreateWithoutMissionInput = {
+    category_id: string
+    description?: string | null
+  }
+
+  export type missioncategoryUncheckedCreateWithoutMissionInput = {
+    category_id: string
+    description?: string | null
+  }
+
+  export type missioncategoryCreateOrConnectWithoutMissionInput = {
+    where: missioncategoryWhereUniqueInput
+    create: XOR<
+      missioncategoryCreateWithoutMissionInput,
+      missioncategoryUncheckedCreateWithoutMissionInput
+    >
+  }
+
+  export type usersCreateWithoutMissionInput = {
+    username: string
+    email: string
+    password: string
+    is_verified?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    sessions?: sessionsCreateNestedManyWithoutUserInput
+    usermissioncompletion?: usermissioncompletionCreateNestedManyWithoutUserInput
+    userprofile?: userprofileCreateNestedOneWithoutUserInput
+  }
+
+  export type usersUncheckedCreateWithoutMissionInput = {
+    user_id?: number
+    username: string
+    email: string
+    password: string
+    is_verified?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    sessions?: sessionsUncheckedCreateNestedManyWithoutUserInput
+    usermissioncompletion?: usermissioncompletionUncheckedCreateNestedManyWithoutUserInput
+    userprofile?: userprofileUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type usersCreateOrConnectWithoutMissionInput = {
+    where: usersWhereUniqueInput
+    create: XOR<
+      usersCreateWithoutMissionInput,
+      usersUncheckedCreateWithoutMissionInput
+    >
+  }
+
+  export type usermissioncompletionCreateWithoutMissionInput = {
+    completed?: boolean | null
+    started_at?: Date | string | null
+    ended_at?: Date | string | null
+    User: usersCreateNestedOneWithoutUsermissioncompletionInput
+  }
+
+  export type usermissioncompletionUncheckedCreateWithoutMissionInput = {
+    missioncompletion_id?: number
+    user_id: number
+    completed?: boolean | null
+    started_at?: Date | string | null
+    ended_at?: Date | string | null
+  }
+
+  export type usermissioncompletionCreateOrConnectWithoutMissionInput = {
+    where: usermissioncompletionWhereUniqueInput
+    create: XOR<
+      usermissioncompletionCreateWithoutMissionInput,
+      usermissioncompletionUncheckedCreateWithoutMissionInput
+    >
+  }
+
+  export type usermissioncompletionCreateManyMissionInputEnvelope = {
+    data:
+      | usermissioncompletionCreateManyMissionInput
+      | usermissioncompletionCreateManyMissionInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type missioncategoryUpsertWithoutMissionInput = {
+    update: XOR<
+      missioncategoryUpdateWithoutMissionInput,
+      missioncategoryUncheckedUpdateWithoutMissionInput
+    >
+    create: XOR<
+      missioncategoryCreateWithoutMissionInput,
+      missioncategoryUncheckedCreateWithoutMissionInput
+    >
+    where?: missioncategoryWhereInput
+  }
+
+  export type missioncategoryUpdateToOneWithWhereWithoutMissionInput = {
+    where?: missioncategoryWhereInput
+    data: XOR<
+      missioncategoryUpdateWithoutMissionInput,
+      missioncategoryUncheckedUpdateWithoutMissionInput
+    >
+  }
+
+  export type missioncategoryUpdateWithoutMissionInput = {
+    category_id?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type missioncategoryUncheckedUpdateWithoutMissionInput = {
+    category_id?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type usersUpsertWithoutMissionInput = {
+    update: XOR<
+      usersUpdateWithoutMissionInput,
+      usersUncheckedUpdateWithoutMissionInput
+    >
+    create: XOR<
+      usersCreateWithoutMissionInput,
+      usersUncheckedCreateWithoutMissionInput
+    >
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutMissionInput = {
+    where?: usersWhereInput
+    data: XOR<
+      usersUpdateWithoutMissionInput,
+      usersUncheckedUpdateWithoutMissionInput
+    >
+  }
+
+  export type usersUpdateWithoutMissionInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    updated_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    sessions?: sessionsUpdateManyWithoutUserNestedInput
+    usermissioncompletion?: usermissioncompletionUpdateManyWithoutUserNestedInput
+    userprofile?: userprofileUpdateOneWithoutUserNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutMissionInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    updated_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    sessions?: sessionsUncheckedUpdateManyWithoutUserNestedInput
+    usermissioncompletion?: usermissioncompletionUncheckedUpdateManyWithoutUserNestedInput
+    userprofile?: userprofileUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type usermissioncompletionUpsertWithWhereUniqueWithoutMissionInput = {
+    where: usermissioncompletionWhereUniqueInput
+    update: XOR<
+      usermissioncompletionUpdateWithoutMissionInput,
+      usermissioncompletionUncheckedUpdateWithoutMissionInput
+    >
+    create: XOR<
+      usermissioncompletionCreateWithoutMissionInput,
+      usermissioncompletionUncheckedCreateWithoutMissionInput
+    >
+  }
+
+  export type usermissioncompletionUpdateWithWhereUniqueWithoutMissionInput = {
+    where: usermissioncompletionWhereUniqueInput
+    data: XOR<
+      usermissioncompletionUpdateWithoutMissionInput,
+      usermissioncompletionUncheckedUpdateWithoutMissionInput
+    >
+  }
+
+  export type usermissioncompletionUpdateManyWithWhereWithoutMissionInput = {
+    where: usermissioncompletionScalarWhereInput
+    data: XOR<
+      usermissioncompletionUpdateManyMutationInput,
+      usermissioncompletionUncheckedUpdateManyWithoutMissionInput
+    >
+  }
+
+  export type usermissioncompletionScalarWhereInput = {
+    AND?:
+      | usermissioncompletionScalarWhereInput
+      | usermissioncompletionScalarWhereInput[]
+    OR?: usermissioncompletionScalarWhereInput[]
+    NOT?:
+      | usermissioncompletionScalarWhereInput
+      | usermissioncompletionScalarWhereInput[]
+    missioncompletion_id?: IntFilter<'usermissioncompletion'> | number
+    user_id?: IntFilter<'usermissioncompletion'> | number
+    mission_id?: IntFilter<'usermissioncompletion'> | number
+    completed?: BoolNullableFilter<'usermissioncompletion'> | boolean | null
+    started_at?:
+      | DateTimeNullableFilter<'usermissioncompletion'>
+      | Date
+      | string
+      | null
+    ended_at?:
+      | DateTimeNullableFilter<'usermissioncompletion'>
+      | Date
+      | string
+      | null
+  }
+
+  export type missionCreateWithoutMissioncategoryInput = {
+    mission_text: string
+    visibility: $Enums.visibility
+    is_community?: boolean | null
+    timespan: number
+    created_at?: Date | string | null
+    User: usersCreateNestedOneWithoutMissionInput
+    usermissioncompletion?: usermissioncompletionCreateNestedManyWithoutMissionInput
+  }
+
+  export type missionUncheckedCreateWithoutMissioncategoryInput = {
+    mission_id?: number
+    creator_id: number
+    mission_text: string
+    visibility: $Enums.visibility
+    is_community?: boolean | null
+    timespan: number
+    created_at?: Date | string | null
+    usermissioncompletion?: usermissioncompletionUncheckedCreateNestedManyWithoutMissionInput
+  }
+
+  export type missionCreateOrConnectWithoutMissioncategoryInput = {
+    where: missionWhereUniqueInput
+    create: XOR<
+      missionCreateWithoutMissioncategoryInput,
+      missionUncheckedCreateWithoutMissioncategoryInput
+    >
+  }
+
+  export type missionCreateManyMissioncategoryInputEnvelope = {
+    data:
+      | missionCreateManyMissioncategoryInput
+      | missionCreateManyMissioncategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type missionUpsertWithWhereUniqueWithoutMissioncategoryInput = {
+    where: missionWhereUniqueInput
+    update: XOR<
+      missionUpdateWithoutMissioncategoryInput,
+      missionUncheckedUpdateWithoutMissioncategoryInput
+    >
+    create: XOR<
+      missionCreateWithoutMissioncategoryInput,
+      missionUncheckedCreateWithoutMissioncategoryInput
+    >
+  }
+
+  export type missionUpdateWithWhereUniqueWithoutMissioncategoryInput = {
+    where: missionWhereUniqueInput
+    data: XOR<
+      missionUpdateWithoutMissioncategoryInput,
+      missionUncheckedUpdateWithoutMissioncategoryInput
+    >
+  }
+
+  export type missionUpdateManyWithWhereWithoutMissioncategoryInput = {
+    where: missionScalarWhereInput
+    data: XOR<
+      missionUpdateManyMutationInput,
+      missionUncheckedUpdateManyWithoutMissioncategoryInput
+    >
+  }
+
+  export type missionScalarWhereInput = {
+    AND?: missionScalarWhereInput | missionScalarWhereInput[]
+    OR?: missionScalarWhereInput[]
+    NOT?: missionScalarWhereInput | missionScalarWhereInput[]
+    mission_id?: IntFilter<'mission'> | number
+    creator_id?: IntFilter<'mission'> | number
+    category_id?: StringFilter<'mission'> | string
+    mission_text?: StringFilter<'mission'> | string
+    visibility?: EnumvisibilityFilter<'mission'> | $Enums.visibility
+    is_community?: BoolNullableFilter<'mission'> | boolean | null
+    timespan?: IntFilter<'mission'> | number
+    created_at?: DateTimeNullableFilter<'mission'> | Date | string | null
+  }
+
+  export type usersCreateWithoutSessionsInput = {
+    username: string
+    email: string
+    password: string
+    is_verified?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    mission?: missionCreateNestedManyWithoutUserInput
+    usermissioncompletion?: usermissioncompletionCreateNestedManyWithoutUserInput
+    userprofile?: userprofileCreateNestedOneWithoutUserInput
+  }
+
+  export type usersUncheckedCreateWithoutSessionsInput = {
+    user_id?: number
+    username: string
+    email: string
+    password: string
+    is_verified?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    mission?: missionUncheckedCreateNestedManyWithoutUserInput
+    usermissioncompletion?: usermissioncompletionUncheckedCreateNestedManyWithoutUserInput
+    userprofile?: userprofileUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type usersCreateOrConnectWithoutSessionsInput = {
+    where: usersWhereUniqueInput
+    create: XOR<
+      usersCreateWithoutSessionsInput,
+      usersUncheckedCreateWithoutSessionsInput
+    >
+  }
+
+  export type usersUpsertWithoutSessionsInput = {
+    update: XOR<
+      usersUpdateWithoutSessionsInput,
+      usersUncheckedUpdateWithoutSessionsInput
+    >
+    create: XOR<
+      usersCreateWithoutSessionsInput,
+      usersUncheckedCreateWithoutSessionsInput
+    >
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutSessionsInput = {
+    where?: usersWhereInput
+    data: XOR<
+      usersUpdateWithoutSessionsInput,
+      usersUncheckedUpdateWithoutSessionsInput
+    >
+  }
+
+  export type usersUpdateWithoutSessionsInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    updated_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    mission?: missionUpdateManyWithoutUserNestedInput
+    usermissioncompletion?: usermissioncompletionUpdateManyWithoutUserNestedInput
+    userprofile?: userprofileUpdateOneWithoutUserNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutSessionsInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    updated_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    mission?: missionUncheckedUpdateManyWithoutUserNestedInput
+    usermissioncompletion?: usermissioncompletionUncheckedUpdateManyWithoutUserNestedInput
+    userprofile?: userprofileUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type missionCreateWithoutUsermissioncompletionInput = {
+    mission_text: string
+    visibility: $Enums.visibility
+    is_community?: boolean | null
+    timespan: number
+    created_at?: Date | string | null
+    missioncategory: missioncategoryCreateNestedOneWithoutMissionInput
+    User: usersCreateNestedOneWithoutMissionInput
+  }
+
+  export type missionUncheckedCreateWithoutUsermissioncompletionInput = {
+    mission_id?: number
+    creator_id: number
+    category_id: string
+    mission_text: string
+    visibility: $Enums.visibility
+    is_community?: boolean | null
+    timespan: number
+    created_at?: Date | string | null
+  }
+
+  export type missionCreateOrConnectWithoutUsermissioncompletionInput = {
+    where: missionWhereUniqueInput
+    create: XOR<
+      missionCreateWithoutUsermissioncompletionInput,
+      missionUncheckedCreateWithoutUsermissioncompletionInput
+    >
+  }
+
+  export type usersCreateWithoutUsermissioncompletionInput = {
+    username: string
+    email: string
+    password: string
+    is_verified?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    mission?: missionCreateNestedManyWithoutUserInput
+    sessions?: sessionsCreateNestedManyWithoutUserInput
+    userprofile?: userprofileCreateNestedOneWithoutUserInput
+  }
+
+  export type usersUncheckedCreateWithoutUsermissioncompletionInput = {
+    user_id?: number
+    username: string
+    email: string
+    password: string
+    is_verified?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    mission?: missionUncheckedCreateNestedManyWithoutUserInput
+    sessions?: sessionsUncheckedCreateNestedManyWithoutUserInput
+    userprofile?: userprofileUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type usersCreateOrConnectWithoutUsermissioncompletionInput = {
+    where: usersWhereUniqueInput
+    create: XOR<
+      usersCreateWithoutUsermissioncompletionInput,
+      usersUncheckedCreateWithoutUsermissioncompletionInput
+    >
+  }
+
+  export type missionUpsertWithoutUsermissioncompletionInput = {
+    update: XOR<
+      missionUpdateWithoutUsermissioncompletionInput,
+      missionUncheckedUpdateWithoutUsermissioncompletionInput
+    >
+    create: XOR<
+      missionCreateWithoutUsermissioncompletionInput,
+      missionUncheckedCreateWithoutUsermissioncompletionInput
+    >
+    where?: missionWhereInput
+  }
+
+  export type missionUpdateToOneWithWhereWithoutUsermissioncompletionInput = {
+    where?: missionWhereInput
+    data: XOR<
+      missionUpdateWithoutUsermissioncompletionInput,
+      missionUncheckedUpdateWithoutUsermissioncompletionInput
+    >
+  }
+
+  export type missionUpdateWithoutUsermissioncompletionInput = {
+    mission_text?: StringFieldUpdateOperationsInput | string
+    visibility?: EnumvisibilityFieldUpdateOperationsInput | $Enums.visibility
+    is_community?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    timespan?: IntFieldUpdateOperationsInput | number
+    created_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    missioncategory?: missioncategoryUpdateOneRequiredWithoutMissionNestedInput
+    User?: usersUpdateOneRequiredWithoutMissionNestedInput
+  }
+
+  export type missionUncheckedUpdateWithoutUsermissioncompletionInput = {
+    mission_id?: IntFieldUpdateOperationsInput | number
+    creator_id?: IntFieldUpdateOperationsInput | number
+    category_id?: StringFieldUpdateOperationsInput | string
+    mission_text?: StringFieldUpdateOperationsInput | string
+    visibility?: EnumvisibilityFieldUpdateOperationsInput | $Enums.visibility
+    is_community?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    timespan?: IntFieldUpdateOperationsInput | number
+    created_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+  }
+
+  export type usersUpsertWithoutUsermissioncompletionInput = {
+    update: XOR<
+      usersUpdateWithoutUsermissioncompletionInput,
+      usersUncheckedUpdateWithoutUsermissioncompletionInput
+    >
+    create: XOR<
+      usersCreateWithoutUsermissioncompletionInput,
+      usersUncheckedCreateWithoutUsermissioncompletionInput
+    >
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutUsermissioncompletionInput = {
+    where?: usersWhereInput
+    data: XOR<
+      usersUpdateWithoutUsermissioncompletionInput,
+      usersUncheckedUpdateWithoutUsermissioncompletionInput
+    >
+  }
+
+  export type usersUpdateWithoutUsermissioncompletionInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    updated_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    mission?: missionUpdateManyWithoutUserNestedInput
+    sessions?: sessionsUpdateManyWithoutUserNestedInput
+    userprofile?: userprofileUpdateOneWithoutUserNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutUsermissioncompletionInput = {
+    user_id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    updated_at?:
+      | NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null
+    mission?: missionUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: sessionsUncheckedUpdateManyWithoutUserNestedInput
+    userprofile?: userprofileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type missionCreateWithoutUserInput = {
@@ -12788,20 +13358,6 @@ export namespace Prisma {
     >
   }
 
-  export type missionScalarWhereInput = {
-    AND?: missionScalarWhereInput | missionScalarWhereInput[]
-    OR?: missionScalarWhereInput[]
-    NOT?: missionScalarWhereInput | missionScalarWhereInput[]
-    mission_id?: IntFilter<'mission'> | number
-    creator_id?: IntFilter<'mission'> | number
-    category_id?: StringFilter<'mission'> | string
-    mission_text?: StringFilter<'mission'> | string
-    visibility?: EnumvisibilityFilter<'mission'> | $Enums.visibility
-    is_community?: BoolNullableFilter<'mission'> | boolean | null
-    timespan?: IntFilter<'mission'> | number
-    created_at?: DateTimeNullableFilter<'mission'> | Date | string | null
-  }
-
   export type sessionsUpsertWithWhereUniqueWithoutUserInput = {
     where: sessionsWhereUniqueInput
     update: XOR<
@@ -12870,30 +13426,6 @@ export namespace Prisma {
     >
   }
 
-  export type usermissioncompletionScalarWhereInput = {
-    AND?:
-      | usermissioncompletionScalarWhereInput
-      | usermissioncompletionScalarWhereInput[]
-    OR?: usermissioncompletionScalarWhereInput[]
-    NOT?:
-      | usermissioncompletionScalarWhereInput
-      | usermissioncompletionScalarWhereInput[]
-    missioncompletion_id?: IntFilter<'usermissioncompletion'> | number
-    user_id?: IntFilter<'usermissioncompletion'> | number
-    mission_id?: IntFilter<'usermissioncompletion'> | number
-    completed?: BoolNullableFilter<'usermissioncompletion'> | boolean | null
-    started_at?:
-      | DateTimeNullableFilter<'usermissioncompletion'>
-      | Date
-      | string
-      | null
-    ended_at?:
-      | DateTimeNullableFilter<'usermissioncompletion'>
-      | Date
-      | string
-      | null
-  }
-
   export type userprofileUpsertWithoutUserInput = {
     update: XOR<
       userprofileUpdateWithoutUserInput,
@@ -12949,65 +13481,7 @@ export namespace Prisma {
     history?: userprofileUpdatehistoryInput | string[]
   }
 
-  export type missioncategoryCreateWithoutMissionInput = {
-    category_id: string
-    description?: string | null
-  }
-
-  export type missioncategoryUncheckedCreateWithoutMissionInput = {
-    category_id: string
-    description?: string | null
-  }
-
-  export type missioncategoryCreateOrConnectWithoutMissionInput = {
-    where: missioncategoryWhereUniqueInput
-    create: XOR<
-      missioncategoryCreateWithoutMissionInput,
-      missioncategoryUncheckedCreateWithoutMissionInput
-    >
-  }
-
-  export type UserCreateWithoutMissionInput = {
-    username: string
-    email: string
-    password: string
-    is_verified?: boolean | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    sessions?: sessionsCreateNestedManyWithoutUserInput
-    usermissioncompletion?: usermissioncompletionCreateNestedManyWithoutUserInput
-    userprofile?: userprofileCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutMissionInput = {
-    user_id?: number
-    username: string
-    email: string
-    password: string
-    is_verified?: boolean | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    sessions?: sessionsUncheckedCreateNestedManyWithoutUserInput
-    usermissioncompletion?: usermissioncompletionUncheckedCreateNestedManyWithoutUserInput
-    userprofile?: userprofileUncheckedCreateNestedOneWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutMissionInput = {
-    where: UserWhereUniqueInput
-    create: XOR<
-      UserCreateWithoutMissionInput,
-      UserUncheckedCreateWithoutMissionInput
-    >
-  }
-
-  export type usermissioncompletionCreateWithoutMissionInput = {
-    completed?: boolean | null
-    started_at?: Date | string | null
-    ended_at?: Date | string | null
-    User: UserCreateNestedOneWithoutUsermissioncompletionInput
-  }
-
-  export type usermissioncompletionUncheckedCreateWithoutMissionInput = {
+  export type usermissioncompletionCreateManyMissionInput = {
     missioncompletion_id?: number
     user_id: number
     completed?: boolean | null
@@ -13015,151 +13489,42 @@ export namespace Prisma {
     ended_at?: Date | string | null
   }
 
-  export type usermissioncompletionCreateOrConnectWithoutMissionInput = {
-    where: usermissioncompletionWhereUniqueInput
-    create: XOR<
-      usermissioncompletionCreateWithoutMissionInput,
-      usermissioncompletionUncheckedCreateWithoutMissionInput
-    >
-  }
-
-  export type usermissioncompletionCreateManyMissionInputEnvelope = {
-    data:
-      | usermissioncompletionCreateManyMissionInput
-      | usermissioncompletionCreateManyMissionInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type missioncategoryUpsertWithoutMissionInput = {
-    update: XOR<
-      missioncategoryUpdateWithoutMissionInput,
-      missioncategoryUncheckedUpdateWithoutMissionInput
-    >
-    create: XOR<
-      missioncategoryCreateWithoutMissionInput,
-      missioncategoryUncheckedCreateWithoutMissionInput
-    >
-    where?: missioncategoryWhereInput
-  }
-
-  export type missioncategoryUpdateToOneWithWhereWithoutMissionInput = {
-    where?: missioncategoryWhereInput
-    data: XOR<
-      missioncategoryUpdateWithoutMissionInput,
-      missioncategoryUncheckedUpdateWithoutMissionInput
-    >
-  }
-
-  export type missioncategoryUpdateWithoutMissionInput = {
-    category_id?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type missioncategoryUncheckedUpdateWithoutMissionInput = {
-    category_id?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type UserUpsertWithoutMissionInput = {
-    update: XOR<
-      UserUpdateWithoutMissionInput,
-      UserUncheckedUpdateWithoutMissionInput
-    >
-    create: XOR<
-      UserCreateWithoutMissionInput,
-      UserUncheckedCreateWithoutMissionInput
-    >
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutMissionInput = {
-    where?: UserWhereInput
-    data: XOR<
-      UserUpdateWithoutMissionInput,
-      UserUncheckedUpdateWithoutMissionInput
-    >
-  }
-
-  export type UserUpdateWithoutMissionInput = {
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    created_at?:
+  export type usermissioncompletionUpdateWithoutMissionInput = {
+    completed?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    started_at?:
       | NullableDateTimeFieldUpdateOperationsInput
       | Date
       | string
       | null
-    updated_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    sessions?: sessionsUpdateManyWithoutUserNestedInput
-    usermissioncompletion?: usermissioncompletionUpdateManyWithoutUserNestedInput
-    userprofile?: userprofileUpdateOneWithoutUserNestedInput
+    ended_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    User?: usersUpdateOneRequiredWithoutUsermissioncompletionNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutMissionInput = {
+  export type usermissioncompletionUncheckedUpdateWithoutMissionInput = {
+    missioncompletion_id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    created_at?:
+    completed?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    started_at?:
       | NullableDateTimeFieldUpdateOperationsInput
       | Date
       | string
       | null
-    updated_at?:
+    ended_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type usermissioncompletionUncheckedUpdateManyWithoutMissionInput = {
+    missioncompletion_id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    completed?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    started_at?:
       | NullableDateTimeFieldUpdateOperationsInput
       | Date
       | string
       | null
-    sessions?: sessionsUncheckedUpdateManyWithoutUserNestedInput
-    usermissioncompletion?: usermissioncompletionUncheckedUpdateManyWithoutUserNestedInput
-    userprofile?: userprofileUncheckedUpdateOneWithoutUserNestedInput
+    ended_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type usermissioncompletionUpsertWithWhereUniqueWithoutMissionInput = {
-    where: usermissioncompletionWhereUniqueInput
-    update: XOR<
-      usermissioncompletionUpdateWithoutMissionInput,
-      usermissioncompletionUncheckedUpdateWithoutMissionInput
-    >
-    create: XOR<
-      usermissioncompletionCreateWithoutMissionInput,
-      usermissioncompletionUncheckedCreateWithoutMissionInput
-    >
-  }
-
-  export type usermissioncompletionUpdateWithWhereUniqueWithoutMissionInput = {
-    where: usermissioncompletionWhereUniqueInput
-    data: XOR<
-      usermissioncompletionUpdateWithoutMissionInput,
-      usermissioncompletionUncheckedUpdateWithoutMissionInput
-    >
-  }
-
-  export type usermissioncompletionUpdateManyWithWhereWithoutMissionInput = {
-    where: usermissioncompletionScalarWhereInput
-    data: XOR<
-      usermissioncompletionUpdateManyMutationInput,
-      usermissioncompletionUncheckedUpdateManyWithoutMissionInput
-    >
-  }
-
-  export type missionCreateWithoutMissioncategoryInput = {
-    mission_text: string
-    visibility: $Enums.visibility
-    is_community?: boolean | null
-    timespan: number
-    created_at?: Date | string | null
-    User: UserCreateNestedOneWithoutMissionInput
-    usermissioncompletion?: usermissioncompletionCreateNestedManyWithoutMissionInput
-  }
-
-  export type missionUncheckedCreateWithoutMissioncategoryInput = {
+  export type missionCreateManyMissioncategoryInput = {
     mission_id?: number
     creator_id: number
     mission_text: string
@@ -13167,229 +13532,9 @@ export namespace Prisma {
     is_community?: boolean | null
     timespan: number
     created_at?: Date | string | null
-    usermissioncompletion?: usermissioncompletionUncheckedCreateNestedManyWithoutMissionInput
   }
 
-  export type missionCreateOrConnectWithoutMissioncategoryInput = {
-    where: missionWhereUniqueInput
-    create: XOR<
-      missionCreateWithoutMissioncategoryInput,
-      missionUncheckedCreateWithoutMissioncategoryInput
-    >
-  }
-
-  export type missionCreateManyMissioncategoryInputEnvelope = {
-    data:
-      | missionCreateManyMissioncategoryInput
-      | missionCreateManyMissioncategoryInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type missionUpsertWithWhereUniqueWithoutMissioncategoryInput = {
-    where: missionWhereUniqueInput
-    update: XOR<
-      missionUpdateWithoutMissioncategoryInput,
-      missionUncheckedUpdateWithoutMissioncategoryInput
-    >
-    create: XOR<
-      missionCreateWithoutMissioncategoryInput,
-      missionUncheckedCreateWithoutMissioncategoryInput
-    >
-  }
-
-  export type missionUpdateWithWhereUniqueWithoutMissioncategoryInput = {
-    where: missionWhereUniqueInput
-    data: XOR<
-      missionUpdateWithoutMissioncategoryInput,
-      missionUncheckedUpdateWithoutMissioncategoryInput
-    >
-  }
-
-  export type missionUpdateManyWithWhereWithoutMissioncategoryInput = {
-    where: missionScalarWhereInput
-    data: XOR<
-      missionUpdateManyMutationInput,
-      missionUncheckedUpdateManyWithoutMissioncategoryInput
-    >
-  }
-
-  export type UserCreateWithoutSessionsInput = {
-    username: string
-    email: string
-    password: string
-    is_verified?: boolean | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    mission?: missionCreateNestedManyWithoutUserInput
-    usermissioncompletion?: usermissioncompletionCreateNestedManyWithoutUserInput
-    userprofile?: userprofileCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutSessionsInput = {
-    user_id?: number
-    username: string
-    email: string
-    password: string
-    is_verified?: boolean | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    mission?: missionUncheckedCreateNestedManyWithoutUserInput
-    usermissioncompletion?: usermissioncompletionUncheckedCreateNestedManyWithoutUserInput
-    userprofile?: userprofileUncheckedCreateNestedOneWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutSessionsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<
-      UserCreateWithoutSessionsInput,
-      UserUncheckedCreateWithoutSessionsInput
-    >
-  }
-
-  export type UserUpsertWithoutSessionsInput = {
-    update: XOR<
-      UserUpdateWithoutSessionsInput,
-      UserUncheckedUpdateWithoutSessionsInput
-    >
-    create: XOR<
-      UserCreateWithoutSessionsInput,
-      UserUncheckedCreateWithoutSessionsInput
-    >
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutSessionsInput = {
-    where?: UserWhereInput
-    data: XOR<
-      UserUpdateWithoutSessionsInput,
-      UserUncheckedUpdateWithoutSessionsInput
-    >
-  }
-
-  export type UserUpdateWithoutSessionsInput = {
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    created_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    updated_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    mission?: missionUpdateManyWithoutUserNestedInput
-    usermissioncompletion?: usermissioncompletionUpdateManyWithoutUserNestedInput
-    userprofile?: userprofileUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutSessionsInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    created_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    updated_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    mission?: missionUncheckedUpdateManyWithoutUserNestedInput
-    usermissioncompletion?: usermissioncompletionUncheckedUpdateManyWithoutUserNestedInput
-    userprofile?: userprofileUncheckedUpdateOneWithoutUserNestedInput
-  }
-
-  export type missionCreateWithoutUsermissioncompletionInput = {
-    mission_text: string
-    visibility: $Enums.visibility
-    is_community?: boolean | null
-    timespan: number
-    created_at?: Date | string | null
-    missioncategory: missioncategoryCreateNestedOneWithoutMissionInput
-    User: UserCreateNestedOneWithoutMissionInput
-  }
-
-  export type missionUncheckedCreateWithoutUsermissioncompletionInput = {
-    mission_id?: number
-    creator_id: number
-    category_id: string
-    mission_text: string
-    visibility: $Enums.visibility
-    is_community?: boolean | null
-    timespan: number
-    created_at?: Date | string | null
-  }
-
-  export type missionCreateOrConnectWithoutUsermissioncompletionInput = {
-    where: missionWhereUniqueInput
-    create: XOR<
-      missionCreateWithoutUsermissioncompletionInput,
-      missionUncheckedCreateWithoutUsermissioncompletionInput
-    >
-  }
-
-  export type UserCreateWithoutUsermissioncompletionInput = {
-    username: string
-    email: string
-    password: string
-    is_verified?: boolean | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    mission?: missionCreateNestedManyWithoutUserInput
-    sessions?: sessionsCreateNestedManyWithoutUserInput
-    userprofile?: userprofileCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutUsermissioncompletionInput = {
-    user_id?: number
-    username: string
-    email: string
-    password: string
-    is_verified?: boolean | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    mission?: missionUncheckedCreateNestedManyWithoutUserInput
-    sessions?: sessionsUncheckedCreateNestedManyWithoutUserInput
-    userprofile?: userprofileUncheckedCreateNestedOneWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutUsermissioncompletionInput = {
-    where: UserWhereUniqueInput
-    create: XOR<
-      UserCreateWithoutUsermissioncompletionInput,
-      UserUncheckedCreateWithoutUsermissioncompletionInput
-    >
-  }
-
-  export type missionUpsertWithoutUsermissioncompletionInput = {
-    update: XOR<
-      missionUpdateWithoutUsermissioncompletionInput,
-      missionUncheckedUpdateWithoutUsermissioncompletionInput
-    >
-    create: XOR<
-      missionCreateWithoutUsermissioncompletionInput,
-      missionUncheckedCreateWithoutUsermissioncompletionInput
-    >
-    where?: missionWhereInput
-  }
-
-  export type missionUpdateToOneWithWhereWithoutUsermissioncompletionInput = {
-    where?: missionWhereInput
-    data: XOR<
-      missionUpdateWithoutUsermissioncompletionInput,
-      missionUncheckedUpdateWithoutUsermissioncompletionInput
-    >
-  }
-
-  export type missionUpdateWithoutUsermissioncompletionInput = {
+  export type missionUpdateWithoutMissioncategoryInput = {
     mission_text?: StringFieldUpdateOperationsInput | string
     visibility?: EnumvisibilityFieldUpdateOperationsInput | $Enums.visibility
     is_community?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -13399,14 +13544,13 @@ export namespace Prisma {
       | Date
       | string
       | null
-    missioncategory?: missioncategoryUpdateOneRequiredWithoutMissionNestedInput
-    User?: UserUpdateOneRequiredWithoutMissionNestedInput
+    User?: usersUpdateOneRequiredWithoutMissionNestedInput
+    usermissioncompletion?: usermissioncompletionUpdateManyWithoutMissionNestedInput
   }
 
-  export type missionUncheckedUpdateWithoutUsermissioncompletionInput = {
+  export type missionUncheckedUpdateWithoutMissioncategoryInput = {
     mission_id?: IntFieldUpdateOperationsInput | number
     creator_id?: IntFieldUpdateOperationsInput | number
-    category_id?: StringFieldUpdateOperationsInput | string
     mission_text?: StringFieldUpdateOperationsInput | string
     visibility?: EnumvisibilityFieldUpdateOperationsInput | $Enums.visibility
     is_community?: NullableBoolFieldUpdateOperationsInput | boolean | null
@@ -13416,67 +13560,21 @@ export namespace Prisma {
       | Date
       | string
       | null
+    usermissioncompletion?: usermissioncompletionUncheckedUpdateManyWithoutMissionNestedInput
   }
 
-  export type UserUpsertWithoutUsermissioncompletionInput = {
-    update: XOR<
-      UserUpdateWithoutUsermissioncompletionInput,
-      UserUncheckedUpdateWithoutUsermissioncompletionInput
-    >
-    create: XOR<
-      UserCreateWithoutUsermissioncompletionInput,
-      UserUncheckedCreateWithoutUsermissioncompletionInput
-    >
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutUsermissioncompletionInput = {
-    where?: UserWhereInput
-    data: XOR<
-      UserUpdateWithoutUsermissioncompletionInput,
-      UserUncheckedUpdateWithoutUsermissioncompletionInput
-    >
-  }
-
-  export type UserUpdateWithoutUsermissioncompletionInput = {
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
+  export type missionUncheckedUpdateManyWithoutMissioncategoryInput = {
+    mission_id?: IntFieldUpdateOperationsInput | number
+    creator_id?: IntFieldUpdateOperationsInput | number
+    mission_text?: StringFieldUpdateOperationsInput | string
+    visibility?: EnumvisibilityFieldUpdateOperationsInput | $Enums.visibility
+    is_community?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    timespan?: IntFieldUpdateOperationsInput | number
     created_at?:
       | NullableDateTimeFieldUpdateOperationsInput
       | Date
       | string
       | null
-    updated_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    mission?: missionUpdateManyWithoutUserNestedInput
-    sessions?: sessionsUpdateManyWithoutUserNestedInput
-    userprofile?: userprofileUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutUsermissioncompletionInput = {
-    user_id?: IntFieldUpdateOperationsInput | number
-    username?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    is_verified?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    created_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    updated_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    mission?: missionUncheckedUpdateManyWithoutUserNestedInput
-    sessions?: sessionsUncheckedUpdateManyWithoutUserNestedInput
-    userprofile?: userprofileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type missionCreateManyUserInput = {
@@ -13616,102 +13714,6 @@ export namespace Prisma {
       | string
       | null
     ended_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type usermissioncompletionCreateManyMissionInput = {
-    missioncompletion_id?: number
-    user_id: number
-    completed?: boolean | null
-    started_at?: Date | string | null
-    ended_at?: Date | string | null
-  }
-
-  export type usermissioncompletionUpdateWithoutMissionInput = {
-    completed?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    started_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    ended_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    User?: UserUpdateOneRequiredWithoutUsermissioncompletionNestedInput
-  }
-
-  export type usermissioncompletionUncheckedUpdateWithoutMissionInput = {
-    missioncompletion_id?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    completed?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    started_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    ended_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type usermissioncompletionUncheckedUpdateManyWithoutMissionInput = {
-    missioncompletion_id?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    completed?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    started_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    ended_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type missionCreateManyMissioncategoryInput = {
-    mission_id?: number
-    creator_id: number
-    mission_text: string
-    visibility: $Enums.visibility
-    is_community?: boolean | null
-    timespan: number
-    created_at?: Date | string | null
-  }
-
-  export type missionUpdateWithoutMissioncategoryInput = {
-    mission_text?: StringFieldUpdateOperationsInput | string
-    visibility?: EnumvisibilityFieldUpdateOperationsInput | $Enums.visibility
-    is_community?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    timespan?: IntFieldUpdateOperationsInput | number
-    created_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    User?: UserUpdateOneRequiredWithoutMissionNestedInput
-    usermissioncompletion?: usermissioncompletionUpdateManyWithoutMissionNestedInput
-  }
-
-  export type missionUncheckedUpdateWithoutMissioncategoryInput = {
-    mission_id?: IntFieldUpdateOperationsInput | number
-    creator_id?: IntFieldUpdateOperationsInput | number
-    mission_text?: StringFieldUpdateOperationsInput | string
-    visibility?: EnumvisibilityFieldUpdateOperationsInput | $Enums.visibility
-    is_community?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    timespan?: IntFieldUpdateOperationsInput | number
-    created_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
-    usermissioncompletion?: usermissioncompletionUncheckedUpdateManyWithoutMissionNestedInput
-  }
-
-  export type missionUncheckedUpdateManyWithoutMissioncategoryInput = {
-    mission_id?: IntFieldUpdateOperationsInput | number
-    creator_id?: IntFieldUpdateOperationsInput | number
-    mission_text?: StringFieldUpdateOperationsInput | string
-    visibility?: EnumvisibilityFieldUpdateOperationsInput | $Enums.visibility
-    is_community?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    timespan?: IntFieldUpdateOperationsInput | number
-    created_at?:
-      | NullableDateTimeFieldUpdateOperationsInput
-      | Date
-      | string
-      | null
   }
 
   /**
