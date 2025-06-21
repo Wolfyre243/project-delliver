@@ -25,6 +25,7 @@ import { isAxiosError } from 'axios'
 import {
   Calculator,
   Calendar,
+  CircleUserRound,
   CreditCard,
   SearchIcon,
   Settings,
@@ -55,27 +56,56 @@ import {
 import { apiPrivate } from '~/services/api'
 import { Skeleton } from '~/components/ui/skeleton'
 type Checked = DropdownMenuCheckboxItemProps['checked']
-const MissionCard = () => {
+const MissionCard = ({mission}:{
+  mission:{
+    mission_id: Number,
+    creator_username: String,
+    category: String,
+    mission_text: String,
+    is_community:Boolean,
+    timespan: Number,
+    created_at: Date
+  }
+}) => {
+  function displayTimespanAccordingly(timespanParams:any) {
+    if (timespanParams >= 24){
+      let time = Math.floor(timespanParams/24);
+      let hours = timespanParams - time*24;
+      if (hours > 1){
+      return time + " days, " + hours + " hours"
+
+      } else {
+              return time + " days, " + hours + " hour"
+      }
+    } else {
+      if (timespanParams > 1){
+      return timespanParams + " hours";
+
+      } else {
+      return timespanParams + " hour";
+
+      }
+    }
+  }
   return (
     <div className="flex flex-row w-full lg:w-1/2 xl:w-1/4 p-2">
       <Card className="flex w-full">
         <CardHeader>
           <div className="flex gap-5 items-center">
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
+              <AvatarFallback><CircleUserRound className='h-full w-full'/></AvatarFallback>
             </Avatar>
             <div>
-              <CardTitle>Complete 2.4km within 15 minutes</CardTitle>
+              <CardTitle>{mission.mission_text}</CardTitle>
               <CardDescription>
-                Creator: sgagh | Category: Diet{' '}
+                Creator: {mission.creator_username} | Category: {mission.category}
               </CardDescription>
             </div>
           </div>
         </CardHeader>
         <CardContent>
           <div className="flex justify-between items-center">
-            <p>⏱️Time: 1 day</p>
+            <p>⏱️Time: {displayTimespanAccordingly(mission.timespan)}</p>
             <Button>Complete</Button>
           </div>
         </CardContent>
@@ -85,8 +115,51 @@ const MissionCard = () => {
 }
 const Missions = () => {
   let [showDiet, setShowDiet] = React.useState<Checked>(false)
-  let [showExercise, setShowExercise] = React.useState<Checked>(false)
+  let [showFitness, setShowFitness] = React.useState<Checked>(false)
   let [showSleep, setShowSleep] = React.useState<Checked>(false)
+    const { accessToken, loading } = useAuth()
+  
+    type mission  = {
+      result: {
+    mission_id: Number,
+    creator_username: String,
+    category: String,
+    mission_text: String,
+    is_community:Boolean,
+    timespan: Number,
+    created_at: Date
+      }[],
+      totalPages: Number
+
+    }
+
+  let [missions, setMissions] = useState<mission>({result: [{    mission_id: 0,
+    creator_username: "placeholdername",
+    category: "placeholdercategory",
+    mission_text: "placeholderMissionText",
+    is_community:true,
+    timespan: 12,
+    created_at: new Date()}], totalPages:3});
+  async function getMissions() {
+    try {
+      const {data: responseData} = await apiPrivate.get('/mission',{
+        withCredentials: true,
+        headers: {Authorization: 'bearer ' +  accessToken}
+      })
+      setMissions(responseData);
+    } catch (error) {
+            let message
+            if (isAxiosError(error)) {
+              message =
+                error.response?.data.message ||
+                'Something went wrong. Please try again later.'
+            }
+            console.log(message)
+    }
+  }
+  useEffect(()=>{
+    getMissions();
+  },[accessToken,loading])
   return (
     <>
       <div className="p-4 flex flex-col justify-start ">
@@ -116,10 +189,10 @@ const Missions = () => {
                 Nutrition
               </DropdownMenuCheckboxItem>
               <DropdownMenuCheckboxItem
-                checked={showExercise}
-                onCheckedChange={setShowExercise}
+                checked={showFitness}
+                onCheckedChange={setShowFitness}
               >
-                Exercise
+                Fitness
               </DropdownMenuCheckboxItem>
               <DropdownMenuCheckboxItem
                 checked={showSleep}
@@ -141,22 +214,9 @@ const Missions = () => {
           </DropdownMenu>
         </div>
         <div className="mt-4 flex flex-wrap w-full justify-start">
-          <MissionCard />
-          <MissionCard />
-
-          <MissionCard />
-
-          <MissionCard />
-
-          <MissionCard />
-
-          <MissionCard />
-
-          <MissionCard />
-
-          <MissionCard />
-
-          <MissionCard />
+          {missions.result.map((mission)=>{
+            return <MissionCard mission={mission}/>
+          })}
         </div>
       </div>
     </>

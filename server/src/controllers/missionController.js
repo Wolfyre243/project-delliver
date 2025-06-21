@@ -20,7 +20,10 @@ controller.retrieveAllMissions = async (req, res, next) => {
   const limit = 10
 
   // If a single category is provided, add it into the array
-  if (!Array.isArray(category)) {
+  if (!category) {
+    category = null
+  } else if (!Array.isArray(category)) {
+    // If a single category is provided, add it into the array
     category = [category]
   }
 
