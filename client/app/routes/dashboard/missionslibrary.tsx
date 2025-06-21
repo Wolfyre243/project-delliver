@@ -2,7 +2,7 @@ import {
   DropdownMenuLabel,
   type DropdownMenuCheckboxItemProps,
 } from '@radix-ui/react-dropdown-menu'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import {
@@ -21,7 +21,7 @@ import {
   CardAction,
   CardFooter,
 } from '~/components/ui/card'
-
+import { isAxiosError } from 'axios'
 import {
   Calculator,
   Calendar,
@@ -32,7 +32,7 @@ import {
   User,
 } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
-
+import useAuth from '~/hooks/useAuth'
 import {
   Command,
   CommandEmpty,
@@ -52,6 +52,8 @@ import {
   DropdownMenu,
   DropdownMenuItem,
 } from '~/components/ui/dropdown-menu'
+import { apiPrivate } from '~/services/api'
+import { Skeleton } from '~/components/ui/skeleton'
 type Checked = DropdownMenuCheckboxItemProps['checked']
 const MissionCard = () => {
   return (
@@ -134,30 +136,7 @@ const Missions = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-transparent border-0">
-              <Command className="rounded-lg border shadow-md md:min-w-[200px]">
-                <CommandInput placeholder="Creator name" />
-                <CommandList>
-                  <CommandEmpty>No results found.</CommandEmpty>
-                  <CommandGroup heading="Creators">
-                    <CommandItem>
-                      <a className="w-full" href="/admin">
-                        <div className="flex gap-2">
-                          <User />
-                          <span>admin</span>
-                        </div>
-                      </a>
-                    </CommandItem>
-                    <CommandItem>
-                      <User />
-                      <span>flxvershellyqs</span>
-                    </CommandItem>
-                    <CommandItem>
-                      <User />
-                      <span>wolfye</span>
-                    </CommandItem>
-                  </CommandGroup>
-                </CommandList>
-              </Command>
+              <CommandForCreators/>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -185,12 +164,50 @@ const Missions = () => {
 }
 
 export default Missions
-/*
 
 
-export function CommandDemo() {
+
+function CommandForCreators() {
+  const { accessToken, loading } = useAuth()
+  let [usernames, setUsernames] = useState([{username: "placeholder"}]);
+  async function getData() {
+    try {
+      const {data: responseData} = await apiPrivate.get('/users',{
+        withCredentials: true,
+        headers: { Authorization: 'bearer ' + accessToken },
+      })
+      setUsernames(responseData)
+    } catch (error) {
+            let message
+            if (isAxiosError(error)) {
+              message =
+                error.response?.data.message ||
+                'Something went wrong. Please try again later.'
+            }
+            console.log(message)
+    }
+  }
+  useEffect(()=>{
+    getData();
+  },[])
   return (
-
+    <>
+    <Command className="rounded-lg border shadow-md md:min-w-[200px]">
+      <CommandInput placeholder="Creator name" />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Creators">
+          {usernames.map((users: any)=>{
+            return(
+              <CommandItem>
+                    <User />
+                    <span>{users.username}</span>
+              </CommandItem>
+            );
+          })}
+        </CommandGroup>
+      </CommandList>
+    </Command>
+    </>
   )
 }
-*/

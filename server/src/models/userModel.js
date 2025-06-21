@@ -93,7 +93,7 @@ model.retrieveByUserID = async (userID) => {
 model.retrieveAll = async () => {
   const sql = `
   SELECT user_id, email, username
-  FROM users;
+  FROM users ORDER BY username ASC;
   `
 
   return query(sql).then((result) => {

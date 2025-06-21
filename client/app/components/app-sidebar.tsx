@@ -35,11 +35,15 @@ const logoOfTheApp = () => {
 }
 // This is sample data.
 
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  let [data, setData] = React.useState({
+  let [email, setEmail] = React.useState("m@example.com");
+  let [name, setName] = React.useState("placeholder");
+  const { accessToken, loading } = useAuth()
+  const data = {
     user: {
-      name: 'placeholder',
-      email: 'm@example.com',
+      name: name,
+      email: email,
       avatar: CircleUserRound,
     },
     teams: [
@@ -63,11 +67,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         items: [
           {
             title: 'Missions library',
-            url: '/dashboard/missions',
+            url: '/dashboard/missionslibrary',
           },
           {
-            title: 'Starred',
-            url: '#',
+            title: 'My missions',
+            url: '/dashboard/mymissions',
           },
         ],
       },
@@ -78,7 +82,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       },
       {
         name: 'Clinics',
-        url: '/clinic',
+        url: '/dashboard/clinic',
         icon: Map,
       },
       {
@@ -87,8 +91,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         icon: BotIcon,
       },
     ],
-  })
-  const { accessToken, loading } = useAuth()
+  }
 
   async function getData() {
     try {
@@ -96,58 +99,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         withCredentials: true,
         headers: { Authorization: 'bearer ' + accessToken },
       })
-      setData({
-        user: {
-          name: responseData.username,
-          email: responseData.email,
-          avatar: CircleUserRound,
-        },
-        teams: [
-          {
-            name: 'HealthNest',
-            logo: logoOfTheApp,
-            plan: 'v1.0.0',
-          },
-        ],
-        projects: [
-          {
-            name: 'Home',
-            url: '/dashboard',
-            icon: HomeIcon,
-          },
-          {
-            name: 'Missions',
-            url: '/dashboard/missions',
-            icon: ScrollText,
-            isActive: true,
-            items: [
-              {
-                title: 'Missions library',
-                url: '/dashboard/missionslibrary',
-              },
-              {
-                title: 'My missions',
-                url: '/dashboard/mymissions',
-              },
-            ],
-          },
-          {
-            name: 'Dietary',
-            url: '/dashboard/dietary',
-            icon: Utensils,
-          },
-          {
-            name: 'Clinics',
-            url: '/dashboard/clinic',
-            icon: Map,
-          },
-          {
-            name: 'Nessie',
-            url: '/assistant',
-            icon: BotIcon,
-          },
-        ],
-      })
+      setName(responseData.username);
+      setEmail(responseData.email)
     } catch (error) {
       let message
       if (isAxiosError(error)) {
