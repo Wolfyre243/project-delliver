@@ -1,6 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/client"
+  provider      = "prisma-client-js"
+  output        = "../src/generated/client"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
@@ -17,21 +18,7 @@ model userprofile {
   updated_at        DateTime? @db.Timestamptz(6)
   exercise_duration String    @db.VarChar(255)
   history           String[]
-  User              User      @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
-}
-
-model User {
-  user_id               Int                     @id @default(autoincrement())
-  username              String                  @unique @db.VarChar(50)
-  email                 String                  @unique @db.VarChar(255)
-  password              String                  @db.Char(60)
-  is_verified           Boolean?                @default(false)
-  created_at            DateTime?               @default(now()) @db.Timestamptz(6)
-  updated_at            DateTime?               @db.Timestamptz(6)
-  mission               mission[]
-  sessions              sessions[]
-  usermissioncompletion usermissioncompletion[]
-  userprofile           userprofile?
+  User              users     @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model mission {
@@ -44,7 +31,7 @@ model mission {
   timespan              Int
   created_at            DateTime?               @default(now()) @db.Timestamptz(6)
   missioncategory       missioncategory         @relation(fields: [category_id], references: [category_id], onDelete: Cascade, onUpdate: NoAction)
-  User                  User                    @relation(fields: [creator_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+  User                  users                   @relation(fields: [creator_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
   usermissioncompletion usermissioncompletion[]
 }
 
@@ -61,7 +48,7 @@ model sessions {
   is_active    Boolean?  @default(true)
   login_at     DateTime? @default(now()) @db.Timestamptz(6)
   logout_at    DateTime? @db.Timestamptz(6)
-  User         User      @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+  User         users     @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model usermissioncompletion {
@@ -72,7 +59,21 @@ model usermissioncompletion {
   started_at           DateTime? @default(now()) @db.Timestamptz(6)
   ended_at             DateTime? @db.Timestamptz(6)
   mission              mission   @relation(fields: [mission_id], references: [mission_id], onDelete: Cascade, onUpdate: NoAction)
-  User                 User      @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+  User                 users     @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model users {
+  user_id               Int                     @id @default(autoincrement())
+  username              String                  @unique @db.VarChar(50)
+  email                 String                  @unique @db.VarChar(255)
+  password              String                  @db.Char(60)
+  is_verified           Boolean?                @default(false)
+  created_at            DateTime?               @default(now()) @db.Timestamptz(6)
+  updated_at            DateTime?               @db.Timestamptz(6)
+  mission               mission[]
+  sessions              sessions[]
+  usermissioncompletion usermissioncompletion[]
+  userprofile           userprofile?
 }
 
 enum visibility {

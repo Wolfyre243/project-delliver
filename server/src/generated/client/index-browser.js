@@ -127,16 +127,6 @@ exports.Prisma.UserprofileScalarFieldEnum = {
   history: 'history',
 }
 
-exports.Prisma.UserScalarFieldEnum = {
-  user_id: 'user_id',
-  username: 'username',
-  email: 'email',
-  password: 'password',
-  is_verified: 'is_verified',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-}
-
 exports.Prisma.MissionScalarFieldEnum = {
   mission_id: 'mission_id',
   creator_id: 'creator_id',
@@ -171,6 +161,16 @@ exports.Prisma.UsermissioncompletionScalarFieldEnum = {
   ended_at: 'ended_at',
 }
 
+exports.Prisma.UsersScalarFieldEnum = {
+  user_id: 'user_id',
+  username: 'username',
+  email: 'email',
+  password: 'password',
+  is_verified: 'is_verified',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+}
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc',
@@ -193,11 +193,11 @@ exports.visibility = exports.$Enums.visibility = {
 
 exports.Prisma.ModelName = {
   userprofile: 'userprofile',
-  User: 'User',
   mission: 'mission',
   missioncategory: 'missioncategory',
   sessions: 'sessions',
   usermissioncompletion: 'usermissioncompletion',
+  users: 'users',
 }
 
 /**
