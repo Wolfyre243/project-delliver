@@ -93,7 +93,7 @@ const login = () => {
               id="password"
             />
           </div>
-          <Button className="mt-9 w-full">Login</Button>
+          <Button className="mt-9 w-full" type='submit'>Login</Button>
         </form>
         <div className={classNameOfAlert}>
           <Alert variant={'destructive'}>

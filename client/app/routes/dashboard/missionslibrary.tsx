@@ -116,7 +116,8 @@ const MissionCard = ({mission}:{
 const Missions = () => {
   let [showDiet, setShowDiet] = React.useState<Checked>(false)
   let [showFitness, setShowFitness] = React.useState<Checked>(false)
-  let [showSleep, setShowSleep] = React.useState<Checked>(false)
+  let [showSleep, setShowSleep] = React.useState<Checked>(false);
+  let [searchValue, setSearchValue] = useState("");
     const { accessToken, loading } = useAuth()
   
     type mission  = {
@@ -157,6 +158,29 @@ const Missions = () => {
             console.log(message)
     }
   }
+  async function searchMissions(input: String) {
+    debugger
+    if (input === ""){
+      getMissions();
+    } else {
+      try {
+      const {data: responseData} = await apiPrivate.get('/mission?search=' + input,{
+        withCredentials: true,
+        headers: {Authorization: 'bearer ' +  accessToken}
+      })
+      setMissions(responseData);
+    } catch (error) {
+            let message
+            if (isAxiosError(error)) {
+              message =
+                error.response?.data.message ||
+                'Something went wrong. Please try again later.'
+            }
+            console.log(message)
+    }
+    }
+
+  }
   useEffect(()=>{
     getMissions();
   },[accessToken,loading])
@@ -164,14 +188,26 @@ const Missions = () => {
     <>
       <div className="p-4 flex flex-col justify-start ">
         <h1 className="text-3xl font-bold mb-6">Mission Library</h1>
-        <div className="flex justify-start items-center">
+        <div >
+          <form className="flex justify-start items-center" onSubmit={(e)=>{
+            e.preventDefault();
+            searchMissions(searchValue);
+          }}>
           <Input
             placeholder="Search here..."
             className="bg-[#222630] px-4 py-3 outline-none text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040] self-center w-100 h-10"
+            value={searchValue}
+            onChange={(e)=>{
+              console.log(e.target.value)
+              setSearchValue(e.target.value)
+              searchMissions(e.target.value);
+            }}
           ></Input>
-          <Button variant={'ghost'} className="hover:cursor-pointer">
+          <Button variant={'ghost'} className="hover:cursor-pointer" type='submit'>
             <SearchIcon />
           </Button>
+          </form>
+
         </div>
 
         <div className="flex justify-start gap-3 mt-3">
