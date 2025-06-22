@@ -13,15 +13,12 @@ import {
   BotIcon,
 } from 'lucide-react'
 import logo from '../../public/logo.png'
-import { NavMain } from '~/components/nav-main'
 import { NavProjects } from '~/components/nav-projects'
 import { NavUser } from '~/components/nav-user'
 import { TeamSwitcher } from '~/components/team-switcher'
 import { useEffect } from 'react'
-import { apiPrivate } from '~/services/api'
 import useAuth from '~/hooks/useAuth'
 import { isAxiosError } from 'axios'
-import LoadingSpinner from '~/components/LoadingSpinner'
 import { Link } from 'react-router'
 import {
   Sidebar,
@@ -30,15 +27,15 @@ import {
   SidebarHeader,
   SidebarRail,
 } from '~/components/ui/sidebar'
+import useApiPrivate from '~/hooks/useApiPrivate'
 const logoOfTheApp = () => {
   return <img src={logo} alt="logoOfApp" />
 }
 // This is sample data.
 
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  let [email, setEmail] = React.useState("m@example.com");
-  let [name, setName] = React.useState("placeholder");
+  let [email, setEmail] = React.useState('m@example.com')
+  let [name, setName] = React.useState('placeholder')
   const { accessToken, loading } = useAuth()
   const data = {
     user: {
@@ -95,11 +92,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   async function getData() {
     try {
-      const { data: responseData } = await apiPrivate.get('/users/details', {
-        withCredentials: true,
-        headers: { Authorization: 'bearer ' + accessToken },
-      })
-      setName(responseData.username);
+      const apiPrivate = useApiPrivate()
+      const { data: responseData } = await apiPrivate.get('/users/details')
+      setName(responseData.username)
       setEmail(responseData.email)
     } catch (error) {
       let message

@@ -4,7 +4,7 @@ import { GoogleGenAI } from '@google/genai'
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
 
 async function getAIResponse(request) {
-  const response = await ai.models.generateContent({
+  const response = await ai.models.generateContentStream({
     model: 'gemini-2.5-flash',
     contents: request,
     config: {
@@ -35,8 +35,11 @@ async function getAIResponse(request) {
       `,
     },
   })
+
   //   console.log(response.text);
-  return response.text
+  return response
 }
 
-export default getAIResponse
+export default {
+  getAIResponse,
+}

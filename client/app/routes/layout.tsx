@@ -2,6 +2,7 @@
 import { useEffect } from 'react'
 import { Outlet } from 'react-router'
 import AppBar from '~/components/appbar'
+import ResponsiveAppBar from '~/components/responsive-appbar'
 import useAuth from '~/hooks/useAuth'
 import LoadingSpinner from '~/components/LoadingSpinner'
 
