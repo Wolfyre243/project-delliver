@@ -16,8 +16,8 @@ const useApiPrivate = () => {
       (config) => {
         if (accessToken && !config.headers['Authorization']) {
           config.headers['Authorization'] = `Bearer ${accessToken}`
-          config.headers['Cookie'] =
-            `refresh_token=${window.localStorage.getItem('refresh_token')}`
+          // config.headers['Cookie'] =
+          //   `refresh_token=${window.localStorage.getItem('refresh_token')}`
         }
         return config
       },

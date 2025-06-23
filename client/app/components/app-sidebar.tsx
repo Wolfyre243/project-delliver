@@ -28,14 +28,17 @@ import {
   SidebarRail,
 } from '~/components/ui/sidebar'
 import useApiPrivate from '~/hooks/useApiPrivate'
+
 const logoOfTheApp = () => {
   return <img src={logo} alt="logoOfApp" />
 }
 // This is sample data.
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  let [email, setEmail] = React.useState('m@example.com')
-  let [name, setName] = React.useState('placeholder')
+  const apiPrivate = useApiPrivate()
+
+  let [email, setEmail] = React.useState('')
+  let [name, setName] = React.useState('')
   const { accessToken, loading } = useAuth()
   const data = {
     user: {
@@ -92,7 +95,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   async function getData() {
     try {
-      const apiPrivate = useApiPrivate()
       const { data: responseData } = await apiPrivate.get('/users/details')
       setName(responseData.username)
       setEmail(responseData.email)
@@ -100,15 +102,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       let message
       if (isAxiosError(error)) {
         message =
-          error.response?.data.message ||
+          error.response?.data.message ??
           'Something went wrong. Please try again later.'
       }
       console.log(message)
     }
   }
+
   useEffect(() => {
     getData()
   }, [accessToken, loading])
+
   return (
     <>
       <Sidebar collapsible="icon" {...props}>

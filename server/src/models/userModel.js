@@ -1,6 +1,5 @@
 // Import
 import query from '../services/db.js'
-import prisma from '../services/prisma.js'
 
 import {
   UNIQUE_VIOLATION_ERROR,
