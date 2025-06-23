@@ -68,8 +68,43 @@ assistantRouter.get(
   assistantController.retrieveAllConversationMessages
 )
 
+/**
+ * @swagger
+ * /assistant/conversations:
+ *   post:
+ *     summary: Creates a new conversation
+ *     tags: [Assistant]
+ *     responses:
+ *       200:
+ *         description: Conversation created successfully
+ */
 assistantRouter.post('/conversations', assistantController.startConversation)
 
+/**
+ * @swagger
+ * /assistant/message/:conversation_id:
+ *   post:
+ *     summary: Generates a reply to user's message
+ *     tags: [Assistant]
+ *     requestBody:
+ *       content:
+ *          application/json:
+ *              examples:
+ *                  greeting:
+ *                      value:
+ *                          message: Hello
+ *     parameters:
+ *      - in: params
+ *        name: conversation_id
+ *        schema:
+ *         type: int
+ *         required: true
+ *         example: 1
+ *         description: The ID of a conversation to get messages from
+ *     responses:
+ *       200:
+ *         description: Conversation created successfully
+ */
 assistantRouter.post(
   '/message/:conversation_id',
   assistantController.generateReply

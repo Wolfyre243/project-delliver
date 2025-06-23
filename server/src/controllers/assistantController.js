@@ -62,7 +62,6 @@ controller.retrieveAllConversationMessages = async (req, res, next) => {
 }
 
 controller.startConversation = async (req, res, next) => {
-  // const { title } = req.body;
   const user_id = res.locals.user.user_id
 
   const title = 'New Conversation #X'
