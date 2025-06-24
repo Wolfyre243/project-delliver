@@ -245,7 +245,7 @@ const Missions = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-transparent border-0">
-              <CommandForCreators/>
+              <CommandForCreators setMissions={setMissions}/>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -263,7 +263,7 @@ export default Missions
 
 
 
-function CommandForCreators() {
+function CommandForCreators(props: {setMissions: Function}) {
   const { accessToken, loading } = useAuth()
   let [usernames, setUsernames] = useState([{username: "placeholder"}]);
   async function getData() {
@@ -274,6 +274,24 @@ function CommandForCreators() {
       setUsernames(responseData)
     } catch (error) {
             let message
+            if (isAxiosError(error)) {
+              message =
+                error.response?.data.message ||
+                'Something went wrong. Please try again later.'
+            }
+            console.log(message)
+    }
+  }
+  async function getDataForCreators(username: String) {
+    debugger
+    try {
+      const {data: responseData} = await apiPrivate.get('/mission?creator=' + username,{
+        withCredentials: true,
+        headers: {Authorization: 'bearer ' +  accessToken}
+      })
+      props.setMissions(responseData);
+    } catch (error) {
+                  let message
             if (isAxiosError(error)) {
               message =
                 error.response?.data.message ||
@@ -294,7 +312,7 @@ function CommandForCreators() {
         <CommandGroup heading="Creators">
           {usernames.map((users: any)=>{
             return(
-              <CommandItem>
+              <CommandItem className='hover:cursor-pointer' onClick={(e)=>{ getDataForCreators(users.username)}} key={users.username}>
                     <User />
                     <span>{users.username}</span>
               </CommandItem>

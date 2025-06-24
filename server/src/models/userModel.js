@@ -79,7 +79,7 @@ model.retrieveByUsername = async (username) => {
 
 model.retrieveByUserID = async (userID) => {
   const sql = `
-    SELECT * FROM users WHERE user_id = $1
+    SELECT username,user_id,email FROM users WHERE user_id = $1
   `
   return query(sql, [userID]).then((result) => {
     const { rows } = result
