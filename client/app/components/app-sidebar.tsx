@@ -86,10 +86,26 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         icon: Map,
       },
       {
-        name: 'Lova',
+        name: 'Nessie',
         url: '/assistant',
         icon: BotIcon,
       },
+      // {
+      //   name: 'Nessie',
+      //   url: '/assistant',
+      //   icon: BotIcon,
+      //   isActive: true,
+      //   items: [
+      //     {
+      //       title: 'New Chat',
+      //       url: '/assistant',
+      //     },
+      //     {
+      //       title: 'Past Chats',
+      //       url: '/assistant',
+      //     },
+      //   ],
+      // },
     ],
   }
 

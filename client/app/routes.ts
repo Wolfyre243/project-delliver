@@ -27,8 +27,8 @@ export default [
       index('routes/dashboard/home.tsx'),
       route('mymissions', 'routes/dashboard/mymissions.tsx'),
       route('dietary', 'routes/dashboard/dietary.tsx'),
-      route('clinic','routes/dashboard/clinic.tsx'),
-      route('missionslibrary','routes/dashboard/missionslibrary.tsx')
+      route('clinic', 'routes/dashboard/clinic.tsx'),
+      route('missionslibrary', 'routes/dashboard/missionslibrary.tsx'),
     ]),
   ]),
 
@@ -37,6 +37,9 @@ export default [
   ]),
 
   ...prefix('assistant', [
-    layout('routes/assistant/layout.tsx', [index('routes/assistant/home.tsx')]),
+    layout('routes/assistant/layout.tsx', [
+      index('routes/assistant/home.tsx'),
+      route('/:conversation_id', 'routes/assistant/conversation.tsx'),
+    ]),
   ]),
 ] satisfies RouteConfig
