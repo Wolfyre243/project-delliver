@@ -2,7 +2,7 @@ import { AvatarImage } from '@radix-ui/react-avatar'
 import { isAxiosError } from 'axios'
 import { CircleUserRound } from 'lucide-react'
 import React, { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { Avatar, AvatarFallback } from '~/components/ui/avatar'
 import { Input } from '~/components/ui/input'
 import useApiPrivate from '~/hooks/useApiPrivate'
@@ -82,6 +82,8 @@ const Assistant = () => {
   const { accessToken, loading } = useAuth()
   const [sending, setSending] = useState(false)
 
+  const navigate = useNavigate()
+
   const { conversation_id } = useParams()
 
   const [messages, setMessages] = useState([
@@ -121,6 +123,9 @@ const Assistant = () => {
     } catch (error) {
       let message
       if (isAxiosError(error)) {
+        if (error.response?.status === 403) {
+          navigate('/assistant')
+        }
         message =
           error.response?.data.message ||
           'Something went wrong. Please try again later.'
