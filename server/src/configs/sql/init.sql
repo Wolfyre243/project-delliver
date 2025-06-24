@@ -4,10 +4,13 @@ DROP TABLE IF EXISTS sessions;
 DROP TABLE IF EXISTS usermissioncompletion; 
 DROP TABLE IF EXISTS mission; 
 DROP TABLE IF EXISTS missioncategory; 
+DROP TABLE IF EXISTS conversation;
+DROP TABLE IF EXISTS conversationmessage;
 DROP TABLE IF EXISTS users; 
 
 -- ENUM --
 -- CREATE TYPE visibility AS ENUM ('private', 'public', 'restricted');
+-- CREATE TYPE conversationrole AS ENUM ('user', 'model');
 
 -- CREATE TABLES --
 CREATE TABLE users (
@@ -85,6 +88,31 @@ CREATE TABLE usermissioncompletion (
 
 	FOREIGN KEY (mission_id)
 		REFERENCES mission(mission_id)
+		ON DELETE CASCADE
+);
+
+CREATE TABLE conversation (
+	conversation_id SERIAL PRIMARY KEY,
+	user_id INT NOT NULL,
+	title VARCHAR(255) NOT NULL,
+	created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMPTZ NULL,
+
+	FOREIGN KEY (user_id)
+		REFERENCES users(user_id)
+		ON DELETE CASCADE
+);
+
+CREATE TABLE conversationmessage (
+	conversationmessage_id SERIAL PRIMARY KEY,
+	conversation_id INT NOT NULL,
+	role conversationrole NOT NULL,
+	message TEXT NOT NULL,
+	created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMPTZ NULL,
+
+	FOREIGN KEY (conversation_id)
+		REFERENCES conversation(conversation_id)
 		ON DELETE CASCADE
 );
 

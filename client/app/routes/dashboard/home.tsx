@@ -1,29 +1,17 @@
-import { Navigate } from 'react-router'
-import { AppSidebar } from '~/components/app-sidebar'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '~/components/ui/breadcrumb'
 import { isAxiosError } from 'axios'
 import TryNessie from '~/components/dashboard/TryNessie'
 import Missions from '~/components/dashboard/missions'
 import { useEffect, useState } from 'react'
-import { apiPrivate } from '~/services/api'
 import useAuth from '~/hooks/useAuth'
+import useApiPrivate from '~/hooks/useApiPrivate'
 
 export default function Page() {
   let [username, setUsername] = useState('')
+  const apiPrivate = useApiPrivate()
   const { accessToken, loading } = useAuth()
   async function getData() {
     try {
-      const { data: responseData } = await apiPrivate.get('/users/details', {
-        withCredentials: true,
-        headers: { Authorization: 'bearer ' + accessToken },
-      })
+      const { data: responseData } = await apiPrivate.get('/users/details')
       setUsername(responseData.username)
     } catch (error) {
       let message
@@ -35,9 +23,9 @@ export default function Page() {
       console.log(message)
     }
   }
-  useEffect(()=>{
-    getData();
-  },[accessToken, loading])
+  useEffect(() => {
+    getData()
+  }, [accessToken, loading])
   return (
     <>
       <h1 className="m-4 text-3xl font-bold">Hello, {username}!</h1>
