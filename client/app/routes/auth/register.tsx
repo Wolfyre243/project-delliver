@@ -234,7 +234,7 @@ const Step3 = (props: { setStep: Function }) => {
   let passwordRef: any = useRef(null)
   let confirmPasswordRef: any = useRef(null);
   let [pageNo,setPageNo] = useState(1);
-  let [showStoryline,setShowStoryline] = useState(false);
+  let [showStoryline,setShowStoryline] = useState("false");
   let [isDialogOpen, setIsDialogOpen] = useState(false);
   const { setAccessToken } = useAuth()
   const JWTDecode = useJWTDecode()
@@ -284,7 +284,7 @@ const Step3 = (props: { setStep: Function }) => {
                 if (history[i].bool == 'true') {
                   historyToPassToBackend.push(history[i].name)
                   if (history[i].name === "familyHistory" || history[i].name === "smokeHistory"){
-                    setShowStoryline(true);
+                    setShowStoryline("true");
                   }
                 }
               }
@@ -299,7 +299,7 @@ const Step3 = (props: { setStep: Function }) => {
                 history: historyToPassToBackend,
               }
                 if (exerciseDurationInput === "light activity" || exerciseDurationInput === "no activity"){
-                  setShowStoryline(true);
+                  setShowStoryline("true");
                 }
               const { data: responseData } = await api.post(
                 '/auth/register',
@@ -323,9 +323,9 @@ const Step3 = (props: { setStep: Function }) => {
                 localStorage.removeItem('username')
               }
               debugger
-              if (showStoryline === true){
+              if (showStoryline === "true"){
                 setIsDialogOpen(true);
-              } else if (showStoryline === false){
+              } else if (showStoryline === "false"){
                 navigate('/dashboard')
               }
             }
@@ -382,7 +382,7 @@ const PageOne = (props: {setStep: any}) =>{
             <DialogTitle className='hidden'></DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 m-2">
-            <img src="../../../../public/1.svg" alt='storyboard1' />
+            <img src="../../../../public/family1.svg" alt='storyboard1' />
           </div>
           <DialogFooter>
             <DialogClose asChild>
@@ -410,7 +410,7 @@ const PageTwo = () =>{
             <DialogTitle className='hidden'></DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 m-2">
-            <img src="../../../../public/2.svg" alt='storyboard1' />
+            <img src="../../../../public/family2.svg" alt='storyboard1' />
           </div>
           <DialogFooter>
             <DialogClose asChild>
