@@ -24,7 +24,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "~/components/ui/dialog"
+} from '~/components/ui/dialog'
 const register = () => {
   let [step, setStep] = useState(1)
   return (
@@ -81,12 +81,6 @@ const Step1 = (props: { setStep: Function }) => {
       <hr className="bg-white mt-10"></hr>
       <form
         onSubmit={(e) => {
-          e.preventDefault()
-          localStorage.setItem('exerciseDuration', exerciseDuration)
-          localStorage.setItem('screeningHistory', String(screeningHistory))
-          localStorage.setItem('familyHistory', String(familyHistory))
-          localStorage.setItem('smokeHistory', String(smokeHistory))
-          props.setStep(2)
           e.preventDefault()
           localStorage.setItem('exerciseDuration', exerciseDuration)
           localStorage.setItem('screeningHistory', String(screeningHistory))
@@ -232,10 +226,10 @@ const Step2 = (props: { setStep: Function }) => {
 
 const Step3 = (props: { setStep: Function }) => {
   let passwordRef: any = useRef(null)
-  let confirmPasswordRef: any = useRef(null);
-  let [pageNo,setPageNo] = useState(1);
-  let [showStoryline,setShowStoryline] = useState("false");
-  let [isDialogOpen, setIsDialogOpen] = useState(false);
+  let confirmPasswordRef: any = useRef(null)
+  let [pageNo, setPageNo] = useState(1)
+  let [showStoryline, setShowStoryline] = useState(false)
+  let [isDialogOpen, setIsDialogOpen] = useState(false)
   const { setAccessToken } = useAuth()
   const JWTDecode = useJWTDecode()
 
@@ -283,8 +277,12 @@ const Step3 = (props: { setStep: Function }) => {
                 debugger
                 if (history[i].bool == 'true') {
                   historyToPassToBackend.push(history[i].name)
-                  if (history[i].name === "familyHistory" || history[i].name === "smokeHistory"){
-                    setShowStoryline("true");
+                  if (
+                    history[i].name === 'familyHistory' ||
+                    history[i].name === 'smokeHistory'
+                  ) {
+                    console.log()
+                    setShowStoryline(true)
                   }
                 }
               }
@@ -298,9 +296,12 @@ const Step3 = (props: { setStep: Function }) => {
                 exerciseDuration: exerciseDurationInput,
                 history: historyToPassToBackend,
               }
-                if (exerciseDurationInput === "light activity" || exerciseDurationInput === "no activity"){
-                  setShowStoryline("true");
-                }
+              if (
+                exerciseDurationInput === 'light activity' ||
+                exerciseDurationInput === 'no activity'
+              ) {
+                setShowStoryline(true)
+              }
               const { data: responseData } = await api.post(
                 '/auth/register',
                 body,
@@ -309,9 +310,7 @@ const Step3 = (props: { setStep: Function }) => {
 
               setAccessToken(responseData.accessToken)
               await JWTDecode(responseData.accessToken)
-              if(history[0].bool === "true" && history[1].bool === "false"){
 
-              }
               if (responseData.accessToken != undefined) {
                 localStorage.removeItem('email')
                 localStorage.removeItem('exerciseDuration')
@@ -323,9 +322,10 @@ const Step3 = (props: { setStep: Function }) => {
                 localStorage.removeItem('username')
               }
               debugger
-              if (showStoryline === "true"){
-                setIsDialogOpen(true);
-              } else if (showStoryline === "false"){
+              if (showStoryline === true) {
+                console.log('Opening dialog')
+                setIsDialogOpen(true)
+              } else if (showStoryline === false) {
                 navigate('/dashboard')
               }
             }
@@ -365,70 +365,64 @@ const Step3 = (props: { setStep: Function }) => {
         <Button className="mt-7">Sign up</Button>
       </form>
       <Dialog open={isDialogOpen}>
-        {renderStepForDialog(pageNo,setPageNo)}
+        {renderStepForDialog(pageNo, setPageNo)}
       </Dialog>
     </>
   )
 }
-const PageOne = (props: {setStep: any}) =>{
+const PageOne = (props: { setStep: any }) => {
   return (
-    <>
-          <form>
-        <DialogTrigger asChild>
-          <Button variant="outline" className='hidden'></Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle className='hidden'></DialogTitle>
-          </DialogHeader>
-          <div className="grid gap-4 m-2">
-            <img src="../../../../public/family1.svg" alt='storyboard1' />
-          </div>
-          <DialogFooter>
-            <DialogClose asChild>
-            </DialogClose>
-            <Button type="submit" onClick={()=>{
-            console.log("submitted")
+    <DialogContent className="sm:max-w-[425px]">
+      <DialogHeader>
+        <DialogTitle className="hidden"></DialogTitle>
+      </DialogHeader>
+      <div className="grid gap-4 m-2">
+        <img src="../../../../public/family1.svg" alt="storyboard1" />
+      </div>
+      <DialogFooter>
+        <DialogClose asChild></DialogClose>
+        <Button
+          type="button"
+          onClick={() => {
             props.setStep(2)
-          }} variant={"secondary"}>Next</Button>
-          </DialogFooter>
-        </DialogContent>
-      </form>
-    </>
-  );
+          }}
+          variant={'secondary'}
+        >
+          Next
+        </Button>
+      </DialogFooter>
+    </DialogContent>
+  )
 }
-const PageTwo = () =>{
-  let navigate = useNavigate();
+const PageTwo = () => {
+  let navigate = useNavigate()
   return (
-    <>
-      <form>
-        <DialogTrigger asChild>
-          <Button variant="outline">Open Dialog</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-            <DialogTitle className='hidden'></DialogTitle>
-          </DialogHeader>
-          <div className="grid gap-4 m-2">
-            <img src="../../../../public/family2.svg" alt='storyboard1' />
-          </div>
-          <DialogFooter>
-            <DialogClose asChild>
-            </DialogClose>
-            <Button type="submit" onClick={()=> navigate("/dashboard")} variant={"default"}>Next</Button>
-          </DialogFooter>
-        </DialogContent>
-      </form>
-    </>
-  );
+    <DialogContent className="sm:max-w-[425px]">
+      <DialogHeader>
+        <DialogTitle className="hidden"></DialogTitle>
+      </DialogHeader>
+      <div className="grid gap-4 m-2">
+        <img src="../../../../public/family2.svg" alt="storyboard1" />
+      </div>
+      <DialogFooter>
+        <DialogClose asChild></DialogClose>
+        <Button
+          type="button"
+          onClick={() => navigate('/dashboard')}
+          variant={'default'}
+        >
+          Finish
+        </Button>
+      </DialogFooter>
+    </DialogContent>
+  )
 }
 
-
-function renderStepForDialog(step: any, setStep: any){
-  if (step === 1){
-    return <PageOne setStep={setStep}/>
-  } else if (step === 2){
-    return <PageTwo/>
-  } 
+function renderStepForDialog(step: any, setStep: any) {
+  if (step === 1) {
+    return <PageOne setStep={setStep} />
+  } else if (step === 2) {
+    return <PageTwo />
+  }
 }
 export default register
